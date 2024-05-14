@@ -1,7 +1,0 @@
-package com.project.warmyhomes.entity.enums;
-
-public enum LogType {
-    CREATED, UPDATED, DELETED, DECLINED,
-    TOUR_REQUEST_CREATED, TOUR_REQUEST_ACCEPTED,
-    TOUR_REQUEST_DECLINED, TOUR_REQUEST_CANCELED
-}
