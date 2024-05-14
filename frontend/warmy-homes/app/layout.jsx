@@ -21,10 +21,14 @@ export const metadata = {
         {
             name: "Securiconet",
             url: "https://github.com/Securiconet"
-        }, {
-            // TODO: add partners here
-            name: "aenesu",
-            url: "https://github.com/aenesu"
+        },
+        {
+            name: "Ayseakkurt",
+            url: "https://github.com/Ayseakkurt"
+        },
+        {
+            name: "erendibek576",
+            url: "https://github.com/erendibek576"
         },
     ],
     creator: "",
