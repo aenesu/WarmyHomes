@@ -1,7 +1,16 @@
 package com.project.warmyhomes.entity.concretes.business;
 
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 
 @Entity
 @Table(name = "categories")
@@ -9,31 +18,30 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(nullable = false, length = 150)
-    private String title;
+    String title;
 
     @Column(nullable = false, length = 50)
-    private String icon;
+    String icon;
 
-    @Column(nullable = false, columnDefinition = "boolean default false")
-    private Boolean builtIn;
+    @Column(name = "built_in", nullable = false, columnDefinition = "Boolean default false")
+    Boolean builtIn;
 
-    @Column(nullable = false, columnDefinition = "int default 0")
-    private Integer seq;
+    @Column(nullable = false, columnDefinition = "Integer default 0")
+    Integer seq;
 
     @Column(nullable = false, length = 200)
-    private String slug;
+    String slug;
 
-    @Column(nullable = false, columnDefinition = "boolean default true")
-    private Boolean isActive;
+    @Column(name = "is_active", nullable = false, columnDefinition = "Boolean default true")
+    Boolean isActive;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "create_at", nullable = false)
+    LocalDateTime createAt;
 
-    @Column
-    private LocalDateTime updatedAt;
+    @Column(name = "update_at")
+    LocalDateTime updateAt;
 
-    // Getters and setters
 }

@@ -2,10 +2,9 @@ package com.project.warmyhomes.payload.request.abstracts;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 @Data
+//@AllArgsConstructor -> It will open when the field is added.
 @NoArgsConstructor
-@SuperBuilder
 public abstract class AbstractUserRequest {
 }

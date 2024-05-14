@@ -1,22 +1,25 @@
 package com.project.warmyhomes.entity.concretes.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "roles")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+
+@Entity
+@Table(name = "roles")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
+
+    @Column(name = "role_name")
+    String roleName;
 
 }

@@ -1,12 +1,15 @@
 package com.project.warmyhomes.entity.concretes.business;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+import javax.persistence.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 
 @Entity
 @Table(name = "category_property_keys")
@@ -14,15 +17,14 @@ public class CategoryPropertyKey {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    @Column(nullable = false)
-    @Size(min = 2, max = 200)
-    private String name;
+    @Column(nullable = false, length = 80)
+    String name;
 
-    @Column(nullable = false, columnDefinition = "boolean default false") 
-    private Boolean built_in;
+    @Column(name = "built_in", nullable = false, columnDefinition = "Boolean default false")
+    Boolean builtIn;
 
-    @Column(nullable = false)
-    private Integer category_id;
+    @Column(name = "category_id", nullable = false)
+    Integer categoryId;
 }

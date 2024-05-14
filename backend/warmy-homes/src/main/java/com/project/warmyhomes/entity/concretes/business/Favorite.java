@@ -1,28 +1,32 @@
 package com.project.warmyhomes.entity.concretes.business;
 
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 
 @Entity
 @Table(name = "favorites")
 public class Favorite {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-    @Column(nullable = false)
-    private Integer user_id;
+    @Column(name = "user_id", nullable = false)
+    Integer userId;
 
-    @Column(nullable = false)
-    private Integer advert_id;
+    @Column(name = "advert_id", nullable = false)
+    Integer advertId;
 
-    @Column(nullable = false)
-    private LocalDateTime created_at;
+    @Column(name = "created_at", nullable = false)
+    LocalDateTime createAt;
 }

@@ -1,13 +1,12 @@
 package com.project.warmyhomes.payload.response.user;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+//@AllArgsConstructor -> It will open when the field is added.
 @NoArgsConstructor
-@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoginResponse {
 }

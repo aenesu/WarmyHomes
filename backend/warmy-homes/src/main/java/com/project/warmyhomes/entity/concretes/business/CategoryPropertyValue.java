@@ -1,6 +1,15 @@
 package com.project.warmyhomes.entity.concretes.business;
 
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
 import javax.persistence.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 
 @Entity
 @Table(name = "category_property_values")
@@ -8,16 +17,15 @@ public class CategoryPropertyValue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(nullable = false, length = 100)
-    private String value;
+    String value;
 
-    @Column(nullable = false)
-    private Integer advert_id;
+    @Column(name = "advert_id", nullable = false)
+    Integer advertId;
 
-    @Column(nullable = false)
-    private Integer category_property_key_id;
+    @Column(name = "category_property_key_id", nullable = false)
+    Integer categoryPropertyKeyId;
 
-    // Getters and setters
 }

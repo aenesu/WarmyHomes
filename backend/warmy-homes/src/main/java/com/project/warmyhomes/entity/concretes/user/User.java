@@ -1,58 +1,51 @@
 package com.project.warmyhomes.entity.concretes.user;
 
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
-
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    @Size(min = 2, max = 30)
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    @Column(name = "first_name", nullable = false, length = 30)
+    String firstName;
 
-    @Size(min = 2, max = 30)
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(name = "last_name", nullable = false, length = 30)
+    String lastName;
 
-    @Size(min = 10, max = 80)
-    @Email
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
+    @Column(nullable = false, unique = true, length = 80)
+    String email;
 
-    @Column(name = "phone", nullable = false, unique = true)
-    private String phone;
+    @Column(nullable = false, unique = true)
+    String phone;
 
-    @Size(min = 8, max = 100)
     @Column(name = "password_hash", nullable = false)
-    private String passwordHash;
+    String passwordHash;
 
     @Column(name = "reset_password_code")
-    private String resetPasswordCode;
+    String resetPasswordCode;
 
-    @Column(name = "built_in", nullable = false)
-    private Boolean builtIn;
+    @Column(name = "built_in", nullable = false, columnDefinition = "Boolean default false")
+    Boolean builtIn;
 
     @Column(name = "create_at", nullable = false)
-    private LocalDateTime createAt;
+    LocalDateTime createAt;
 
     @Column(name = "update_at")
-    private LocalDateTime updateAt;
+    LocalDateTime updateAt;
 
 }
