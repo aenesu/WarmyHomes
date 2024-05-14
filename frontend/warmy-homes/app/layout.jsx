@@ -1,6 +1,8 @@
 import { Akshar } from "next/font/google";
-import "./global.css";
+import "./globals.css";
 import "@/styles/styles.scss";
+import Footer from "@/components/footer/footer";
+import Header from "@/components/header/header";
 
 const akshar = Akshar({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
 
@@ -17,6 +19,9 @@ export const metadata = {
             url: "https://github.com/aenesu"
         },
         {
+            name: "Securiconet",
+            url: "https://github.com/Securiconet"
+        }, {
             // TODO: add partners here
             name: "aenesu",
             url: "https://github.com/aenesu"
@@ -61,9 +66,16 @@ export default function RootLayout({ children }) {
                 className={`${akshar.className}`}
                 style={{ height: "100% !important" }}
             >
-                {children}
-            </body>
+                <Header />
 
+                <div style={{ height: '70vh'}}>
+                    {children}
+                    hey
+                </div>
+
+
+                <Footer />
+            </body>
         </html>
     )
 }
