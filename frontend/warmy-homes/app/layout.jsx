@@ -1,8 +1,8 @@
 import { Akshar } from "next/font/google";
 import "./globals.css";
 import "@/styles/styles.scss";
-import Footer from "@/components/footer/footer";
-import Header from "@/components/header/header";
+import Header from "@/components/common/header/header";
+import Footer from "@/components/common/footer/footer";
 
 const akshar = Akshar({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
 
