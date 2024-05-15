@@ -50,9 +50,9 @@ To deploy and utilize the Warmy Homes Real Estate Project frontend, follow these
   npm start
   ```
 4. **Run the Application**:
-  ```
-  npm install
-  ```
+   ```
+   npm run dev
+   ```
 5. **Access the Frontend Application**:
 - Visit `http://localhost:3000` in your web browser.
 
