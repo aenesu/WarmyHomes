@@ -42,6 +42,9 @@ To deploy and utilize the Warmy Homes Real Estate Project frontend, follow these
     ```
 3. **Setup Environment**:
 - Ensure you have Node.js and npm installed.
+  ```
+  npm install
+  ```
 - Install dependencies:
   ```
   npm start
@@ -61,22 +64,7 @@ To deploy and utilize the Warmy Homes Real Estate Project backend, follow these 
   ```
   cd warmy-homes/backend
   ```
-2. **Setup Environment**:
-- Ensure you have Node.js and npm installed.
-- Install dependencies:
-  ```
-  npm install
-  ```
-
-3. **Configuration**:
-- Configure database connection settings in `config/database.js`.
-- Set up environment variables for sensitive data.
-
-4. **Run the Application**:
-  ```
-  npm start
-  ```
-5. **Access the Backend Application**:
+2. **Access the Backend Application**:
 - The backend will be running on a specified port. Refer to the backend documentation for API endpoints and usage.
 
 ## Notes:
