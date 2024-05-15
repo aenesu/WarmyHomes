@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -25,7 +26,7 @@ public class TourRequest {
     LocalDate tourDate;
 
     @Column(name = "tour_time", nullable = false)
-    LocalDate tourTime;
+    LocalTime tourTime;
 
     @Column(nullable = false, columnDefinition = "Integer default 0")
     Integer status;

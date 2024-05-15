@@ -1,6 +1,5 @@
 package com.project.warmyhomes.entity.concretes.business;
 
-import com.project.warmyhomes.entity.enums.LogType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -23,12 +22,13 @@ public class Log {
 
     String log;
 
+    @Column(name = "create_at", nullable = false)
+    LocalDateTime createAt;
+
     @Column(name = "user_id")
     Integer userId;
 
     @Column(name = "advert_id")
     Integer advertId;
 
-    @Column(name = "create_at", nullable = false)
-    LocalDateTime createAt;
 }

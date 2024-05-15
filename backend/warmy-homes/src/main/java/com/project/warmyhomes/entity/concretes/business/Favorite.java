@@ -27,6 +27,6 @@ public class Favorite {
     @Column(name = "advert_id", nullable = false)
     Integer advertId;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "create_at", nullable = false)
     LocalDateTime createAt;
 }
