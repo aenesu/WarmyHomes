@@ -61,9 +61,9 @@ To deploy and utilize the Warmy Homes Real Estate Project frontend, follow these
 To deploy and utilize the Warmy Homes Real Estate Project backend, follow these steps:
 
 1. **Navigate to the Backend Directory**:
-  ```
-  cd warmy-homes/backend
-  ```
+   ```
+   cd warmy-homes/backend
+   ```
 2. **Access the Backend Application**:
 - The backend will be running on a specified port. Refer to the backend documentation for API endpoints and usage.
 
@@ -71,11 +71,10 @@ To deploy and utilize the Warmy Homes Real Estate Project backend, follow these 
 
 - **Security**: Ensure proper authentication and authorization mechanisms are in place, especially for Admin functionalities.
 - **Backup**: Regularly backup the database to prevent data loss.
-- **Testing**: Thoroughly test the application before deploying to production.
 
 ## Contributors:
 
-- Enes (@aenesu)
+- Enes (@aenesu) [https://github.com/aenesu]
 - Hikmet (@Securiconet)
 - Ayşe (@Ayseakkurt)
 - Muhammed Eren (@erendibek576)
