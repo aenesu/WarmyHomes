@@ -41,7 +41,7 @@ To deploy and utilize the Warmy Homes Real Estate Project frontend, follow these
     cd warmy-homes/frontend
     ```
 3. **Setup Environment**:
-- Ensure you have Node.js and npm installed.
+- Ensure you have Node.js and npm installed:
   ```
   npm install
   ```
