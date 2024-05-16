@@ -1,6 +1,7 @@
 .divClass {
-    background-color: aqua;
-    height: 20%;
+    background-color: #383838;
+    display: flex;
+    justify-content: space-around;
     
         padding: 50px;
         text-align: center;
@@ -9,3 +10,16 @@
         bottom: 0;
         width: 100%;
 }
+
+.footerSegment {
+    color: #939393;
+    max-width: 17%;
+    justify-content: left;
+    text-align: left;
+    
+}
+
+
+
+
+
