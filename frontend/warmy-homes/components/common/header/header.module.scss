@@ -1,0 +1,84 @@
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navContainer {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbarNav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbarNav li {
+    margin: 0 15px;
+  }
+  
+  .nav-link {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .buttonsContainer {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .loginButton {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.7);
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    margin-right: 5px;
+    font-size: 18px;
+  }
+  
+  .loginButton:hover {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .addButton {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
