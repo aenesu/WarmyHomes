@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className={styles.headerContainer}>
       <div className={styles.logo}>
-        <img src="/assets/images/logo-white2.png" alt="Logo" />
+        <img src="/assets/images/logo-white2.png" alt="Logo" className={styles.logoImage} />
       </div>
       <div className={styles.navContainer}>
         <ul className={styles.navbarNav}>
