@@ -1,9 +1,9 @@
-package com.project.warmyhomes.service.user;
+package com.project.warmyhomes.service.business;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class FavoriteService {
 }

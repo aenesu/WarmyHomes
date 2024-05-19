@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 //@AllArgsConstructor -> It will open when the field is added.
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AdvertResponse {
+public class ReportResponse {
 }

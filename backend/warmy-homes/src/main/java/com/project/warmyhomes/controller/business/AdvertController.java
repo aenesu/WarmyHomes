@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/advert")
+@RequestMapping("/adverts")
 @RequiredArgsConstructor
 public class AdvertController {
 }

@@ -1,11 +1,11 @@
-package com.project.warmyhomes.controller.user;
+package com.project.warmyhomes.controller.business;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/images")
 @RequiredArgsConstructor
-public class UserController {
+public class ImageController {
 }

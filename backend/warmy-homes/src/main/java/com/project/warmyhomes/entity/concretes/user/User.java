@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -47,5 +48,5 @@ public class User {
 
     @Column(name = "update_at")
     LocalDateTime updateAt;
-
+    
 }
