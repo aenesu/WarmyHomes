@@ -42,5 +42,6 @@ public class WarmyHomesApplication implements CommandLineRunner {
             superAdmin.setCreateAt(LocalDateTime.now());
             userRepository.save(superAdmin);
         }
+
     }
 }

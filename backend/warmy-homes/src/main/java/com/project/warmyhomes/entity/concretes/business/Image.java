@@ -29,6 +29,8 @@ public class Image {
     @Column(nullable = false, columnDefinition = "Boolean default false")
     Boolean featured;
 
-    @Column(name = "advert_id", nullable = false)
-    Integer advertId;
+    @ManyToOne
+    @JoinColumn(name = "advert_id", nullable = false)
+    Advert advert;
+
 }

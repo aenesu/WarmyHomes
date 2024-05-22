@@ -22,10 +22,12 @@ public class CategoryPropertyValue {
     @Column(nullable = false, length = 100)
     String value;
 
-    @Column(name = "advert_id", nullable = false)
-    Integer advertId;
+    @ManyToOne
+    @JoinColumn(name = "advert_id", nullable = false)
+    Advert advert;
 
-    @Column(name = "category_property_key_id", nullable = false)
-    Integer categoryPropertyKeyId;
+    @ManyToOne
+    @JoinColumn(name = "category_property_key_id", nullable = false)
+    CategoryPropertyKey propertyKey;
 
 }

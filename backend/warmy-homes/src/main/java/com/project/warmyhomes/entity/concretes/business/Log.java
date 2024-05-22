@@ -1,5 +1,6 @@
 package com.project.warmyhomes.entity.concretes.business;
 
+import com.project.warmyhomes.entity.concretes.user.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -25,10 +26,12 @@ public class Log {
     @Column(name = "create_at", nullable = false)
     LocalDateTime createAt;
 
-    @Column(name = "user_id")
-    Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "advert_id")
+    Advert advert;
 
-    @Column(name = "advert_id")
-    Integer advertId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
 }

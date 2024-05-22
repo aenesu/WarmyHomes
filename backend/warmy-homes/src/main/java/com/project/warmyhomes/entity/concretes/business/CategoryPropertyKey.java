@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,6 +26,11 @@ public class CategoryPropertyKey {
     @Column(name = "built_in", nullable = false, columnDefinition = "Boolean default false")
     Boolean builtIn;
 
-    @Column(name = "category_id", nullable = false)
-    Integer categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    Category category;
+
+    @OneToMany(mappedBy = "propertyKey")
+    Set<CategoryPropertyValue> propertyValues;
+
 }

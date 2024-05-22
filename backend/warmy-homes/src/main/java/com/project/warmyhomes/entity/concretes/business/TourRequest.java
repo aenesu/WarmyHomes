@@ -1,5 +1,6 @@
 package com.project.warmyhomes.entity.concretes.business;
 
+import com.project.warmyhomes.entity.concretes.user.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -37,12 +38,15 @@ public class TourRequest {
     @Column(name = "update_at")
     LocalDateTime updateAt;
 
-    @Column(name = "advert_id", nullable = false)
-    Integer advertId;
+    @ManyToOne
+    @JoinColumn(name = "advert_id", nullable = false)
+    Advert advert;
 
-    @Column(name = "owner_user_id", nullable = false)
-    Integer ownerUserId;
+    @ManyToOne
+    @JoinColumn(name = "owner_user_id", nullable = false)
+    User owner;
 
-    @Column(name = "guest_user_id", nullable = false)
-    Integer guestUserId;
+    @ManyToOne
+    @JoinColumn(name = "guest_user_id", nullable = false)
+    User guest;
 }

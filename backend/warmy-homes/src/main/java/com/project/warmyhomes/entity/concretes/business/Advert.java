@@ -2,9 +2,11 @@ package com.project.warmyhomes.entity.concretes.business;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.*;
 
+import com.project.warmyhomes.entity.concretes.user.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -54,21 +56,43 @@ public class Advert {
     @Column(name = "update_at")
     LocalDateTime updateAt;
 
-    @Column(name = "advert_type_id", nullable = false)
-    Integer advertTypeId;
+    @ManyToOne
+    @JoinColumn(name = "advert_type_id", nullable = false)
+    AdvertType advertType;
 
-    @Column(name = "country_id", nullable = false)
-    Integer countryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    Category category;
 
-    @Column(name = "city_id", nullable = false)
-    Integer cityId;
+    @ManyToOne
+    @JoinColumn(name = "country_id", nullable = false)
+    Country country;
 
-    @Column(name = "district_id", nullable = false)
-    Integer districtId;
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = false)
+    City city;
 
-    @Column(name = "user_id", nullable = false)
-    Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "district_id", nullable = false)
+    District district;
 
-    @Column(name = "category_id", nullable = false)
-    Integer categoryId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
+
+    @OneToMany(mappedBy = "advert")
+    Set<CategoryPropertyValue> propertyValues;
+
+    @OneToMany(mappedBy = "advert")
+    Set<Favorite> favorites;
+
+    @OneToMany(mappedBy = "advert")
+    Set<Image> images;
+
+    @OneToMany(mappedBy = "advert")
+    Set<Log> logs;
+
+    @OneToMany(mappedBy = "advert")
+    Set<TourRequest> tourRequests;
+
 }

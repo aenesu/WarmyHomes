@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -43,5 +44,11 @@ public class Category {
 
     @Column(name = "update_at")
     LocalDateTime updateAt;
+
+    @OneToMany(mappedBy = "category")
+    Set<Advert> adverts;
+
+    @OneToMany(mappedBy = "category")
+    Set<CategoryPropertyKey> propertyKeys;
 
 }

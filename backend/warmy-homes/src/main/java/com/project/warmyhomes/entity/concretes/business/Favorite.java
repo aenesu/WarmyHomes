@@ -1,5 +1,6 @@
 package com.project.warmyhomes.entity.concretes.business;
 
+import com.project.warmyhomes.entity.concretes.user.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -21,12 +22,15 @@ public class Favorite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "user_id", nullable = false)
-    Integer userId;
-
-    @Column(name = "advert_id", nullable = false)
-    Integer advertId;
-
     @Column(name = "create_at", nullable = false)
     LocalDateTime createAt;
+
+    @ManyToOne
+    @JoinColumn(name = "advert_id", nullable = false)
+    Advert advert;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
+
 }
