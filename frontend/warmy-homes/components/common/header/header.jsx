@@ -8,20 +8,20 @@ const akshar = Akshar({ subsets: ["latin"], weight: ["300", "400", "500", "600",
 const navLinks = [
   { name: 'Home', href: '/#' },
   { name: 'Properties', href: '/advertsPage' },
-  { name: 'About', href: '/#' },
-  { name: 'Contact', href: '/#' },
+  { name: 'About', href: '/aboutPage' },
+  { name: 'Contact', href: '/contactPage' },
 ];
 
 const Header = () => {
   return (
     <div className={`${styles.headerContainer} ${akshar.className}`}>
       <div className={styles.logo}>
-        <img src="/assets/images/logo-white2.png" alt="Logo" className={styles.logoImage} />
+        <img src="/assets/images/logo.png" alt="Logo" className={styles.logoImage} />
       </div>
       <div className={styles.navContainer}>
         <ul className={styles.navbarNav}>
           {navLinks.map((link, index) => (
-            <li key={index}>
+            <li className={styles.listitem}key={index}>
               <a href={link.href} className={`${styles.navLink} ${akshar.className}`}>
                 {link.name}
               </a>

@@ -39,13 +39,22 @@
   margin: 0 15px;
 }
 
-.nav-link {
+.navlink {
   font-size: 20px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.7);
   text-decoration: none;
   transition: color 0.3s;
 }
+
+.listitem {
+  & a{
+    text-decoration: none; 
+    color: inherit; 
+}
+}
+
+
 
 .nav-link:hover {
   color: rgba(0, 0, 0, 0.9);
