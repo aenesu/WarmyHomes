@@ -1,5 +1,6 @@
 package com.project.warmyhomes.entity.concretes.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.warmyhomes.entity.concretes.business.Advert;
 import com.project.warmyhomes.entity.concretes.business.Favorite;
 import com.project.warmyhomes.entity.concretes.business.Log;
@@ -54,13 +55,14 @@ public class User {
     @Column(name = "update_at")
     LocalDateTime updateAt;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private List<Role> roleList;
+    List<Role> roles;
 
     @OneToMany(mappedBy = "user")
     Set<Advert> adverts;
@@ -75,6 +77,6 @@ public class User {
     Set<TourRequest> tourRequests;
 
     @OneToMany(mappedBy = "guest")
-    Set<TourRequest> tourRequestList;
+    Set<TourRequest> tourRequestSet;
 
 }
