@@ -1,9 +1,16 @@
 import styles from './header.module.scss';
 import AddPropertyButton from './addPropertyButton/addPropertyButton';
 import { AiOutlineUser } from 'react-icons/ai';
-import { Akshar } from 'next/font/google'; // Ensure correct import if using next/font
+import { Akshar } from 'next/font/google'; 
 
 const akshar = Akshar({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
+
+const navLinks = [
+  { name: 'Home', href: '/#' },
+  { name: 'Properties', href: '/advertsPage' },
+  { name: 'About', href: '/#' },
+  { name: 'Contact', href: '/#' },
+];
 
 const Header = () => {
   return (
@@ -13,18 +20,13 @@ const Header = () => {
       </div>
       <div className={styles.navContainer}>
         <ul className={styles.navbarNav}>
-          <li>
-            <a className={`${styles.navLink} ${akshar.className}`} href='/#'>Home</a>
-          </li>
-          <li>
-            <a className={`${styles.navLink} ${akshar.className}`} href="/#">Properties</a>
-          </li>
-          <li>
-            <a className={`${styles.navLink} ${akshar.className}`} href="/#">About</a>
-          </li>
-          <li>
-            <a className={`${styles.navLink} ${akshar.className}`} href="/#">Contact</a>
-          </li>
+          {navLinks.map((link, index) => (
+            <li key={index}>
+              <a href={link.href} className={`${styles.navLink} ${akshar.className}`}>
+                {link.name}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
       <div className={styles.buttonsContainer}>
