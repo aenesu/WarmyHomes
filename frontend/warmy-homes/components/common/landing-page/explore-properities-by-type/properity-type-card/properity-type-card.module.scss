@@ -1,0 +1,59 @@
+@use "@/styles/variables" as *;
+
+a.noUnderline {
+    text-decoration: none;  
+}
+
+.typeCard {
+    height: 252px;
+    width: 214px;
+
+    background-color: #F1F1F1;
+    border-radius: 40px;
+
+    padding: 25px 25px 50px 25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    transition: transform 0.5s ease, background-color 0.5s ease;
+
+    .typeIcon {
+        display: flex;
+        width: 71px;
+        height: 71px;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 50%;
+
+    }
+
+    .typeCategory {
+
+        color: #444444;
+
+        .categoryName {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: -5px;
+
+        }
+
+        .propertyCount {
+            font-size: 13px;
+            font-weight: 300;
+        }
+    }
+
+
+}
+
+.typeCard:hover {
+    transform: scale(1.15);
+    background-color: #e0e0e0;
+}
