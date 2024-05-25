@@ -1,6 +1,6 @@
 import styles from "./explore-properties-by-type.module.scss"
+import PropertyTypeCard from "./properties-type-card/property-type-card"
 
-import ProperityTypeCard from "./properity-type-card/properity-type-card"
 
 export default function ExplorePropertiesByType() {
 
@@ -19,7 +19,7 @@ export default function ExplorePropertiesByType() {
             <div className={styles.exploreText}>By Types</div>
             <div className={styles.categoryCards}>
                 {categories.map(({ id, title, icon, count, link }) => (
-                    <ProperityTypeCard key={id} {...{ title, icon, count, link }} />
+                    <PropertyTypeCard key={id} {...{ title, icon, count, link }} />
                 ))}
             </div>
         </div>

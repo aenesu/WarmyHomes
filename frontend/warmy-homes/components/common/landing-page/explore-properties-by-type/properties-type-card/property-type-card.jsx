@@ -1,8 +1,8 @@
 import Image from "next/image";
-import styles from "./properity-type-card.module.scss";
+import styles from "./property-type-card.module.scss";
 
 
-export default function ProperityTypeCard({ index, title, icon, count, link}) {
+export default function PropertyTypeCard({ index, title, icon, count, link}) {
   return (
     <a className={styles.noUnderline} href={link}>
     <div className={styles.typeCard}>
