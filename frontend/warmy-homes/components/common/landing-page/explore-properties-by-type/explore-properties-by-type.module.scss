@@ -1,0 +1,29 @@
+@use "@/styles/variables" as *;
+
+
+.exploreByTypeContainer {
+
+    width: 90%;
+    max-width: 1355px;
+    margin-bottom: 50px;
+
+    .exploreTitle {
+        color: #444444;
+        font-size: 36px;
+        font-weight: 500;
+        margin-bottom: -10px;
+    }
+
+    .exploreText {
+        color: #F18506;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .categoryCards {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+}

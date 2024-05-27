@@ -1,0 +1,8 @@
+@use "@/styles/variables" as *;
+
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
