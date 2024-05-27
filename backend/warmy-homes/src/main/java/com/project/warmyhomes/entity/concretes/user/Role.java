@@ -1,5 +1,6 @@
 package com.project.warmyhomes.entity.concretes.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -23,11 +24,12 @@ public class Role {
     @Column(name = "role_name", nullable = false)
     String roleName;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     List<User> userList;
+
+    @PreRemove
+    private void removeRolesFromUser(){
+        userList.forEach(user -> user.getRoles().remove(this));
+    }
 }

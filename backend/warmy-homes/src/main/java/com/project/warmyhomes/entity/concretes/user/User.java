@@ -1,6 +1,8 @@
 package com.project.warmyhomes.entity.concretes.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.warmyhomes.entity.concretes.business.Advert;
 import com.project.warmyhomes.entity.concretes.business.Favorite;
 import com.project.warmyhomes.entity.concretes.business.Log;
@@ -40,18 +42,22 @@ public class User {
     @Column(nullable = false, unique = true)
     String phone;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password_hash", nullable = false)
     String passwordHash;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "reset_password_code")
     String resetPasswordCode;
 
     @Column(name = "built_in", nullable = false, columnDefinition = "Boolean default false")
     Boolean builtIn;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "create_at", nullable = false)
     LocalDateTime createAt;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "update_at")
     LocalDateTime updateAt;
 
@@ -67,10 +73,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     Set<Advert> adverts;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     Set<Favorite> favorites;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     Set<Log> logs;
 
     @OneToMany(mappedBy = "owner")

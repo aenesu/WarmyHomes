@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.warmyhomes.entity.concretes.user.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -50,9 +51,11 @@ public class Advert {
 
     String location;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "create_at", nullable = false)
     LocalDateTime createAt;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "update_at")
     LocalDateTime updateAt;
 
@@ -60,7 +63,7 @@ public class Advert {
     @JoinColumn(name = "advert_type_id", nullable = false)
     AdvertType advertType;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "category_id", nullable = false)
     Category category;
 
@@ -80,19 +83,19 @@ public class Advert {
     @JoinColumn(name = "user_id", nullable = false)
     User user;
 
-    @OneToMany(mappedBy = "advert")
+    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
     Set<CategoryPropertyValue> propertyValues;
 
-    @OneToMany(mappedBy = "advert")
+    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
     Set<Favorite> favorites;
 
-    @OneToMany(mappedBy = "advert")
+    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
     Set<Image> images;
 
-    @OneToMany(mappedBy = "advert")
+    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
     Set<Log> logs;
 
-    @OneToMany(mappedBy = "advert")
+    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
     Set<TourRequest> tourRequests;
 
 }

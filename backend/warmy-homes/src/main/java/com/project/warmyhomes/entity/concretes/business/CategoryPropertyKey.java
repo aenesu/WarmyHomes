@@ -30,7 +30,7 @@ public class CategoryPropertyKey {
     @JoinColumn(name = "category_id", nullable = false)
     Category category;
 
-    @OneToMany(mappedBy = "propertyKey")
+    @OneToMany(mappedBy = "propertyKey", cascade = CascadeType.REMOVE)
     Set<CategoryPropertyValue> propertyValues;
 
 }
