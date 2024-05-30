@@ -1,0 +1,22 @@
+@use "@/styles/variables" as *;
+
+.subBanner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 400px;
+    width: 90%;
+    max-width: 1355px;
+    margin: 0 5% 5% 5%;
+    padding: 5%;
+    border-radius: 15px;
+    background: url("/assets/images/subBanner.png") no-repeat bottom 100% right 0% / 640px;
+    background-color: #fdecff;
+
+    .motto {
+        font-weight: 500;
+        font-size: 48px;
+        color: $clr-banner-text;
+        margin-bottom: 30px;
+    }
+}

@@ -6,6 +6,7 @@ import ExplorePropertiesByCity from "@/components/common/landing-page/explore-pr
 import NeedHelp from "@/components/common/landing-page/need-help/need-help";
 import LetsFindTheRightOption from "@/components/common/landing-page/lets-find-the-right-option/lets-find-the-right-option";
 import DiscoverPopularProperities from "@/components/common/landing-page/discover-popular-properties/discover-popular-properties";
+import GetYourDreamHouse from "@/components/common/landing-page/get-your-dream-house/get-your-dream-house";
 
 
 export default function HomePage() {
@@ -19,7 +20,7 @@ export default function HomePage() {
 
       <ExplorePropertiesByCity />
 
-      {/* GET YOUR DREAM HOUSE BANNER component */}
+      <GetYourDreamHouse />
 
       <DiscoverPopularProperities />
 
