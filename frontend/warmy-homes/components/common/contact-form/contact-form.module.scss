@@ -1,0 +1,47 @@
+.formContainer {
+    width: 315px;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+
+    label {
+        font-size: 14px;
+        color: #555555;
+        display: block;
+    }
+
+    input,
+    textarea {
+        padding: 10px;
+        height: 35px;
+        background-color: #EAE9E9;
+        border: none;
+        border-radius: 5px;
+        font-family: 'Akshar', sans-serif !important; 
+    }
+
+    textarea {
+        min-height: 110px;
+        max-height: 200px;
+        resize: vertical;
+    }
+}
+
+.submitButton {
+    height: 35px;
+    width: 100%;
+    background-color: #951763;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Akshar', sans-serif; 
+
+    &:hover {
+        background-color: #6b1047;
+    }
+}

@@ -1,0 +1,68 @@
+@use "@/styles/variables" as *;
+
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+
+.banner {
+    width: 100%;
+    max-width: 1357px;
+    height: 128px;
+    border-radius: 20px;
+    background: $lineer-gradient;
+
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+
+    p {
+        color: #3B3B3B;
+        font-size: 36px;
+    }
+}
+
+.mapEmbed {
+    width: 1351px;
+    height: 579px;
+    overflow: hidden;
+    border-radius: 30px;
+
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .map {
+        width: 1351px;
+        height: 900px;
+        border: 0;
+    }
+}
+
+.formContainer {
+    width: 408px;
+    height: 656px;
+    padding: 40px;
+    background-color: white;
+
+    gap: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    border-radius: 20px;
+    border: solid 2px #AFAFAF;
+
+    span {
+        font-size: 16px;
+        color: #383838;
+    }
+}
