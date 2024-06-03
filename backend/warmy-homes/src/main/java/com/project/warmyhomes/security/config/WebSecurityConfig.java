@@ -1,7 +1,7 @@
 package com.project.warmyhomes.security.config;
 
 import com.project.warmyhomes.security.jwt.AuthEntryPointJwt;
-import com.project.warmyhomes.security.jwt.AuthtokenFilter;
+import com.project.warmyhomes.security.jwt.AuthTokenFilter;
 import com.project.warmyhomes.security.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -45,6 +45,7 @@ public class WebSecurityConfig {
                 .and()
                 //we are disabling security for some URL.s
                 .authorizeRequests().antMatchers(AUTH_WHITE_LIST).permitAll()
+                .antMatchers("/adverts/auth").hasAnyAuthority("CUSTOMER")
                 //The rest URL.s will be authenticated
                 .anyRequest().authenticated();
 
@@ -70,8 +71,8 @@ public class WebSecurityConfig {
      * @return our own token filter class that exist in jwt package
      */
     @Bean
-    public AuthtokenFilter authenticationJwtTokenFilter() {
-        return new AuthtokenFilter();
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
     }
 
     @Bean
