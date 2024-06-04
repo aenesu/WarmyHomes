@@ -2,6 +2,8 @@ package com.project.warmyhomes;
 
 import com.project.warmyhomes.entity.concretes.user.Role;
 import com.project.warmyhomes.entity.concretes.user.User;
+import com.project.warmyhomes.exception.ResourceNotFoundException;
+import com.project.warmyhomes.payload.messages.ErrorMessages;
 import com.project.warmyhomes.repository.user.RoleRepository;
 import com.project.warmyhomes.repository.user.UserRepository;
 import com.project.warmyhomes.service.user.RoleService;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Optional;
 
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -59,12 +62,12 @@ public class WarmyHomesApplication implements CommandLineRunner {
             User superAdmin = new User();
             superAdmin.setFirstName("Warmy");
             superAdmin.setLastName("Homes");
-            superAdmin.setEmail("super.admin@gmail.com");
             superAdmin.setPhone("111-111-1111");
+            superAdmin.setEmail("super.admin@gmail.com");
             superAdmin.setPasswordHash(passwordEncoder.encode("Superadmin1234")); //passwordEncoder.encode("Superadmin1234")
             superAdmin.setBuiltIn(true);
             superAdmin.setCreateAt(LocalDateTime.now());
-            superAdmin.setRoles(Collections.singletonList(roleRepository.findByRoleName("Admin")));
+            superAdmin.setRoles(Collections.singletonList(roleService.getUserRole("Admin")));
             userRepository.save(superAdmin);
         }
     }
