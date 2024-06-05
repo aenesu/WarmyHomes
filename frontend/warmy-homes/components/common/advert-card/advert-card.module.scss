@@ -12,6 +12,11 @@
     align-items: flex-end;
     justify-content: center;
 
+    transition: all ease 0.2s;
+
+    &:hover {
+        transform: scale(1.01) rotate(-2deg);
+    }
 
     .cardTextBox {
 
@@ -39,14 +44,14 @@
             }
         }
 
-        .cardPrice {
-            width: 93px;
-            height: 46px;
-            border-radius: 10px;
-            border: solid #444444 2px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        // .cardPrice {
+        //     width: 93px;
+        //     height: 46px;
+        //     border-radius: 10px;
+        //     border: solid #444444 2px;
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: center;
+        // }
     }
 }
