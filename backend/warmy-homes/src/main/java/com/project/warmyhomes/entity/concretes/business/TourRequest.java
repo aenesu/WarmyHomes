@@ -9,6 +9,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -55,4 +57,28 @@ public class TourRequest {
     @ManyToOne
     @JoinColumn(name = "guest_user_id", nullable = false)
     User guest;
+
+    @PrePersist
+    public void prePersistDateTime() {
+        ZoneId zoneId = ZoneId.of("US/Eastern");
+        LocalDateTime nowDateTime = LocalDateTime.now(zoneId);
+        LocalDateTime truncatedDateTime = nowDateTime.withSecond(0);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = truncatedDateTime.format(formatter);
+
+        createAt = LocalDateTime.parse(formattedDateTime, formatter);
+    }
+
+    @PreUpdate
+    public void preUpdateDateTime() {
+        ZoneId zoneId = ZoneId.of("US/Eastern");
+        LocalDateTime nowDateTime = LocalDateTime.now(zoneId);
+        LocalDateTime truncatedDateTime = nowDateTime.withSecond(0);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = truncatedDateTime.format(formatter);
+
+        updateAt = LocalDateTime.parse(formattedDateTime, formatter);
+    }
 }

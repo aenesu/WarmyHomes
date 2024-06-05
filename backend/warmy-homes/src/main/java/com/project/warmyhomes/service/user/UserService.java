@@ -10,6 +10,7 @@ import com.project.warmyhomes.payload.response.user.LoginResponse;
 import com.project.warmyhomes.payload.response.user.UserResponse;
 import com.project.warmyhomes.repository.user.UserRepository;
 import com.project.warmyhomes.security.jwt.JwtUtils;
+import com.project.warmyhomes.service.validator.UniquePropertyValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ import java.util.Collections;
 public class UserService {
 
     private final UserRepository userRepository;
-    //uniquePropertyValidator -> for email address and phone number
+    private final UniquePropertyValidator uniquePropertyValidator;
     private final UserMapper userMapper;
     private final RoleService roleService;
     //this prop. should be used after security dependency usage.
@@ -63,7 +64,7 @@ public class UserService {
     public ResponseMessage<UserResponse> registerUser(UserRequest userRequest) {
         //handle uniqueness exceptions (email address and phone number)
         //uniquePropertyValidator
-
+        uniquePropertyValidator.checkDuplicate(userRequest.getPhone(), userRequest.getEmail());
         //map DTO -> Entity (domain object)
         User user = userMapper.mapUserRequestToUser(userRequest);
         user.setRoles(Collections.singletonList(roleService.getUserRole("Customer")));

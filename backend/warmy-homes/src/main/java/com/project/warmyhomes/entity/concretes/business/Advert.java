@@ -2,6 +2,8 @@ package com.project.warmyhomes.entity.concretes.business;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -99,4 +101,27 @@ public class Advert {
     @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
     Set<TourRequest> tourRequests;
 
+    @PrePersist
+    public void prePersistDateTime() {
+        ZoneId zoneId = ZoneId.of("US/Eastern");
+        LocalDateTime nowDateTime = LocalDateTime.now(zoneId);
+        LocalDateTime truncatedDateTime = nowDateTime.withSecond(0);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = truncatedDateTime.format(formatter);
+
+        createAt = LocalDateTime.parse(formattedDateTime, formatter);
+    }
+
+    @PreUpdate
+    public void preUpdateDateTime() {
+        ZoneId zoneId = ZoneId.of("US/Eastern");
+        LocalDateTime nowDateTime = LocalDateTime.now(zoneId);
+        LocalDateTime truncatedDateTime = nowDateTime.withSecond(0);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = truncatedDateTime.format(formatter);
+
+        updateAt = LocalDateTime.parse(formattedDateTime, formatter);
+    }
 }

@@ -64,9 +64,8 @@ public class WarmyHomesApplication implements CommandLineRunner {
             superAdmin.setLastName("Homes");
             superAdmin.setPhone("111-111-1111");
             superAdmin.setEmail("super.admin@gmail.com");
-            superAdmin.setPasswordHash(passwordEncoder.encode("Superadmin1234")); //passwordEncoder.encode("Superadmin1234")
+            superAdmin.setPasswordHash(passwordEncoder.encode("Superadmin1234"));
             superAdmin.setBuiltIn(true);
-            superAdmin.setCreateAt(LocalDateTime.now());
             superAdmin.setRoles(Collections.singletonList(roleService.getUserRole("Admin")));
             userRepository.save(superAdmin);
         }

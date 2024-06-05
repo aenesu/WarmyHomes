@@ -2,7 +2,6 @@ package com.project.warmyhomes.payload.mappers;
 
 import com.project.warmyhomes.entity.concretes.user.User;
 import com.project.warmyhomes.payload.request.abstracts.BaseUserRequest;
-import com.project.warmyhomes.payload.request.user.UserRequest;
 import com.project.warmyhomes.payload.response.user.UserResponse;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,6 @@ public class UserMapper {
                 .email(userRequest.getEmail())
                 .passwordHash(userRequest.getPassword())
                 .builtIn(false)
-                .createAt(LocalDateTime.now())
                 .build();
     }
 

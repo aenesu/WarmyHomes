@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 @Getter
@@ -55,4 +57,27 @@ public class Category {
     @OneToMany(mappedBy = "category")
     Set<CategoryPropertyKey> propertyKeys;
 
+    @PrePersist
+    public void prePersistDateTime() {
+        ZoneId zoneId = ZoneId.of("US/Eastern");
+        LocalDateTime nowDateTime = LocalDateTime.now(zoneId);
+        LocalDateTime truncatedDateTime = nowDateTime.withSecond(0);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = truncatedDateTime.format(formatter);
+
+        createAt = LocalDateTime.parse(formattedDateTime, formatter);
+    }
+
+    @PreUpdate
+    public void preUpdateDateTime() {
+        ZoneId zoneId = ZoneId.of("US/Eastern");
+        LocalDateTime nowDateTime = LocalDateTime.now(zoneId);
+        LocalDateTime truncatedDateTime = nowDateTime.withSecond(0);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = truncatedDateTime.format(formatter);
+
+        updateAt = LocalDateTime.parse(formattedDateTime, formatter);
+    }
 }
