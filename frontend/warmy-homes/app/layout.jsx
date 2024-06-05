@@ -5,6 +5,7 @@ import Header from "@/components/common/header/header";
 import Footer from "@/components/common/footer/footer";
 
 const akshar = Akshar({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
+export { akshar };
 
 export const metadata = {
     title: {
