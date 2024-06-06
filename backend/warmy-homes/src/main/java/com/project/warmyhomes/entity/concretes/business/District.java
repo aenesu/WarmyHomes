@@ -1,5 +1,6 @@
 package com.project.warmyhomes.entity.concretes.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -24,10 +25,9 @@ public class District {
     @Column(nullable = false, length = 30)
     String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinColumn(name = "city_id", nullable = false)
     City city;
 
-    @OneToMany(mappedBy = "district")
-    Set<Advert> adverts;
 }

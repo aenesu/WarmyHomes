@@ -125,7 +125,7 @@ public class WebSecurityConfig {
             //GetAdvertTypes
             "/address/countries",
             "/address/cities",
-            "/address/district",
+            "/address/districts",
             "/users/login",
             "/users/register",
             "/users/forgot-password",
