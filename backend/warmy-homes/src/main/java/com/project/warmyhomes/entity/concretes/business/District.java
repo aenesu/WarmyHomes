@@ -1,11 +1,9 @@
 package com.project.warmyhomes.entity.concretes.business;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -26,7 +24,6 @@ public class District {
     String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
     @JoinColumn(name = "city_id", nullable = false)
     City city;
 

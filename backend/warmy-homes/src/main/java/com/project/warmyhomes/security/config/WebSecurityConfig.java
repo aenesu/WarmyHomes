@@ -45,7 +45,6 @@ public class WebSecurityConfig {
                 .and()
                 //we are disabling security for some URL.s
                 .authorizeRequests().antMatchers(AUTH_WHITE_LIST).permitAll()
-                .antMatchers("/adverts/auth").hasAnyAuthority("CUSTOMER")
                 //The rest URL.s will be authenticated
                 .anyRequest().authenticated();
 
@@ -113,19 +112,17 @@ public class WebSecurityConfig {
             "/images/**",
             "/css/**",
             "/js/**",
-            //GetAdvertsByPage
+            "/adverts",
             "/adverts/cities",
             "/adverts/categories",
-            "/adverts/popular",
-            //GetAdvertByName
-            //GetAdvertImageById
-            //GetCategoriesByPage
-            //GetCategoryById
-            //GetCategoryByName
-            //GetAdvertTypes
-            "/address/countries",
-            "/address/cities",
-            "/address/districts",
+            "/adverts/popular/{amount}",
+            "/adverts/{slug}",
+            "/images/{imageId}",
+            "/categories",
+            "/categories/{id}",
+            "/categories/{slug}",
+            "/advert-types",
+            "/address/**",
             "/users/login",
             "/users/register",
             "/users/forgot-password",
