@@ -5,6 +5,7 @@ import com.project.warmyhomes.payload.mappers.ContactMessageMapper;
 import com.project.warmyhomes.payload.request.business.ContactMessageRequest;
 import com.project.warmyhomes.repository.business.ContactRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
