@@ -19,6 +19,6 @@ public class ContactMessageService {
     public ResponseEntity<String> createContactMessage(ContactMessageRequest contactMessageRequest) {
         Contact contact = contactMessageMapper.contactMessageRequestToContact(contactMessageRequest);
         contactRepository.save(contact);
-        return ResponseEntity.ok("");
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
