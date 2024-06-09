@@ -4,7 +4,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -23,11 +22,4 @@ public class Country {
 
     @Column(nullable = false, length = 30)
     String name;
-
-    @OneToMany(mappedBy = "country")
-    Set<Advert> adverts;
-
-    @OneToMany(mappedBy = "country")
-    Set<City> cities;
-
 }

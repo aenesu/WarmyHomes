@@ -1,0 +1,33 @@
+.button {
+
+  width: 93px;
+  height: 46px;
+  border-radius: 10px;
+  border: solid #444444 2px;
+
+  font-size: 15px;
+  color: #3B3B3B;
+  background-color: transparent;
+  border: solid #444444 1px;
+
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.button:hover {
+  background-color: #3B3B3B;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.button:active {
+  transform: translateY(-1px);
+}

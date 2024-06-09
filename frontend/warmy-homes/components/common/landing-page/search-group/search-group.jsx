@@ -24,7 +24,7 @@ export default function SearchGroup() {
 
           <div className={styles.searchBox}>
             <input type='text' name='search-term' />
-            <button type='submit'><FaSearch />
+            <button className={styles.button} type='submit'><FaSearch />
             </button>
           </div>
 

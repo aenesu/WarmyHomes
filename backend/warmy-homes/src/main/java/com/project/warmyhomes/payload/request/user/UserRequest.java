@@ -2,10 +2,11 @@ package com.project.warmyhomes.payload.request.user;
 
 import com.project.warmyhomes.payload.request.abstracts.BaseUserRequest;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-//@AllArgsConstructor -> It will open when the field is added.
 @NoArgsConstructor
+@SuperBuilder
 public class UserRequest  extends BaseUserRequest {
 }

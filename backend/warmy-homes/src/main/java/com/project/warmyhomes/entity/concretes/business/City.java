@@ -4,7 +4,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -24,13 +23,8 @@ public class City {
     @Column(nullable = false, length = 30)
     String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", nullable = false)
     Country country;
 
-    @OneToMany(mappedBy = "city")
-    Set<Advert> adverts;
-
-    @OneToMany(mappedBy = "city")
-    Set<District> districts;
 }

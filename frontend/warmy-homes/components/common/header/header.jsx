@@ -7,9 +7,9 @@ const akshar = Akshar({ subsets: ["latin"], weight: ["300", "400", "500", "600",
 
 const navLinks = [
   { name: 'Home', href: '/#' },
-  { name: 'Properties', href: '/advertsPage' },
-  { name: 'About', href: '/aboutPage' },
-  { name: 'Contact', href: '/contactPage' },
+  { name: 'Properties', href: '/adverts' },
+  { name: 'About', href: '/about' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 const Header = () => {

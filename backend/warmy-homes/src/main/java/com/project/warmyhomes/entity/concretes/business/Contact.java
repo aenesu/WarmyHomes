@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -41,4 +43,15 @@ public class Contact {
     @Column(name = "create_at", nullable = false)
     LocalDateTime createAt;
 
+    @PrePersist
+    public void prePersistDateTime() {
+        ZoneId zoneId = ZoneId.of("US/Eastern");
+        LocalDateTime nowDateTime = LocalDateTime.now(zoneId);
+        LocalDateTime truncatedDateTime = nowDateTime.withSecond(0);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = truncatedDateTime.format(formatter);
+
+        createAt = LocalDateTime.parse(formattedDateTime, formatter);
+    }
 }

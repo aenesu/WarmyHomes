@@ -6,6 +6,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.*;
 
@@ -36,4 +38,15 @@ public class Favorite {
     @JoinColumn(name = "user_id", nullable = false)
     User user;
 
+    @PrePersist
+    public void prePersistDateTime() {
+        ZoneId zoneId = ZoneId.of("US/Eastern");
+        LocalDateTime nowDateTime = LocalDateTime.now(zoneId);
+        LocalDateTime truncatedDateTime = nowDateTime.withSecond(0);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = truncatedDateTime.format(formatter);
+
+        createAt = LocalDateTime.parse(formattedDateTime, formatter);
+    }
 }

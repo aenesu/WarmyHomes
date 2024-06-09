@@ -2,6 +2,8 @@ package com.project.warmyhomes;
 
 import com.project.warmyhomes.entity.concretes.user.Role;
 import com.project.warmyhomes.entity.concretes.user.User;
+import com.project.warmyhomes.exception.ResourceNotFoundException;
+import com.project.warmyhomes.payload.messages.ErrorMessages;
 import com.project.warmyhomes.repository.user.RoleRepository;
 import com.project.warmyhomes.repository.user.UserRepository;
 import com.project.warmyhomes.service.user.RoleService;
@@ -9,10 +11,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
-import java.util.List;
+import java.util.Optional;
 
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -23,13 +26,13 @@ public class WarmyHomesApplication implements CommandLineRunner {
     private final RoleService roleService;
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    //private final PasswordEncoder passwordEncoder; -> When security is added, password encoder will be used for the password.
-
-    public WarmyHomesApplication(RoleService roleService, RoleRepository roleRepository, UserRepository userRepository) {
+    public WarmyHomesApplication(RoleService roleService, RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.roleService = roleService;
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public static void main(String[] args) {
@@ -59,12 +62,11 @@ public class WarmyHomesApplication implements CommandLineRunner {
             User superAdmin = new User();
             superAdmin.setFirstName("Warmy");
             superAdmin.setLastName("Homes");
-            superAdmin.setEmail("super.admin@gmail.com");
             superAdmin.setPhone("111-111-1111");
-            superAdmin.setPasswordHash("Superadmin1234"); //passwordEncoder.encode("Superadmin1234")
+            superAdmin.setEmail("super.admin@gmail.com");
+            superAdmin.setPasswordHash(passwordEncoder.encode("Superadmin1234"));
             superAdmin.setBuiltIn(true);
-            superAdmin.setCreateAt(LocalDateTime.now());
-            superAdmin.setRoles(Collections.singletonList(roleRepository.findByRoleName("Admin")));
+            superAdmin.setRoles(Collections.singletonList(roleService.getUserRole("Admin")));
             userRepository.save(superAdmin);
         }
     }
