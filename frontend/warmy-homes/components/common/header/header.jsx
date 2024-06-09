@@ -2,6 +2,7 @@ import styles from './header.module.scss';
 import AddPropertyButton from './addPropertyButton/addPropertyButton';
 import { AiOutlineUser } from 'react-icons/ai';
 import { Akshar } from 'next/font/google'; 
+import Link from 'next/link';
 
 const akshar = Akshar({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
 
@@ -30,9 +31,9 @@ const Header = () => {
         </ul>
       </div>
       <div className={styles.buttonsContainer}>
-        <button className={`${styles.loginButton} ${akshar.className}`}>
+        <Link className={`${styles.loginButton} ${akshar.className}`} href="/login">
           <AiOutlineUser className={styles.icon} /> Login&nbsp;/&nbsp;Register
-        </button>
+        </Link>
         <AddPropertyButton />
       </div>
     </div>

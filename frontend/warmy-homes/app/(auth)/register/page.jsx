@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./registerPage.module.scss";
+import Link from "next/link";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -57,8 +58,7 @@ export default function RegisterPage() {
         </button>
       </form>
       <p className={styles.message}>
-        If you already have an account,
-        <a href="#" className={styles.loginLink}>Login now!</a>
+        If you already have an account, <Link href="/login" className={styles.loginLink}>Login now!</Link>
       </p>
     </div>
   );

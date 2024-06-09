@@ -18,8 +18,8 @@
 }
 
 .logoImage {
-  width: 190px; 
-  height: auto; 
+  width: 190px;
+  height: auto;
 }
 
 .navContainer {
@@ -39,27 +39,41 @@
   margin: 0 15px;
 }
 
-.navlink {
-  font-size: 20px;
-  font-weight: 600;
+.navLink {
+  position: relative;
+  font-size: 15px;
+  font-weight: 500;
   color: rgba(0, 0, 0, 0.7);
   text-decoration: none;
   transition: color 0.3s;
+
+  &:hover {
+    color: rgba(0, 0, 0, 0.9);
+    text-decoration: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(164, 0, 0);
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
 }
 
-.listitem {
-  & a{
-    text-decoration: none; 
-    color: inherit; 
-}
-}
-
-
-
-.nav-link:hover {
-  color: rgba(0, 0, 0, 0.9);
+.listItem a {
   text-decoration: none;
+  color: inherit;
 }
+
+
 
 .buttonsContainer {
   flex: 1;
@@ -73,6 +87,9 @@
   font-family: 'Akshar', sans-serif;
   font-size: 15px;
   font-weight: 600;
+
+  height: 50px;
+
   color: rgba(0, 0, 0, 0.7);
   background: none;
   border: none;
@@ -82,6 +99,7 @@
   transition: color 0.3s;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .icon {
