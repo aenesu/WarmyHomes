@@ -1,14 +1,15 @@
 @use "@/styles/variables" as *;
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&display=swap');
 
-.container {
+  .container{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  
-  .banner {
-    background: $lineer-gradient; 
+    padding: 50px 0;
+}
+  .banner{
+    background: $lineer-gradient;
     width: 1357px;
     height: 128px;
     display: flex;
@@ -16,22 +17,32 @@
     margin: 20px;
     padding: 40px;
     border-radius: 20px;
-  
-    h1 {
-      font-size: 2.25rem;
-      font-weight: 400;
+
+    h1{
+        font-size: 2.25rem;
+        font-weight: 400;
     }
-  }
-  
-  .form {
+}
+  .form { 
     width: 600px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    
+    .p{
+    text-align: end;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: #000000;
+    font-family: 'Advent Pro';
+    }
+
   }
   
-  .inputGroup {
+  .inputField {
     width: 100%;
     position: relative;
     border-bottom: 2px solid #b71082;
@@ -65,64 +76,28 @@
         top: 10px;
         transform: translateY(-120%);
       }
+      
     }
+    
   }
-  
-  .submitButton {
+  .submitButton{
     font-family: 'Advent Pro', sans-serif;
-    font-size: 1.625rem;
+    font-size:1.625rem;
     width: 280px;
     height: 60px;
     background-color: #951763;
     border: none;
     color: white;
     margin: 30px 0;
-    cursor: pointer;
-  }
-  
-  .submitButton:hover {
-    background-color: #b21878;
-    color: white;
-  }
-  
-  .forgotPassword {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: -20px;
-    margin-bottom: 20px;
-  
-    a {
-      font-family: 'Advent Pro', sans-serif;
-      color: #b71082;
-      text-decoration: none;
-      font-size: 1rem;
-  
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-  
-  .error {
-    font-family: 'Advent Pro', sans-serif;
-    color: red;
-    font-size: 1rem;
-    margin-top: -20px;
-    margin-bottom: 20px;
-  }
-  
-  .message {
-    font-family: 'Advent Pro', sans-serif;
-    color: #000000;
-    padding: 20px; // Adjust padding to fit design
-  }
-  
-  .registerLink {
-    color: #b71082;
-    text-decoration: none;
-  
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+}
+
+.submitButton:hover {
+  background-color: #b21878; 
+  color: white; 
+}
+
+.message {
+  font-family: 'Advent Pro', sans-serif;
+  color: #000000;
+  padding: 80px;
+}
