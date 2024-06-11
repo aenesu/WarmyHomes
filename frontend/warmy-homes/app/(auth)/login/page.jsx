@@ -1,7 +1,56 @@
-import React from 'react'
+"use client"
+import { useState } from "react";
+import styles from "./login-page.module.scss";
+import Link from "next/link";
 
-export default function Login() {
+export default function LoginPage() {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your form submission logic here
+    console.log("Form submitted:", formData);
+  };
+
   return (
-    <div>Login</div>
-  )
+    <div className={styles.container}>
+      <div className={styles.banner}><h1>Login</h1></div>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        {[
+          { id: "username", label: "Username", type: "text" },
+          { id: "password", label: "Password", type: "password" }
+        ].map((field) => (
+          <div key={field.id} className={styles.inputField}>
+            <input
+              type={field.type}
+              id={field.id}
+              name={field.id}
+              value={formData[field.id]}
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor={field.id}>{field.label}</label>
+          </div>
+        ))}
+        <Link href="/#" className={styles.p}>Forgot password?</Link>
+        <button type="submit" className={styles.submitButton}>
+          LOGIN
+        </button>
+      </form>
+      <p className={styles.message}>
+        If you don't have an account, <Link href="/login" className={styles.loginLink}>Register now!</Link>
+      </p>
+    </div>
+  );
 }
