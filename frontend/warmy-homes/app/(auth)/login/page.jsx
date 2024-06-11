@@ -19,13 +19,13 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your form submission logic here
+    // Add form submission logic here
     console.log("Form submitted:", formData);
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.banner}><h1>Login</h1></div>
+      <div className={styles.banner}><h1>LOGIN</h1></div>
       <form onSubmit={handleSubmit} className={styles.form}>
         {[
           { id: "username", label: "Username", type: "text" },
