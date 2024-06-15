@@ -125,8 +125,8 @@ public class WebSecurityConfig {
             "/address/**",
             "/users/login",
             "/users/register",
-            "/users/forgot-password",
-            "/users/reset-password",
+            "/users/forgot-password/**",
+            "/users/reset-password/**",
             "/contact-messages",
     };
 }
