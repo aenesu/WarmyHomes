@@ -1,14 +1,12 @@
 package com.project.warmyhomes.service.user;
 
 import com.project.warmyhomes.entity.concretes.user.User;
+import com.project.warmyhomes.exception.BadRequestException;
 import com.project.warmyhomes.exception.ResourceNotFoundException;
 import com.project.warmyhomes.payload.mappers.UserMapper;
 import com.project.warmyhomes.payload.messages.ErrorMessages;
 import com.project.warmyhomes.payload.messages.SuccessMessages;
-import com.project.warmyhomes.payload.request.user.ForgotPasswordRequest;
-import com.project.warmyhomes.payload.request.user.LoginRequest;
-import com.project.warmyhomes.payload.request.user.ResetPasswordRequest;
-import com.project.warmyhomes.payload.request.user.UserRequest;
+import com.project.warmyhomes.payload.request.user.*;
 import com.project.warmyhomes.payload.response.abstracts.ResponseMessage;
 import com.project.warmyhomes.payload.response.user.LoginResponse;
 import com.project.warmyhomes.payload.response.user.UserResponse;
@@ -34,6 +32,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -123,9 +122,8 @@ public class UserService {
      * Handles forgot password request and initiates the password reset process.
      *
      * @param forgotPasswordRequest DTO containing email for password reset request
-     * @return HTTP status indicating the request status
      */
-    public ResponseEntity<String> forgotPassword(ForgotPasswordRequest forgotPasswordRequest) {
+    public void forgotPassword(ForgotPasswordRequest forgotPasswordRequest) {
         User user = userRepository.findByEmail(forgotPasswordRequest.getEmail());
         if (user != null) {
             //generate reset password code
@@ -136,7 +134,6 @@ public class UserService {
             //send email
             sendEmailResetPasswordCode(user.getFirstName(), user.getLastName(), user.getResetPasswordCode(), user.getEmail());
         }
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -208,16 +205,86 @@ public class UserService {
     /**
      * Resets the password for a user based on the provided reset password request DTO.
      *
-     * @param resetPasswordRequest DTO containing reset password code and new password
-     * @return ResponseEntity indicating success with HTTP status OK
+     * @param resetPasswordRequest DTO containing reset password code
      * @throws ResourceNotFoundException if the reset password code is not found in the database
      */
-    public ResponseEntity<String> resetPassword(ResetPasswordRequest resetPasswordRequest) {
+    public void resetPassword(ResetPasswordRequest resetPasswordRequest) {
         User user = userRepository.findByResetPasswordCode(resetPasswordRequest.getCode()).orElseThrow(
                 () -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_RESET_PASSWORD_CODE, resetPasswordRequest.getCode()))
         );
         user.setPasswordHash(passwordEncoder.encode(resetPasswordRequest.getPassword()));
         userRepository.save(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Retrieves the user details based on the email obtained from the HttpServletRequest.
+     *
+     * @param request HttpServletRequest containing the user's email as an attribute
+     * @return ResponseMessage containing the user details wrapped in a UserResponse DTO
+     */
+    public ResponseMessage<UserResponse> getUser(HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        User user = userRepository.findByEmail(email);
+
+        return ResponseMessage.<UserResponse>builder()
+                .message(SuccessMessages.USER_FOUND)
+                .object(userMapper.mapUserToUserResponse(user))
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
+
+    /**
+     * Updates the user details based on the provided UserRequestWithoutPassword DTO.
+     *
+     * @param userRequestWithoutPassword DTO containing updated user details
+     * @param request HttpServletRequest containing the user's email as an attribute
+     * @return ResponseMessage containing the updated user details wrapped in a UserResponse DTO
+     */
+    public ResponseMessage<UserResponse> updateUser(UserRequestWithoutPassword userRequestWithoutPassword, HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        User user = userRepository.findByEmail(email);
+
+        // Check if the user can be modified
+        methodHelper.isUserBuiltIn(user);
+
+        // Validate unique properties
+        uniquePropertyValidator.checkUniqueProperties(user, userRequestWithoutPassword);
+
+        // Update user fields
+        user.setFirstName(userRequestWithoutPassword.getFirstName());
+        user.setLastName(userRequestWithoutPassword.getLastName());
+        user.setPhone(userRequestWithoutPassword.getPhone());
+        user.setEmail(userRequestWithoutPassword.getEmail());
+
+        User updatedUser = userRepository.save(user);
+
+        return ResponseMessage.<UserResponse>builder()
+                .message(SuccessMessages.USER_UPDATE)
+                .object(userMapper.mapUserToUserResponse(updatedUser))
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
+
+    /**
+     * Updates the user's password based on the provided PasswordUpdateRequest DTO.
+     *
+     * @param passwordUpdateRequest DTO containing old and new passwords
+     * @param request HttpServletRequest containing the user's email as an attribute
+     */
+    public void updateUserPassword(PasswordUpdateRequest passwordUpdateRequest, HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        User user = userRepository.findByEmail(email);
+
+        // Check if the user can be modified
+        methodHelper.isUserBuiltIn(user);
+
+        // Check if old password matches
+        if (!passwordEncoder.matches(passwordUpdateRequest.getOldPassword(), user.getPasswordHash())) {
+            throw new BadRequestException(ErrorMessages.PASSWORD_NOT_MATCHED);
+        }
+
+        // Update password hash with new password
+        user.setPasswordHash(passwordEncoder.encode(passwordUpdateRequest.getNewPassword()));
+        userRepository.save(user);
     }
 }

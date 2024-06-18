@@ -40,7 +40,7 @@ public class WebSecurityConfig {
                 //we are specifying the exception handling for unauthorized login try
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
-                //we are not kkeping the session info in backend.
+                //we are not keeping the session info in backend.
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 //we are disabling security for some URL.s

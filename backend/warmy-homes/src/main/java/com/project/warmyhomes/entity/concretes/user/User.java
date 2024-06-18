@@ -2,6 +2,7 @@ package com.project.warmyhomes.entity.concretes.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.warmyhomes.entity.concretes.business.Advert;
 import com.project.warmyhomes.entity.concretes.business.Favorite;
@@ -66,29 +67,13 @@ public class User {
     @Column(name = "update_at")
     LocalDateTime updateAt;
 
-    @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     List<Role> roles;
-
-    @OneToMany(mappedBy = "user")
-    Set<Advert> adverts;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    Set<Favorite> favorites;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    Set<Log> logs;
-
-    @OneToMany(mappedBy = "owner")
-    Set<TourRequest> tourRequests;
-
-    @OneToMany(mappedBy = "guest")
-    Set<TourRequest> tourRequestSet;
 
     @PrePersist
     public void prePersistDateTime() {

@@ -26,5 +26,4 @@ public class District {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id", nullable = false)
     City city;
-
 }

@@ -33,5 +33,4 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "advert_id", nullable = false)
     Advert advert;
-
 }

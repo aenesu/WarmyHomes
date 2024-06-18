@@ -31,7 +31,7 @@ public class TourRequest {
     @Column(name = "tour_date", nullable = false)
     LocalDate tourDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm",timezone = "US")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "US")
     @Column(name = "tour_time", nullable = false)
     LocalTime tourTime;
 

@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -66,10 +65,6 @@ public class Advert {
     @JoinColumn(name = "advert_type_id", nullable = false)
     AdvertType advertType;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "category_id", nullable = false)
-    Category category;
-
     @ManyToOne
     @JoinColumn(name = "country_id", nullable = false)
     Country country;
@@ -86,20 +81,9 @@ public class Advert {
     @JoinColumn(name = "user_id", nullable = false)
     User user;
 
-    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
-    Set<CategoryPropertyValue> propertyValues;
-
-    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
-    Set<Favorite> favorites;
-
-    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
-    Set<Image> images;
-
-    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
-    Set<Log> logs;
-
-    @OneToMany(mappedBy = "advert", cascade = CascadeType.REMOVE)
-    Set<TourRequest> tourRequests;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "category_id", nullable = false)
+    Category category;
 
     @PrePersist
     public void prePersistDateTime() {

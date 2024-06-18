@@ -1,17 +1,16 @@
 package com.project.warmyhomes.controller.user;
 
-import com.project.warmyhomes.payload.request.user.ForgotPasswordRequest;
-import com.project.warmyhomes.payload.request.user.LoginRequest;
-import com.project.warmyhomes.payload.request.user.ResetPasswordRequest;
-import com.project.warmyhomes.payload.request.user.UserRequest;
+import com.project.warmyhomes.payload.request.user.*;
 import com.project.warmyhomes.payload.response.abstracts.ResponseMessage;
 import com.project.warmyhomes.payload.response.user.LoginResponse;
 import com.project.warmyhomes.payload.response.user.UserResponse;
 import com.project.warmyhomes.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 
@@ -33,12 +32,30 @@ public class UserController {
     }
 
     @PostMapping("/forgot-password") // http://localhost:8080/users/forgot-password + POST + JSON
-    public ResponseEntity<String> forgotPassword(@Valid @RequestBody ForgotPasswordRequest forgotPasswordRequest) {
-        return userService.forgotPassword(forgotPasswordRequest);
+    public void forgotPassword(@Valid @RequestBody ForgotPasswordRequest forgotPasswordRequest) {
+        userService.forgotPassword(forgotPasswordRequest);
     }
 
     @PostMapping("/reset-password") // http://localhost:8080/users/reset-password + POST + JSON
-    public ResponseEntity<String> resetPassword(@Valid @RequestBody ResetPasswordRequest resetPasswordRequest) {
-        return userService.resetPassword(resetPasswordRequest);
+    public void resetPassword(@Valid @RequestBody ResetPasswordRequest resetPasswordRequest) {
+        userService.resetPassword(resetPasswordRequest);
+    }
+
+    @GetMapping("/auth") // http://localhost:8080/users/auth + GET
+    @PreAuthorize("hasAnyAuthority('Admin','Manager', 'Customer')")
+    public ResponseMessage<UserResponse> getUser(HttpServletRequest request) {
+        return userService.getUser(request);
+    }
+
+    @PutMapping("/auth") // http://localhost:8080/users/auth + PUT
+    @PreAuthorize("hasAnyAuthority('Admin','Manager', 'Customer')")
+    public ResponseMessage<UserResponse> updateUser(@Valid @RequestBody UserRequestWithoutPassword userRequestWithoutPassword,
+                                                    HttpServletRequest request) {
+        return userService.updateUser(userRequestWithoutPassword, request);
+    }
+
+    @PatchMapping("/auth") // http://localhost:8080/users/auth + PATCH
+    public void updateUserPassword(@Valid @RequestBody PasswordUpdateRequest passwordUpdateRequest, HttpServletRequest request) {
+        userService.updateUserPassword(passwordUpdateRequest, request);
     }
 }

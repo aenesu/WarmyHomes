@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -50,12 +49,6 @@ public class Category {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "update_at")
     LocalDateTime updateAt;
-
-    @OneToMany(mappedBy = "category")
-    Set<Advert> adverts;
-
-    @OneToMany(mappedBy = "category")
-    Set<CategoryPropertyKey> propertyKeys;
 
     @PrePersist
     public void prePersistDateTime() {
