@@ -5,7 +5,9 @@ export default function Footer() {
   return (
     <div className={styles.divClass}>
       <div className={`${styles.firstChild} ${styles.footerSegment}`}>
-        <img className={styles.logo} src="/assets/images/logo-white2.png"></img>
+        <a href="/#">
+        <img className={styles.logo} src="/assets/images/logo-white2.png" alt="Logo"></img>
+        </a>
         <p className={styles.footerText}>
           Our slogan, 'Unlocking Your Home's Potential, Together,' reflects our
           dedication to helping clients realize the full potential of their real
