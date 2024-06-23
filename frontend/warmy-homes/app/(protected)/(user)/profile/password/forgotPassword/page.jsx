@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import styles from "./forgot-password.module.scss";
 
