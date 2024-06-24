@@ -12,4 +12,6 @@ public class ErrorMessages {
     public static final String NOT_FOUND_RESET_PASSWORD_CODE = "Error: User not found with reset password code: %s";
     public static final String ALREADY_REGISTER_PHONE = "Error: User with phone number %s already registered";
     public static final String ALREADY_REGISTER_EMAIL = "Error: User with email address %s already registered";
+
+    public static final String BAD_REQUEST_USER_TO_ADVERT_AND_TOUR_REQUEST = "Error: %s -> User cannot be deleted because they have related adverts or tour requests.";
 }

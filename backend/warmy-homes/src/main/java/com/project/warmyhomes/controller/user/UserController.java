@@ -6,6 +6,7 @@ import com.project.warmyhomes.payload.response.user.LoginResponse;
 import com.project.warmyhomes.payload.response.user.UserResponse;
 import com.project.warmyhomes.service.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -55,7 +56,26 @@ public class UserController {
     }
 
     @PatchMapping("/auth") // http://localhost:8080/users/auth + PATCH
+    @PreAuthorize("hasAnyAuthority('Admin','Manager', 'Customer')")
     public void updateUserPassword(@Valid @RequestBody PasswordUpdateRequest passwordUpdateRequest, HttpServletRequest request) {
         userService.updateUserPassword(passwordUpdateRequest, request);
+    }
+
+    @DeleteMapping("/auth") // http://localhost:8080/users/auth + DELETE
+    @PreAuthorize("hasAnyAuthority('Customer')")
+    public void deleteUser(HttpServletRequest request) {
+        userService.deleteUser(request);
+    }
+
+    @GetMapping("/admin") // http://localhost:8080/users/admin + GET
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public Page<UserResponse> getUsersByPage(
+            @RequestParam(value = "q") String query,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "20") int size,
+            @RequestParam(value = "sort", defaultValue = "createDate") String sort,
+            @RequestParam(value = "type", defaultValue = "desc") String type
+    ) {
+        return userService.getUsersByPage(query, page, size, sort, type);
     }
 }

@@ -44,11 +44,11 @@ public class Category {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "create_at", nullable = false)
-    LocalDateTime createAt;
+    LocalDateTime createDate;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "update_at")
-    LocalDateTime updateAt;
+    LocalDateTime updateDate;
 
     @PrePersist
     public void prePersistDateTime() {
@@ -59,7 +59,7 @@ public class Category {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = truncatedDateTime.format(formatter);
 
-        createAt = LocalDateTime.parse(formattedDateTime, formatter);
+        createDate = LocalDateTime.parse(formattedDateTime, formatter);
     }
 
     @PreUpdate
@@ -71,6 +71,6 @@ public class Category {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = truncatedDateTime.format(formatter);
 
-        updateAt = LocalDateTime.parse(formattedDateTime, formatter);
+        updateDate = LocalDateTime.parse(formattedDateTime, formatter);
     }
 }

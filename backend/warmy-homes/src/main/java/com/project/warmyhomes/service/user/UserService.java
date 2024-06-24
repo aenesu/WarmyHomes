@@ -10,6 +10,10 @@ import com.project.warmyhomes.payload.request.user.*;
 import com.project.warmyhomes.payload.response.abstracts.ResponseMessage;
 import com.project.warmyhomes.payload.response.user.LoginResponse;
 import com.project.warmyhomes.payload.response.user.UserResponse;
+import com.project.warmyhomes.repository.business.AdvertRepository;
+import com.project.warmyhomes.repository.business.FavoriteRepository;
+import com.project.warmyhomes.repository.business.LogRepository;
+import com.project.warmyhomes.repository.business.TourRequestRepository;
 import com.project.warmyhomes.repository.user.UserRepository;
 import com.project.warmyhomes.security.jwt.JwtUtils;
 import com.project.warmyhomes.service.helper.MethodHelper;
@@ -19,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -45,6 +51,10 @@ public class UserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
+    private final AdvertRepository advertRepository;
+    private final TourRequestRepository tourRequestRepository;
+    private final FavoriteRepository favoriteRepository;
+    private final LogRepository logRepository;
     private final UniquePropertyValidator uniquePropertyValidator;
     private final UserMapper userMapper;
     private final RoleService roleService;
@@ -237,7 +247,7 @@ public class UserService {
      * Updates the user details based on the provided UserRequestWithoutPassword DTO.
      *
      * @param userRequestWithoutPassword DTO containing updated user details
-     * @param request HttpServletRequest containing the user's email as an attribute
+     * @param request                    HttpServletRequest containing the user's email as an attribute
      * @return ResponseMessage containing the updated user details wrapped in a UserResponse DTO
      */
     public ResponseMessage<UserResponse> updateUser(UserRequestWithoutPassword userRequestWithoutPassword, HttpServletRequest request) {
@@ -269,7 +279,7 @@ public class UserService {
      * Updates the user's password based on the provided PasswordUpdateRequest DTO.
      *
      * @param passwordUpdateRequest DTO containing old and new passwords
-     * @param request HttpServletRequest containing the user's email as an attribute
+     * @param request               HttpServletRequest containing the user's email as an attribute
      */
     public void updateUserPassword(PasswordUpdateRequest passwordUpdateRequest, HttpServletRequest request) {
         String email = (String) request.getAttribute("email");
@@ -286,5 +296,48 @@ public class UserService {
         // Update password hash with new password
         user.setPasswordHash(passwordEncoder.encode(passwordUpdateRequest.getNewPassword()));
         userRepository.save(user);
+    }
+
+    /**
+     * Delete a user from the system.
+     *
+     * @param request HttpServletRequest containing the user's email as an attribute
+     * @throws BadRequestException if the user cannot be deleted due to related records in adverts or tour requests
+     */
+    public void deleteUser(HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        User user = userRepository.findByEmail(email);
+
+        // Check if the user can be modified
+        methodHelper.isUserBuiltIn(user);
+
+        // Check if there are related records in adverts or tour requests
+        if (advertRepository.existsByUserId(user.getId()) || tourRequestRepository.existsByOwnerId(user.getId())) {
+            throw new BadRequestException(String.format(ErrorMessages.BAD_REQUEST_USER_TO_ADVERT_AND_TOUR_REQUEST, user.getEmail()));
+        }
+
+        // Delete related records in favorites and logs
+        favoriteRepository.deleteByUserId(user.getId());
+        logRepository.deleteByUserId(user.getId());
+
+        userRepository.deleteById(user.getId());
+    }
+
+    /**
+     * Retrieves users based on the query, page, size, sort, and type.
+     *
+     * @param query search query to filter users by first name, last name, email, or phone
+     * @param page  page number (zero-based)
+     * @param size  page size
+     * @param sort  sorting field
+     * @param type  sorting order ("asc" for ascending, "desc" for descending)
+     * @return a Page of UserResponse objects
+     */
+    public Page<UserResponse> getUsersByPage(String query, int page, int size, String sort, String type) {
+        // Create pageable object with sorting parameters
+        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
+
+        return userRepository.findByUserByQuery(query, pageable)
+                .map(userMapper::mapUserToUserResponse);
     }
 }

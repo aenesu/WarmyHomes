@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TourRequestRepository extends JpaRepository<TourRequest, Long> {
+
+    boolean existsByOwnerId(Long id);
 }
