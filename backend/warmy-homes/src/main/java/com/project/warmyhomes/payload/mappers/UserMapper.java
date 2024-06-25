@@ -10,7 +10,7 @@ public class UserMapper {
 
     /**
      * @param userRequest DTO
-     * @return user from DB
+     * @return user object
      */
     public User mapUserRequestToUser(BaseUserRequest userRequest) {
         return User.builder()
@@ -24,8 +24,8 @@ public class UserMapper {
     }
 
     /**
-     * @param user from DB
-     * @return UserResponse DTO
+     * @param user object
+     * @return UserResponse DTO object
      */
     public UserResponse mapUserToUserResponse(User user) {
         return UserResponse.builder()
@@ -38,3 +38,4 @@ public class UserMapper {
                 .build();
     }
 }
+

@@ -1,12 +1,7 @@
 package com.project.warmyhomes.entity.concretes.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.project.warmyhomes.entity.concretes.business.Advert;
-import com.project.warmyhomes.entity.concretes.business.Favorite;
-import com.project.warmyhomes.entity.concretes.business.Log;
-import com.project.warmyhomes.entity.concretes.business.TourRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,7 +9,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -59,36 +53,20 @@ public class User {
     @Setter(AccessLevel.NONE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "create_at", nullable = false)
-    LocalDateTime createAt;
+    LocalDateTime createDate;
 
     @Setter(AccessLevel.NONE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "update_at")
-    LocalDateTime updateAt;
+    LocalDateTime updateDate;
 
-    @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     List<Role> roles;
-
-    @OneToMany(mappedBy = "user")
-    Set<Advert> adverts;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    Set<Favorite> favorites;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    Set<Log> logs;
-
-    @OneToMany(mappedBy = "owner")
-    Set<TourRequest> tourRequests;
-
-    @OneToMany(mappedBy = "guest")
-    Set<TourRequest> tourRequestSet;
 
     @PrePersist
     public void prePersistDateTime() {
@@ -99,7 +77,7 @@ public class User {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = truncatedDateTime.format(formatter);
 
-        createAt = LocalDateTime.parse(formattedDateTime, formatter);
+        createDate = LocalDateTime.parse(formattedDateTime, formatter);
     }
 
     @PreUpdate
@@ -111,6 +89,6 @@ public class User {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = truncatedDateTime.format(formatter);
 
-        updateAt = LocalDateTime.parse(formattedDateTime, formatter);
+        updateDate = LocalDateTime.parse(formattedDateTime, formatter);
     }
 }

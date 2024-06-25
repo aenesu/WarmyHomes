@@ -17,7 +17,9 @@ const Header = () => {
   return (
     <div className={`${styles.headerContainer} ${akshar.className}`}>
       <div className={styles.logo}>
-        <img src="/assets/images/logo.png" alt="Logo" className={styles.logoImage} />
+      <a href="/#">
+          <img src="/assets/images/logo.png" alt="Logo" className={styles.logoImage} />
+        </a>
       </div>
       <div className={styles.navContainer}>
         <ul className={styles.navbarNav}>

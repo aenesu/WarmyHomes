@@ -29,7 +29,7 @@ public class Log {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "US")
     @Column(name = "create_at", nullable = false)
-    LocalDateTime createAt;
+    LocalDateTime createDate;
 
     @ManyToOne
     @JoinColumn(name = "advert_id")
@@ -48,6 +48,6 @@ public class Log {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = truncatedDateTime.format(formatter);
 
-        createAt = LocalDateTime.parse(formattedDateTime, formatter);
+        createDate = LocalDateTime.parse(formattedDateTime, formatter);
     }
 }

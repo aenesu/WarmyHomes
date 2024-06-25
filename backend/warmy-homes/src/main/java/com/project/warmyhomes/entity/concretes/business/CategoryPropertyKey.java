@@ -4,7 +4,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -30,8 +29,4 @@ public class CategoryPropertyKey {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     Category category;
-
-    @OneToMany(mappedBy = "propertyKey", cascade = CascadeType.REMOVE)
-    Set<CategoryPropertyValue> propertyValues;
-
 }

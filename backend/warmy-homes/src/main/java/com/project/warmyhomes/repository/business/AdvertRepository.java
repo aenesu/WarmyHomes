@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AdvertRepository extends JpaRepository<Advert, Long> {
+    boolean existsByUserId(Long id);
 
-   //AdvertResponse getAdvertByName(String slugValue);
+    //AdvertResponse getAdvertByName(String slugValue);
 }
