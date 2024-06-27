@@ -32,8 +32,8 @@ const Header = () => {
           ))}
         </ul>
       </div>
-      <div className={styles.buttonsContainer}>
-        <Link className={`${styles.loginButton} ${akshar.className}`} href="/login">
+      <div className={`${styles.buttonsContainer} `}>
+        <Link className={`${styles.loginButton}`} href="/login">
           <AiOutlineUser className={styles.icon} /> Login&nbsp;/&nbsp;Register
         </Link>
         <AddPropertyButton />
