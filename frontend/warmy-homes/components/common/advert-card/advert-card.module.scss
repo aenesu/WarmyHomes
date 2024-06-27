@@ -12,10 +12,10 @@
     align-items: flex-end;
     justify-content: center;
 
-    transition: all ease 0.2s;
+    transition: all ease 0.5s;
 
     &:hover {
-        transform: scale(1.01) rotate(-2deg);
+        transform: scale(1.03);
     }
 
     .cardTextBox {
