@@ -2,16 +2,9 @@
 
 .mainContainer {
   width: 100vw;
+  height: 100vh; 
   max-width: 1355px;
   margin: 50px auto;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
 }
 
 .banner {
@@ -32,16 +25,17 @@
 }
 
 .imageAndTextContainer {
-  width: 100%;
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-around; 
-  margin-top: 50px; 
-  margin-left: 30px;
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center;
+  margin-top: 50px;
 }
 
 .imageContainer {
   width: 45%;
+  display: flex; 
+  justify-content: center; 
   overflow: hidden;
 
   img {
@@ -53,11 +47,45 @@
 
 .textContainer {
   width: 45%;
-  padding-top: 60px; 
+  padding-top: 30px;
+  text-align: left;
   color: $clr-theme;
 }
 
 .title {
-  font-size: 2.50rem;
-  //line-height: 1.1;
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  color: black;
+}
+
+.goHomePagebutton {
+  padding: 20px;
+  width: 244px;
+  margin-top: 45px;
+  font-weight: 500;
+  color: white;
+  background-color: #444444;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.goHomePagebutton:hover {
+  background-color: #000000;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.goHomePagebutton:active {
+  transform: translateY(-1px);
 }

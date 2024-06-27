@@ -3,7 +3,6 @@ import styles from './not-found.module.scss';
 export default function NotFound() {
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.container}>
         <div className={styles.banner}>
           <p>NOT FOUND</p>
         </div>
@@ -18,10 +17,9 @@ export default function NotFound() {
             <div className={styles.subtitle}>
               The page you&apos;re looking for isn&apos;t available. Try to search again or the use go to:
           </div>
-          <button className={styles.homePagebutton}></button>
+          <button className={styles.goHomePagebutton}>Go to Home Page</button>
         </div>
       </div>
-    </div>
     </div>
   );
 }
