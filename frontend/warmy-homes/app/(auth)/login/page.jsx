@@ -49,7 +49,7 @@ export default function LoginPage() {
         </button>
       </form>
       <p className={styles.message}>
-        If you don't have an account, <Link href="/login" className={styles.loginLink}>Register now!</Link>
+        If you don't have an account, <Link href="/register" className={styles.loginLink}>Register now!</Link>
       </p>
     </div>
   );

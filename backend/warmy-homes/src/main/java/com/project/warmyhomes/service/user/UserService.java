@@ -1,5 +1,6 @@
 package com.project.warmyhomes.service.user;
 
+import com.project.warmyhomes.entity.concretes.user.Role;
 import com.project.warmyhomes.entity.concretes.user.User;
 import com.project.warmyhomes.exception.BadRequestException;
 import com.project.warmyhomes.exception.ResourceNotFoundException;
@@ -110,7 +111,6 @@ public class UserService {
      * @return ResponseMessage containing the saved user information and HTTP status
      */
     public ResponseMessage<UserResponse> registerUser(UserRequest userRequest) {
-        //handle uniqueness exceptions (email address and phone number)
         //uniquePropertyValidator
         uniquePropertyValidator.checkDuplicate(userRequest.getPhone(), userRequest.getEmail());
         //map DTO -> Entity (domain object)
@@ -233,8 +233,8 @@ public class UserService {
      * @return ResponseMessage containing the user details wrapped in a UserResponse DTO
      */
     public ResponseMessage<UserResponse> getUser(HttpServletRequest request) {
-        String email = (String) request.getAttribute("email");
-        User user = userRepository.findByEmail(email);
+        // Return the user found with the given email address
+        User user = methodHelper.isUserExistByEmail(request);
 
         return ResponseMessage.<UserResponse>builder()
                 .message(SuccessMessages.USER_FOUND)
@@ -251,8 +251,8 @@ public class UserService {
      * @return ResponseMessage containing the updated user details wrapped in a UserResponse DTO
      */
     public ResponseMessage<UserResponse> updateUser(UserRequestWithoutPassword userRequestWithoutPassword, HttpServletRequest request) {
-        String email = (String) request.getAttribute("email");
-        User user = userRepository.findByEmail(email);
+        // Return the user found with the given email address
+        User user = methodHelper.isUserExistByEmail(request);
 
         // Check if the user can be modified
         methodHelper.isUserBuiltIn(user);
@@ -282,8 +282,8 @@ public class UserService {
      * @param request               HttpServletRequest containing the user's email as an attribute
      */
     public void updateUserPassword(PasswordUpdateRequest passwordUpdateRequest, HttpServletRequest request) {
-        String email = (String) request.getAttribute("email");
-        User user = userRepository.findByEmail(email);
+        // Return the user found with the given email address
+        User user = methodHelper.isUserExistByEmail(request);
 
         // Check if the user can be modified
         methodHelper.isUserBuiltIn(user);
@@ -305,8 +305,8 @@ public class UserService {
      * @throws BadRequestException if the user cannot be deleted due to related records in adverts or tour requests
      */
     public void deleteUser(HttpServletRequest request) {
-        String email = (String) request.getAttribute("email");
-        User user = userRepository.findByEmail(email);
+        // Return the user found with the given email address
+        User user = methodHelper.isUserExistByEmail(request);
 
         // Check if the user can be modified
         methodHelper.isUserBuiltIn(user);
@@ -339,5 +339,107 @@ public class UserService {
 
         return userRepository.findByUserByQuery(query, pageable)
                 .map(userMapper::mapUserToUserResponse);
+    }
+
+    /**
+     * Retrieves a user by their ID.
+     *
+     * @param userId ID of the user to retrieve
+     * @return ResponseMessage containing the user details wrapped in a UserResponse DTO
+     */
+    public ResponseMessage<UserResponse> getUserById(Long userId) {
+        User user = methodHelper.isUserExist(userId);
+
+        UserResponse userResponse = userMapper.mapUserToUserResponse(user);
+
+        userResponse.setAdverts(user.getAdverts());
+        userResponse.setTourRequests(user.getTourRequests());
+        userResponse.setFavorites(user.getFavorites());
+        userResponse.setLogs(user.getLogs());
+
+        return ResponseMessage.<UserResponse>builder()
+                .message(SuccessMessages.USER_FOUND)
+                .object(userResponse)
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
+
+    /**
+     * Updates the user details based on the provided UserRequest DTO.
+     *
+     * @param userRequestWithoutPassword DTO containing updated user details without password
+     * @param request                    HttpServletRequest containing the user's email as an attribute
+     * @param userId                     ID of the user to be updated
+     * @return ResponseMessage containing the updated user details wrapped in a UserResponse DTO
+     * @throws BadRequestException if the authenticated user is a Manager trying to update a non-Customer user,
+     *                             or if the user being updated is a built-in user
+     */
+    public ResponseMessage<UserResponse> updateUserById(UserRequestWithoutPassword userRequestWithoutPassword, HttpServletRequest request, Long userId) {
+        // Return the user found with the given email address
+        User authenticatedUser = methodHelper.isUserExistByEmail(request);
+
+        // Find user by user id
+        User user = methodHelper.isUserExist(userId);
+
+        // Check if the user can be modified
+        methodHelper.isUserBuiltIn(user);
+
+        // Validate unique properties
+        uniquePropertyValidator.checkUniqueProperties(user, userRequestWithoutPassword);
+
+        // Validate if the authenticated user with manager role can update the user with customer role.
+        methodHelper.checkManagerCanUpdateCustomer(authenticatedUser, user);
+
+        // Update user fields
+        user.setFirstName(userRequestWithoutPassword.getFirstName());
+        user.setLastName(userRequestWithoutPassword.getLastName());
+        user.setPhone(userRequestWithoutPassword.getPhone());
+        user.setEmail(userRequestWithoutPassword.getEmail());
+
+        User updatedUser = userRepository.save(user);
+
+        return ResponseMessage.<UserResponse>builder()
+                .message(SuccessMessages.USER_UPDATE)
+                .object(userMapper.mapUserToUserResponse(updatedUser))
+                .httpStatus(HttpStatus.OK)
+                .build();
+
+    }
+
+    /**
+     * Deletes a user by their ID.
+     *
+     * @param userId ID of the user to be deleted
+     * @return ResponseMessage confirming the deletion
+     */
+    public ResponseMessage<UserResponse> deleteUserById(Long userId, HttpServletRequest request) {
+        // Return the user found with the given email address
+        User authenticatedUser = methodHelper.isUserExistByEmail(request);
+
+        // Find user by user id
+        User user = methodHelper.isUserExist(userId);
+
+        // Check if the user can be modified
+        methodHelper.isUserBuiltIn(user);
+
+        // Validate if the authenticated user with manager role can update the user with customer role.
+        methodHelper.checkManagerCanUpdateCustomer(authenticatedUser, user);
+
+        // Check if there are related records in adverts or tour requests
+        if (advertRepository.existsByUserId(user.getId()) || tourRequestRepository.existsByOwnerId(user.getId())) {
+            throw new BadRequestException(ErrorMessages.BAD_REQUEST_USER_TO_ADVERT_AND_TOUR_REQUEST);
+        }
+
+        // Delete related records in favorites and logs
+        favoriteRepository.deleteByUserId(user.getId());
+        logRepository.deleteByUserId(user.getId());
+
+        userRepository.deleteById(user.getId());
+
+        return ResponseMessage.<UserResponse>builder()
+                .message(SuccessMessages.USER_DELETE)
+                .object(userMapper.mapUserToUserResponse(user))
+                .httpStatus(HttpStatus.OK)
+                .build();
     }
 }

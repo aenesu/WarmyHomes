@@ -27,19 +27,19 @@ export default function Footer() {
       <div className={styles.footerSegment}>
         <h2>Quick Links</h2>
         <ul className={styles.linkList}>
-        <li><a href="">
+        <li><a href="/#">
           Home
         </a></li>
-        <li><a href="">
+        <li><a href="/adverts">
           Properties
         </a></li>
-        <li><a href="">
+        <li><a href="/about">
           About
         </a></li>
-        <li><a href="">
+        <li><a href="/contact">
           Contact
         </a></li>
-        <li><a href="">
+        <li><a href="/#">
           Privacy Policy
         </a></li>
         </ul>

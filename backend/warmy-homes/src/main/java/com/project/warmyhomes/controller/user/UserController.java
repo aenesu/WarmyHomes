@@ -48,14 +48,14 @@ public class UserController {
         return userService.getUser(request);
     }
 
-    @PutMapping("/auth") // http://localhost:8080/users/auth + PUT
+    @PutMapping("/auth") // http://localhost:8080/users/auth + PUT + JSON
     @PreAuthorize("hasAnyAuthority('Admin','Manager', 'Customer')")
     public ResponseMessage<UserResponse> updateUser(@Valid @RequestBody UserRequestWithoutPassword userRequestWithoutPassword,
                                                     HttpServletRequest request) {
         return userService.updateUser(userRequestWithoutPassword, request);
     }
 
-    @PatchMapping("/auth") // http://localhost:8080/users/auth + PATCH
+    @PatchMapping("/auth") // http://localhost:8080/users/auth + PATCH + JSON
     @PreAuthorize("hasAnyAuthority('Admin','Manager', 'Customer')")
     public void updateUserPassword(@Valid @RequestBody PasswordUpdateRequest passwordUpdateRequest, HttpServletRequest request) {
         userService.updateUserPassword(passwordUpdateRequest, request);
@@ -77,5 +77,23 @@ public class UserController {
             @RequestParam(value = "type", defaultValue = "desc") String type
     ) {
         return userService.getUsersByPage(query, page, size, sort, type);
+    }
+
+    @GetMapping("{userId}/admin") // http://localhost:8080/users/:id/admin + GET
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public ResponseMessage<UserResponse> getUserById(@PathVariable Long userId) {
+        return userService.getUserById(userId);
+    }
+
+    @PutMapping("{userId}/admin") // http://localhost:8080/users/:id/admin + PUT + JSON
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public ResponseMessage<UserResponse> updateUserById(@Valid @RequestBody UserRequestWithoutPassword userRequestWithoutPassword, HttpServletRequest request, @PathVariable Long userId) {
+        return userService.updateUserById(userRequestWithoutPassword, request, userId);
+    }
+
+    @DeleteMapping("{userId}/admin") // http://localhost:8080/users/:id/admin + DELETE
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public ResponseMessage<UserResponse> deleteUserById(@PathVariable Long userId, HttpServletRequest request) {
+        return userService.deleteUserById(userId, request);
     }
 }

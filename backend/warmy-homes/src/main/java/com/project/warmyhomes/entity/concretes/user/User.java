@@ -2,6 +2,10 @@ package com.project.warmyhomes.entity.concretes.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.warmyhomes.entity.concretes.business.Advert;
+import com.project.warmyhomes.entity.concretes.business.Favorite;
+import com.project.warmyhomes.entity.concretes.business.Log;
+import com.project.warmyhomes.entity.concretes.business.TourRequest;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -67,6 +71,18 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     List<Role> roles;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    List<Advert> adverts;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    List<TourRequest> tourRequests;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    List<Favorite> favorites;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    List<Log> logs;
 
     @PrePersist
     public void prePersistDateTime() {
