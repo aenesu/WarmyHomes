@@ -1,7 +1,25 @@
-import React from 'react'
+import styles from './unauthorized.module.scss';
 
-export default function Page403() {
+export default function Unauthorized() {
   return (
-    <div>Page403</div>
-  )
+    <div className={styles.mainContainer}>
+        <div className={styles.banner}>
+          <p>UNAUTHORIZED</p>
+        </div>
+        <div className={styles.imageAndTextContainer}>
+          <div className={styles.imageContainer}>
+            <img className={styles.logo} src="/assets/images/403.jpeg" alt="Unauthorized" />
+          </div>
+          <div className={styles.textContainer}>
+            <div className={styles.title}>
+              Sorry you are not authorized to access.
+            </div>
+            <div className={styles.subtitle}>
+              Please check your login credentials or contact the administrator.
+          </div>
+          <button className={styles.logoutButton}>LOGOUT</button>
+        </div>
+      </div>
+    </div>
+  );
 }
