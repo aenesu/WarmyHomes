@@ -17,7 +17,7 @@ export default function Unauthorized() {
             <div className={styles.subtitle}>
               Please check your login credentials or contact the administrator.
           </div>
-          <button className={styles.goHomePagebutton}>LOGOUT</button>
+          <button className={styles.logoutButton}>LOGOUT</button>
         </div>
       </div>
     </div>
