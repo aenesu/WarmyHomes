@@ -24,7 +24,7 @@ export default function RandomProp() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.mainContainer}>
 
       <div className={styles.banner}>
         <div className={styles.title}>
@@ -34,19 +34,26 @@ export default function RandomProp() {
 
       <div className={styles.content}>
         <div className={styles.left}>
-          <div className={styles.photoContainer}>
+          <div className={`${styles.container} ${styles.photoContainer}`} >
             fotoğraflar
           </div>
 
-          <div className={styles.detailsContainer}>
+          <div className={styles.container}>
+            description
           </div>
 
-          <div className={styles.locationContainer}>
+          <div className={styles.container}>
+            details
           </div>
+          
+          <div className={styles.container}>
+            location
+          </div>
+
         </div>
 
         <div className={styles.right}>
-          <div className={styles.tourContainer}>
+          <div className={`${styles.container} ${styles.tourContainer}`}>
             places
           </div>
         </div>
