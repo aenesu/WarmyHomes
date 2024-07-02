@@ -6,7 +6,7 @@
     align-items: center;
 
     .banner {
-        width: 100%;
+        width: 90%;
         height: 128px;
         max-width: 1355px;
 
@@ -17,8 +17,8 @@
         align-items: center;
         justify-content: flex-start;
         padding-left: 30px;
+        margin-top: 40px;
         margin-bottom: 50px;
-
 
         .title {
             color: #3B3B3B;
@@ -26,25 +26,102 @@
         }
     }
 
-
-
     .content {
+        
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        gap: 40px;
 
-
+        justify-content: center;
 
         .left {
+            display: flex;
+            flex-direction: column;
+
+            gap: 35px;
+
             .container {
                 background-color: #F5F5F5;
                 border: #C9C9C9 2px solid;
                 border-radius: 20px;
+                box-sizing: border-box;
                 padding: 40px;
+
+                max-width: 917px;
+
+                h3{
+                    font-size: 25px;
+                    font-weight: 500;
+                    margin-bottom: 25px;
+                    color: #3B3B3B;
+                }
+
+                h4{
+                    font-size: 20px;
+                    font-weight: 400;
+                    display: inline;
+                }
+
+                p{
+                    font-size: 20px;
+                    font-weight: 300;
+                    line-height: 1.45;
+                }
+
+                &.container:last-of-type{
+                    margin-bottom: 80px;
+                }
             }
 
             .photoContainer {
                 width: 917px;
                 height: 592px;
+            }
+
+            .detailsContainer{
+                .details {
+                    display: flex;
+                }
+                .detailBox{
+                    width: 50%;
+                }
+
+                .subDiv {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-right: 150px;
+                    margin-bottom: 25px;
+                }
+
+                h3{
+                    margin-bottom: 30px;
+                }
+
+                h4:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+
+            .locationDetails{
+                display: flex;
+                p{
+                    flex: 1;
+                }
+            }
+
+            .map{
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                height: 377px;
+                width: 829px;
+                overflow: hidden;
+
+                iframe{
+                    border: #C9C9C9 2px solid;
+                    border-radius: 20px;    
+                }
             }
         }
 
