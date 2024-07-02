@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&display=swap');
+
+.card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  width: 100px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.text {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.location, .price {
+  color: #666;
+  margin: 5px 0;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.datePublished{
+  flex: 2;
+}
+
+.status {
+  background-color: #b71082;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.stats span {
+  margin-right: 10px;
+  color: #666;
+}
+
+.action {
+  margin-left: auto;
+}
+
+.editButton {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #b71082;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  color: #951763;
+}
