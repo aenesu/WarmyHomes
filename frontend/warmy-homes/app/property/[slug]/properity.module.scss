@@ -89,6 +89,7 @@
                     font-size: 20px;
                     font-weight: 300;
                     line-height: 1.45;
+                    text-align: justify;
                 }
 
                 &.container:last-of-type {
@@ -100,33 +101,6 @@
                 width: 917px;
                 height: 592px;
                 padding: 20px;
-
-                .photoContainer {
-                    width: 877px;
-                    height: 457px;
-                    background-color: gray;
-                    border-radius: 20px;
-
-                    position: relative;
-                    overflow: hidden;
-                }
-
-                .prewContainer {
-                    display: flex;
-                }
-
-                .prewPhoto {
-                    background-color: gray;
-                    width: 106px;
-                    height: 71px;
-                    border-radius: 20px;
-                    margin-top: 18px;
-                    margin-right: 20px;
-
-                    position: relative;
-                    overflow: hidden;
-                    object-fit: cover;
-                }
             }
 
             .detailsContainer {
@@ -180,45 +154,79 @@
         .right {
             .container {
                 background-color: #F5F5F5;
+
                 border: #C9C9C9 2px solid;
                 border-radius: 20px;
+                
+                margin-bottom: 80px;
                 padding: 20px;
                 width: 399px;
                 height: 335px;
+
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
 
-                h3 {
-                    font-size: 24px;
-                    font-weight: 500;
-                }
-                p {
-                    font-size: 14px;
-                    font-weight: 300;
+                div {
+                    height: 20%;
+
+                    h3 {
+                        font-family: 'Inter', sans-serif;
+                        font-size: 24px;
+                        font-weight: 500;
+                        margin-bottom: 5px;
+                    }
+
+                    p {
+                        font-family: 'Inter', sans-serif;
+                        font-size: 14px;
+                        font-weight: 300;
+                    }
                 }
 
-                input {
-                    display: block;
-                    width: 350px;
-                    height: 50px;
-                    border: 1px #EAE9E9 solid;
-                }
-                button {
-                    background-color: #951763;
-                    width: 350px;
-                    height: 50px;
-                    border-radius: 10px;
-                    font-size: 20px;
-                    font-weight: 500;
-                    color: white;
-                    margin-bottom: 10px;
-                }
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    height: 70%;
 
-                .tourDate
-                .tourTime {
+                    input {
+                        display: block;
+                        width: 350px;
+                        height: 50px;
+                        border: 1px #EAE9E9 solid;
+                        padding: 0 20px;
+
+                    }
+
+                    button {
+                        width: 350px;
+                        height: 50px;
+                        border-radius: 10px;
+                        background-color: #951763;
+                        border: #951763 1px solid;
+
+                        font-size: 20px;
+                        font-weight: 400;
+                        font-family: "Akshar", sans-serif;
+                        color: white;
+                        border: none;
+
+                        transition: all 0.3s;
+                    }
+
+                    button:hover {
+                        background-color: white;
+                        color: #951763;
+                        cursor: pointer;
+                        border: #951763 1px solid;
+                    }
+
+                    button:active {
+                        translate: 0 5px;
+                        border: #951763 1px solid;
+                    }
                 }
-                
             }
         }
     }

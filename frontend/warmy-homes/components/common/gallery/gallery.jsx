@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './gallery.module.scss';
 
 const images = [
@@ -12,12 +12,44 @@ const images = [
 
 export default function Gallery() {
   const [mainImage, setMainImage] = useState(images[3]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(false);
+
+  //    const togglePopup = () => {
+  //      setShowPopup(!showPopup);
+  //    };
+
+  const togglePopup = () => {
+    if (showPopup) {
+      setPopupVisible(false);
+      setTimeout(() => setShowPopup(false), 300);
+    } else {
+      setShowPopup(true);
+      setTimeout(() => setPopupVisible(true), 10);
+    }
+  };
+
+
+//  useEffect(() => {
+//    if (popupVisible) {
+//      document.body.classList.add('no-scroll');
+//    } else {
+//      document.body.classList.remove('no-scroll');
+//    }
+//
+//    return () => {
+//      document.body.classList.remove('no-scroll');
+//    };
+//  }, [popupVisible]);
+
 
   return (
     <div className={styles.gallery}>
-      <div className={styles.mainImage}>
+
+      <div className={styles.mainImage} onClick={togglePopup}>
         <img id="largeImage" src={mainImage} alt="Main Image" />
       </div>
+
       <div className={styles.thumbnailImages}>
         {images.map((src, index) => (
           <img
@@ -29,6 +61,15 @@ export default function Gallery() {
           />
         ))}
       </div>
+
+      {showPopup && (
+        <div className={`${styles.popup} ${popupVisible ? styles.visible : ''}`} onClick={togglePopup}>
+          <div className={styles.popupContent}>
+            <img src={mainImage} alt="Congrats! You Have Seen the Bigger Picture" />
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

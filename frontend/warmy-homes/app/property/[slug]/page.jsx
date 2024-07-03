@@ -6,7 +6,7 @@ export default function RandomProp() {
 
   const advert = {
     id: 'Yalı',
-    title: 'Boğaz Manzaralı Satılık Yalı',
+    title: 'Bogaz Manzaralı Satılık Yalı',
     desc: `Göksu ile Küçüksu dereleri arasında kalan çayırlık alan, Osmanlı döneminde padişahların Boğaziçi'ndeki hasbahçelerinden, zamanla da en gözde mesire yerlerinden biri olarak tanınmaktadır.
             17. yüzyılda ünlü seyyah Evliyâ Çelebi, “bir âb-ı hayât nehirdir” diye bahsettiği Göksu'yu, üzerinde kayıklarla dolaşılan; etrafı gül bahçeleri, küçük köşkler ve hazineye ait değirmenlerle çevrili sakin bir yer olarak tasvir etmiştir. Sultan IV. Murad (1623-1640), Kandilli'ye kadar sık selvi ağaçlarıyla kaplı Küçüksu ve çevresini düzenlettirerek buraya “Gümüş Selvi” adını vermiştir.
             Hasbahçe içindeki ilk yapılaşma Sultan I. Mahmud (1730-1754) döneminde başlamıştır. Göksu'da sık sık avlanan ve atış talimleri yapan Sultan için Sadrazam Divitdâr Mehmed Emin Paşa, 1751-1752 yıllarında ahşap bir köşk yaptırmıştır. Deniz kıyısındaki bu iki katlı yapı, Sultan III. Selim (1789-1807) döneminde geniş çaplı bir onarımdan geçmiş ve Sultan'ın isteği üzerine çok sevdiği annesi Mihrişah Valide Sultan adına 1806'da bir de çeşme eklenmiştir. Sultan II. Mahmud (1808-1839) döneminde de kullanılmaya devam eden eski köşk, Sultan Abdülmecid (1839-1861) tarafından yıktırılmış ve yerine 1856-1857 yıllarında yeni Küçüksu Kasrı yaptırılmıştır. Sultan Abdülaziz (1861-1876) döneminde, kasrın cephe süslemeleri elden geçirilerek zenginleştirilmiştir.`,
@@ -121,8 +121,6 @@ export default function RandomProp() {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51639.455346759016!2d29.060852718756536!3d41.08059772353231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac9f43f832e2f%3A0xde332daf29a35547!2zS8O8w6fDvGtzdSBQYXZpbGlvbg!5e0!3m2!1sen!2str!4v1719962638331!5m2!1sen!2str"
                 height="100%"
                 width="100%"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>
@@ -137,10 +135,11 @@ export default function RandomProp() {
               <h3>Schedule a tour</h3>
               <p>Choose your preferred day</p>
             </div>
-            <input className={styles.tourDate} type="date" />
-            <input className={styles.tourTime} type="time" />
-            <button>Submit a tour request</button>
-
+            <form action="">
+              <input className={styles.tourDate} type="date" name="tour_date" />
+              <input className={styles.tourTime} type="time" name="tour_time" min="09:00" step="1800" />
+              <button>Submit a tour request</button>
+            </form>
           </div>
         </div>
       </div>

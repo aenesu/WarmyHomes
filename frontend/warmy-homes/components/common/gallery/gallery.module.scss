@@ -16,10 +16,44 @@
         cursor: pointer;
         transition: all 0.5s;
 
-        &.mainImage:hover  {
+        &.mainImage:hover {
             transform: scale(1.01)
         }
     }
+
+    .popup {
+        position: fixed;
+        top: 2%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(100, 100, 100, 0.75);
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+    
+        &.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    
+        .popupContent img {    
+            height: 80vh;
+            width: auto;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+    
+        &.visible .popupContent img {
+            transform: scale(1);
+        }
+    }
+    
 
 
 
