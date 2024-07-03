@@ -1,27 +1,29 @@
+import Image from 'next/image';
 import styles from './properity.module.scss';
+import Gallery from '@/components/common/gallery/gallery';
 
 export default function RandomProp() {
 
   const advert = {
-    id: 'home',
-    title: 'Boğaza Hakim Satılık Yalı',
+    id: 'Yalı',
+    title: 'Boğaz Manzaralı Satılık Yalı',
     desc: `Göksu ile Küçüksu dereleri arasında kalan çayırlık alan, Osmanlı döneminde padişahların Boğaziçi'ndeki hasbahçelerinden, zamanla da en gözde mesire yerlerinden biri olarak tanınmaktadır.
             17. yüzyılda ünlü seyyah Evliyâ Çelebi, “bir âb-ı hayât nehirdir” diye bahsettiği Göksu'yu, üzerinde kayıklarla dolaşılan; etrafı gül bahçeleri, küçük köşkler ve hazineye ait değirmenlerle çevrili sakin bir yer olarak tasvir etmiştir. Sultan IV. Murad (1623-1640), Kandilli'ye kadar sık selvi ağaçlarıyla kaplı Küçüksu ve çevresini düzenlettirerek buraya “Gümüş Selvi” adını vermiştir.
             Hasbahçe içindeki ilk yapılaşma Sultan I. Mahmud (1730-1754) döneminde başlamıştır. Göksu'da sık sık avlanan ve atış talimleri yapan Sultan için Sadrazam Divitdâr Mehmed Emin Paşa, 1751-1752 yıllarında ahşap bir köşk yaptırmıştır. Deniz kıyısındaki bu iki katlı yapı, Sultan III. Selim (1789-1807) döneminde geniş çaplı bir onarımdan geçmiş ve Sultan'ın isteği üzerine çok sevdiği annesi Mihrişah Valide Sultan adına 1806'da bir de çeşme eklenmiştir. Sultan II. Mahmud (1808-1839) döneminde de kullanılmaya devam eden eski köşk, Sultan Abdülmecid (1839-1861) tarafından yıktırılmış ve yerine 1856-1857 yıllarında yeni Küçüksu Kasrı yaptırılmıştır. Sultan Abdülaziz (1861-1876) döneminde, kasrın cephe süslemeleri elden geçirilerek zenginleştirilmiştir.`,
     slug: '',
-    price: '40000000',
+    price: 40000000,
     status: '',
-    built_in: '',
+    built_in: 1856,
     is_active: '',
-    view_count: '',
+    view_count: 562,
     location: '',
-    advert_type_id: '',
+    advert_type_id: 'For sale',
     country_id: 90,
-    city_id: '34',
-    district_id: '',
+    city_id: 34,
+    district_id: 'Beykoz',
     user_id: '',
     category_id: '',
-    create_at: '',
+    create_at: '2 Days ago',
     update_at: '',
     details: {
       size: 860,
@@ -39,15 +41,17 @@ export default function RandomProp() {
     <div className={styles.mainContainer}>
 
       <div className={styles.banner}>
-        <div>
-        <div className={styles.title}>{advert.title}</div>
-        <div>
-          <div className={styles.bannerLocation}></div>
-          <div className={styles.bannerRentSale}></div>
-          <div className={styles.bannerPostDate}></div>
-          <div className={styles.bannerViewCount}></div>
-
+        <div className={styles.bannerInfo}>
+          <div className={styles.title}>{advert.title}</div>
+          <div className={styles.bannerIconContainer}>
+            <div className={styles.bannerIcon}><img src="/assets/vectors/location-pin.svg" alt="Location" /> {advert.city_id === 34 ? "Istanbul" : "N/A"}{advert.district_id ? `, ${advert.district_id}` : ''} </div>
+            <div className={styles.bannerIcon}><img src="/assets/vectors/label.svg" alt="Rent or Sale" /> {advert.advert_type_id} </div>
+            <div className={styles.bannerIcon}><img src="/assets/vectors/clock.svg" alt="Posted" /> {advert.create_at} </div>
+            <div className={styles.bannerIcon}><img src="/assets/vectors/view-count.svg" alt="View Count" /> {advert.view_count} </div>
+          </div>
         </div>
+        <div className={styles.bannerPrice}>
+          ${advert.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         </div>
       </div>
 
@@ -55,16 +59,35 @@ export default function RandomProp() {
 
         {/* Photos */}
         <div className={styles.left}>
-          <div className={`${styles.container} ${styles.photoContainer}`} >
-            fotoğraflar
+          <div className={`${styles.container} ${styles.photoMainContainer}`} >
+            <Gallery />
+
+            {/*
+            
+            <div className={`${styles.photoContainer}`} >
+              <Image
+                src={"/assets/images/mock/mockdata3.jpeg"}
+                fill alt='Image 1' />
+            </div>
+            <div className={styles.prewContainer}>
+              <div className={styles.prewPhoto}> <Image src={"/assets/images/mock/mockdata2.jpg"} fill alt='Image 1' /> </div>
+              <div className={styles.prewPhoto}> <Image src={"/assets/images/mock/mockdata1.jpeg"} fill alt='Image 1' /> </div>
+              <div className={styles.prewPhoto}> <Image src={"/assets/images/mock/mockdata2.webp"} fill alt='Image 1' /> </div>
+              <div className={styles.prewPhoto}> <Image src={"/assets/images/mock/mockdata3.jpeg"} fill alt='Image 1' /> </div>
+              <div className={styles.prewPhoto}> <Image src={"/assets/images/mock/mockdata4.webp"} fill alt='Image 1' /> </div>
+            </div> 
+            
+            */}
           </div>
 
+          {/* ___________________________________________________________________________________*/}
           {/* Description */}
           <div className={styles.container}>
             <h3>Description</h3>
             <p>{advert.desc}</p>
           </div>
 
+          {/* ___________________________________________________________________________________*/}
           {/* Details */}
           <div className={`${styles.container} ${styles.detailsContainer}`}>
             <h3>Details</h3>
@@ -84,6 +107,7 @@ export default function RandomProp() {
             </div>
           </div>
 
+          {/* ___________________________________________________________________________________*/}
           {/* Location Info */}
           <div className={styles.container}>
             <h3>Location</h3>
@@ -105,10 +129,18 @@ export default function RandomProp() {
 
         </div>
 
+        {/* ___________________________________________________________________________________*/}
         {/* Tour Scheduling */}
         <div className={styles.right}>
           <div className={`${styles.container} ${styles.tourContainer}`}>
-            places
+            <div>
+              <h3>Schedule a tour</h3>
+              <p>Choose your preferred day</p>
+            </div>
+            <input className={styles.tourDate} type="date" />
+            <input className={styles.tourTime} type="time" />
+            <button>Submit a tour request</button>
+
           </div>
         </div>
       </div>

@@ -1,0 +1,50 @@
+.gallery {
+    display: flex;
+    flex-direction: column;
+
+    .mainImage img {
+        width: 877px;
+        height: 457px;
+        border-radius: 20px;
+
+        position: relative;
+        overflow: hidden;
+
+    }
+
+    .mainImage {
+        cursor: pointer;
+        transition: all 0.5s;
+
+        &.mainImage:hover  {
+            transform: scale(1.01)
+        }
+    }
+
+
+
+    .thumbnailImages {
+        display: flex;
+
+        .thumbnail {
+            width: 106px;
+            height: 71px;
+            border-radius: 20px;
+            margin-top: 18px;
+            margin-right: 20px;
+
+            cursor: pointer;
+
+            position: relative;
+            overflow: hidden;
+            object-fit: cover;
+
+            transition: all 0.5s;
+
+            &.thumbnail:hover {
+                border-color: #777;
+                transform: scale(1.05);
+            }
+        }
+    }
+}
