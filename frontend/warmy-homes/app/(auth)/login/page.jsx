@@ -43,13 +43,13 @@ export default function LoginPage() {
             <label htmlFor={field.id}>{field.label}</label>
           </div>
         ))}
-        <Link href="/#" className={styles.p}>Forgot password?</Link>
+        <Link href="/profile/password/forgot" className={styles.p}>Forgot password?</Link>
         <button type="submit" className={styles.submitButton}>
           LOGIN
         </button>
       </form>
       <p className={styles.message}>
-        If you don't have an account, <Link href="/login" className={styles.loginLink}>Register now!</Link>
+        If you don't have an account, <Link href="/register" className={styles.loginLink}>Register now!</Link>
       </p>
     </div>
   );

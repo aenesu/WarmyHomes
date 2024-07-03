@@ -4,7 +4,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -26,8 +25,4 @@ public class AdvertType {
 
     @Column(name = "built_in", nullable = false, columnDefinition = "Boolean default false")
     Boolean builtIn;
-
-    @OneToMany(mappedBy = "advertType")
-    Set<Advert> adverts;
-
 }

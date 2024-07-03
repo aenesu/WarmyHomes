@@ -2,8 +2,6 @@ package com.project.warmyhomes;
 
 import com.project.warmyhomes.entity.concretes.user.Role;
 import com.project.warmyhomes.entity.concretes.user.User;
-import com.project.warmyhomes.exception.ResourceNotFoundException;
-import com.project.warmyhomes.payload.messages.ErrorMessages;
 import com.project.warmyhomes.repository.user.RoleRepository;
 import com.project.warmyhomes.repository.user.UserRepository;
 import com.project.warmyhomes.service.user.RoleService;
@@ -13,11 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
-import java.util.Optional;
-
-//import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy(proxyTargetClass = true)

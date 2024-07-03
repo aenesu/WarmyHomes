@@ -9,7 +9,7 @@ export default function AboutPage() {
       <div className={styles.container}>
 
         <div className={styles.banner}>
-          <p>CONTACT US</p>
+          <p>ABOUT US</p>
         </div>
 
         <WeAreOnAMission />

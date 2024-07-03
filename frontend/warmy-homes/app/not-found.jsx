@@ -1,23 +1,23 @@
-import styles from './unauthorized.module.scss';
+import styles from './not-found.module.scss';
 
-export default function Unauthorized() {
+export default function NotFound() {
   return (
     <div className={styles.mainContainer}>
         <div className={styles.banner}>
-          <p>UNAUTHORIZED</p>
+          <p>NOT FOUND</p>
         </div>
         <div className={styles.imageAndTextContainer}>
           <div className={styles.imageContainer}>
-            <img className={styles.logo} src="/assets/images/403.jpeg" alt="Unauthorized" />
+            <img className={styles.logo} src="/assets/images/not-found.jpeg" alt="Not Found" />
           </div>
           <div className={styles.textContainer}>
             <div className={styles.title}>
-              Sorry you are not authorized to access.
+              Oops! It looks like you're lost.
             </div>
             <div className={styles.subtitle}>
-              Please check your login credentials or contact the administrator.
+              The page you&apos;re looking for isn&apos;t available. Try to search again or the use go to:
           </div>
-          <button className={styles.logoutButton}>LOGOUT</button>
+          <button className={styles.goHomePagebutton}>Go to Home Page</button>
         </div>
       </div>
     </div>

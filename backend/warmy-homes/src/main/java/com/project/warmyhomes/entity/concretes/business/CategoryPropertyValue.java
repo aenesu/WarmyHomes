@@ -30,5 +30,4 @@ public class CategoryPropertyValue {
     @ManyToOne
     @JoinColumn(name = "category_property_key_id", nullable = false)
     CategoryPropertyKey propertyKey;
-
 }
