@@ -1,6 +1,5 @@
 package com.project.warmyhomes.service.user;
 
-import com.project.warmyhomes.entity.concretes.user.Role;
 import com.project.warmyhomes.entity.concretes.user.User;
 import com.project.warmyhomes.exception.BadRequestException;
 import com.project.warmyhomes.exception.ResourceNotFoundException;
@@ -84,7 +83,7 @@ public class UserService {
     private static final SecureRandom random = new SecureRandom(); // SecureRandom for better randomness
 
     /**
-     * Authenticates a user based on the provided login request DTO and returns a JWT token.
+     * Authenticate a user based on the provided login request DTO and returns a JWT token.
      *
      * @param request DTO containing user login credentials
      * @return ResponseEntity containing the JWT token in a login response
@@ -105,7 +104,7 @@ public class UserService {
     }
 
     /**
-     * Registers a new user based on the provided user request DTO.
+     * Register a new user based on the provided user request DTO.
      *
      * @param userRequest DTO containing user registration details
      * @return ResponseMessage containing the saved user information and HTTP status
@@ -129,7 +128,7 @@ public class UserService {
     }
 
     /**
-     * Handles forgot password request and initiates the password reset process.
+     * Handle forgot password request and initiates the password reset process.
      *
      * @param forgotPasswordRequest DTO containing email for password reset request
      */
@@ -147,7 +146,7 @@ public class UserService {
     }
 
     /**
-     * Generates a password reset code.
+     * Generate a password reset code.
      *
      * @return Generated password reset code
      */
@@ -180,12 +179,12 @@ public class UserService {
     }
 
     /**
-     * Sends an email with reset password code.
+     * Send an email with a reset password code to the specified recipient.
      *
-     * @param firstName
-     * @param lastName
-     * @param resetPasswordCode
-     * @param recipientEmail
+     * @param firstName         the first name of the recipient
+     * @param lastName          the last name of the recipient
+     * @param resetPasswordCode the reset password code to be sent
+     * @param recipientEmail    the email address of the recipient
      */
     private void sendEmailResetPasswordCode(String firstName, String lastName, String resetPasswordCode, String recipientEmail) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -213,7 +212,7 @@ public class UserService {
     }
 
     /**
-     * Resets the password for a user based on the provided reset password request DTO.
+     * Reset the password for a user based on the provided reset password request DTO.
      *
      * @param resetPasswordRequest DTO containing reset password code
      * @throws ResourceNotFoundException if the reset password code is not found in the database
@@ -227,7 +226,7 @@ public class UserService {
     }
 
     /**
-     * Retrieves the user details based on the email obtained from the HttpServletRequest.
+     * Retrieve the user details based on the email obtained from the HttpServletRequest.
      *
      * @param request HttpServletRequest containing the user's email as an attribute
      * @return ResponseMessage containing the user details wrapped in a UserResponse DTO
@@ -244,7 +243,7 @@ public class UserService {
     }
 
     /**
-     * Updates the user details based on the provided UserRequestWithoutPassword DTO.
+     * Update the user details based on the provided UserRequestWithoutPassword DTO.
      *
      * @param userRequestWithoutPassword DTO containing updated user details
      * @param request                    HttpServletRequest containing the user's email as an attribute
@@ -276,7 +275,7 @@ public class UserService {
     }
 
     /**
-     * Updates the user's password based on the provided PasswordUpdateRequest DTO.
+     * Update the user's password based on the provided PasswordUpdateRequest DTO.
      *
      * @param passwordUpdateRequest DTO containing old and new passwords
      * @param request               HttpServletRequest containing the user's email as an attribute
@@ -313,7 +312,7 @@ public class UserService {
 
         // Check if there are related records in adverts or tour requests
         if (advertRepository.existsByUserId(user.getId()) || tourRequestRepository.existsByOwnerId(user.getId())) {
-            throw new BadRequestException(String.format(ErrorMessages.BAD_REQUEST_USER_TO_ADVERT_AND_TOUR_REQUEST, user.getEmail()));
+            throw new BadRequestException(ErrorMessages.BAD_REQUEST_USER_TO_ADVERT_AND_TOUR_REQUEST);
         }
 
         // Delete related records in favorites and logs
@@ -324,7 +323,7 @@ public class UserService {
     }
 
     /**
-     * Retrieves users based on the query, page, size, sort, and type.
+     * Retrieve users based on the query, page, size, sort, and type.
      *
      * @param query search query to filter users by first name, last name, email, or phone
      * @param page  page number (zero-based)
@@ -337,12 +336,12 @@ public class UserService {
         // Create pageable object with sorting parameters
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
 
-        return userRepository.findByUserByQuery(query, pageable)
+        return userRepository.findUsersByQuery(query, pageable)
                 .map(userMapper::mapUserToUserResponse);
     }
 
     /**
-     * Retrieves a user by their ID.
+     * Retrieve a user by their ID.
      *
      * @param userId ID of the user to retrieve
      * @return ResponseMessage containing the user details wrapped in a UserResponse DTO
@@ -365,7 +364,7 @@ public class UserService {
     }
 
     /**
-     * Updates the user details based on the provided UserRequest DTO.
+     * Update the user details based on the provided UserRequest DTO.
      *
      * @param userRequestWithoutPassword DTO containing updated user details without password
      * @param request                    HttpServletRequest containing the user's email as an attribute
@@ -407,7 +406,7 @@ public class UserService {
     }
 
     /**
-     * Deletes a user by their ID.
+     * Delete a user by their ID.
      *
      * @param userId ID of the user to be deleted
      * @return ResponseMessage confirming the deletion

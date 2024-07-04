@@ -17,4 +17,8 @@ public class ErrorMessages {
 
     public static final String BAD_REQUEST_MANAGERS_CAN_ONLY_UPDATE_CUSTOMERS = "Manager can only update customer.";
     public static final String BAD_REQUEST_USER_TO_ADVERT_AND_TOUR_REQUEST = "Error: User cannot be deleted because they have related adverts or tour requests.";
+
+    //contact message
+    public static final String NOT_FOUND_CONTACT_MESSAGE = "Error: Contact Message not found with id %d";
+
 }
