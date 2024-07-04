@@ -45,4 +45,7 @@
     &:hover {
         background-color: #6b1047;
     }
+    &:active {
+        translate: 0 3px;
+    }
 }

@@ -10,7 +10,7 @@
 }
 
 .banner {
-  background: $lineer-gradient; 
+  background: $lineer-gradient;
   width: 1357px;
   height: 128px;
   display: flex;
@@ -61,8 +61,8 @@
     font-size: 1.625rem;
     color: #939393;
 
-    &:focus + label,
-    &:valid + label {
+    &:focus+label,
+    &:valid+label {
       font-size: 1.2rem;
       top: 10px;
       transform: translateY(-120%);
@@ -80,6 +80,12 @@
   color: white;
   margin: 30px 0;
   cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  &:active {
+    translate: 0 3px;
+  }
 }
 
 .updateButton:hover {
@@ -101,15 +107,21 @@
   .deleteButton {
     font-family: 'Inter', sans-serif;
     font-size: 1.125rem;
-    width: 639px; 
-    padding: 10px; 
+    width: 639px;
+    padding: 10px;
     margin-bottom: 100px;
-    background-color: #FFB2B2; 
+    background-color: #FFB2B2;
     border: 2px solid #b71082;
     color: #000000;
     text-align: start;
     cursor: pointer;
     border-radius: 10px;
+
+    transition: all 0.3s ease;
+
+    &:active {
+      translate: 0 3px;
+    }
   }
 
   .deleteButton:hover {
