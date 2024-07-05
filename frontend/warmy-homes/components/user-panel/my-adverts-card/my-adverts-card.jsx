@@ -12,28 +12,24 @@ export default function MyAdvertsCard({
 }) {
   return (
     <div className={styles.card}>
-      <img
-        src="/assets/images/house-isolated-field 6.png"
-        alt={title}
-        className={styles.image}
-      />
-      <div className={styles.text}>
+      <div className={styles.container}>
+        <img
+          src="/assets/images/house-isolated-field 6.png"
+          alt={title}
+          className={styles.image}
+        />
         <div>
           <div className={styles.title}>{title}</div>
           <div className={styles.city_id}>{city_id}</div>
           <div className={styles.location}>{location}</div>
           <div className={styles.price}>{price}</div>
         </div>
-        <div className={styles.datePublished}>{create_at}</div>
-        <div className={styles.status}>{status}</div>
-        <div className={styles.details}>
-          <div className={styles.stats}>
-            <span className={styles.view}>👁️ {view_count}</span>
-          </div>
-        </div>
-        <div className={styles.action}>
-          <button className={styles.editButton}>✏️</button>
-        </div>
+      </div>
+      <div className={styles.datePublished}>{create_at}</div>
+      <div className={styles.status}>{status}</div>
+      <div className={styles.view}>👁️ {view_count}</div>
+      <div className={styles.action}>
+        <button className={styles.editButton}>✏️</button>
       </div>
     </div>
   );
