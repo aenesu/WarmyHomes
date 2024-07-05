@@ -1,5 +1,6 @@
 
 import ContactForm from "@/components/common/contact-form/contact-form"
+import Banner from "@/components/common/banner/banner"
 import styles from "./contact.module.scss"
 import { akshar } from "../layout"
 
@@ -16,9 +17,7 @@ export default function ContactPage() {
     <div className={styles.mainContainer}>
       <div className={styles.container}>
 
-        <div className={styles.banner}>
-          <p>CONTACT US</p>
-        </div>
+      <Banner title="CONTACT US" />
 
         <div className={styles.mapEmbed}>
           <iframe

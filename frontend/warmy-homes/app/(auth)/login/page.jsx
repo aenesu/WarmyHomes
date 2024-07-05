@@ -2,6 +2,7 @@
 import { useState } from "react";
 import styles from "./login-page.module.scss";
 import Link from "next/link";
+import Banner from "@/components/common/banner/banner";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ export default function LoginPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.banner}><h1>LOGIN</h1></div>
+      <Banner title="LOGIN" />
       <form onSubmit={handleSubmit} className={styles.form}>
         {[
           { id: "username", label: "Username", type: "text" },
