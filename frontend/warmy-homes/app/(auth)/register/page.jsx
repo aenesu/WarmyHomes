@@ -2,6 +2,7 @@
 import { useState } from "react";
 import styles from "./registerPage.module.scss";
 import Link from "next/link";
+import Banner from "@/components/common/banner/banner";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -30,7 +31,7 @@ export default function RegisterPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.banner}><h1>REGISTER</h1></div>
+       <Banner title="REGISTER" />
       <form onSubmit={handleSubmit} className={styles.form}>
         {[
           { id: "firstName", label: "First Name", type: "text" },
