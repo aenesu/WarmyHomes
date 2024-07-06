@@ -4,9 +4,9 @@ import styles from "./my-adverts.module.scss"
 
 export default function myAdverts() {
     const myAdverts = [
-        {id: 1, title: "Equestrian Family Home", city_id:"CA City", price: 1400, create_at:"01/06/2024", status:"Pending", view_count:"25"},
-        {id: 1, title: "Equestrian Family Home", city_id:"CA City", price: 1400, create_at:"01/06/2024", status:"Pending", view_count:"25"},
-        {id: 1, title: "Equestrian Family Home", city_id:"CA City", price: 1400, create_at:"01/06/2024", status:"Pending", view_count:"25"}
+        {id: 1, title: "Equestrian Family Home", city_id:"CA City", price: 1400, create_at:"01/06/2024", status:"Pending", view_count:"125"},
+        {id: 1, title: "Equestrian Family Home", city_id:"CA City", price: 1400, create_at:"01/06/2024", status:"Pending", view_count:"125"},
+        {id: 1, title: "Equestrian Family Home", city_id:"CA City", price: 1400, create_at:"01/06/2024", status:"Pending", view_count:"125"}
     ]
   return (
     <div className={styles.container} >

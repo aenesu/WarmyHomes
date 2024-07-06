@@ -27,9 +27,9 @@ export default function MyAdvertsCard({
       </div>
       <div className={styles.datePublished}>{create_at}</div>
       <div className={styles.status}>{status}</div>
-      <div className={styles.view}>👁️ {view_count}</div>
+      <div className={styles.view}> <img src="/assets/vectors/view.svg" alt="View Icon" className={styles.viewIcon} /> {view_count}</div>
       <div className={styles.action}>
-        <button className={styles.editButton}>✏️</button>
+        <button className={styles.editButton}><img src="/assets/vectors/edit.svg" alt="Edit Symbol"></img></button> 
       </div>
     </div>
   );
