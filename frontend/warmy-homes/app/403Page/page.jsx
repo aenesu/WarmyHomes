@@ -1,11 +1,10 @@
 import styles from './unauthorized.module.scss';
+import Banner from '@/components/common/banner/banner';
 
 export default function Unauthorized() {
   return (
     <div className={styles.mainContainer}>
-        <div className={styles.banner}>
-          <p>UNAUTHORIZED</p>
-        </div>
+        <Banner title="UNAUTHORIZED" />
         <div className={styles.imageAndTextContainer}>
           <div className={styles.imageContainer}>
             <img className={styles.logo} src="/assets/images/403.jpeg" alt="Unauthorized" />

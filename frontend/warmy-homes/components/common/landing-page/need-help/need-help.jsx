@@ -10,7 +10,7 @@ export default function NeedHelp() {
             </div>
 
             <div className={styles.buttonGroup}>
-                <a href="#">
+                <a href="/contact">
                     <button className={`${styles.contactUsLink} ${styles.button}`}>
                         <span>Contact Us</span>
                         <img src="/assets/vectors/right-upwards-arrow.svg" alt="Contact Us Page" width={21} height={21}></img>
@@ -23,7 +23,6 @@ export default function NeedHelp() {
                     </button>
                 </a>
             </div>
-
         </div>
     )
 }

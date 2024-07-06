@@ -1,11 +1,10 @@
 import styles from './not-found.module.scss';
+import Banner from '@/components/common/banner/banner';
 
 export default function NotFound() {
   return (
     <div className={styles.mainContainer}>
-        <div className={styles.banner}>
-          <p>NOT FOUND</p>
-        </div>
+         <Banner title="NOT FOUND" />
         <div className={styles.imageAndTextContainer}>
           <div className={styles.imageContainer}>
             <img className={styles.logo} src="/assets/images/not-found.jpeg" alt="Not Found" />

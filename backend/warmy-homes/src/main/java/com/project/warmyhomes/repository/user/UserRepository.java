@@ -22,6 +22,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByResetPasswordCode(String code);
 
     @Query("SELECT u FROM User u WHERE lower(u.firstName) like lower(concat('%', :query, '%')) OR lower(u.lastName) like lower(concat('%', :query, '%')) OR lower(u.email) like lower(concat('%', :query, '%')) OR lower(u.phone) like lower(concat('%', :query, '%'))")
-    Page<User> findByUserByQuery(@Param("query") String query, Pageable pageable);
+    Page<User> findUsersByQuery(@Param("query") String query, Pageable pageable);
 
 }

@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
 import styles from "./forgot-password.module.scss";
+import Banner from "@/components/common/banner/banner";
 
 
 export default function ForgotPasswordPage() {
@@ -18,7 +19,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.banner}><h1>Forgot Password</h1></div>
+      <Banner title="FORGOT PASSWORD" />
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.inputField}>
           <input

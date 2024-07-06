@@ -67,7 +67,7 @@ public class UserController {
         userService.deleteUser(request);
     }
 
-    @GetMapping("/admin") // http://localhost:8080/users/admin + GET
+    @GetMapping("/admin") // http://localhost:8080/users/admin?q=admin&page=0&size=20&sort=createDate&type=desc + GET
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public Page<UserResponse> getUsersByPage(
             @RequestParam(value = "q") String query,
@@ -79,19 +79,19 @@ public class UserController {
         return userService.getUsersByPage(query, page, size, sort, type);
     }
 
-    @GetMapping("{userId}/admin") // http://localhost:8080/users/:id/admin + GET
+    @GetMapping("/{userId}/admin") // http://localhost:8080/users/:userId/admin + GET
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<UserResponse> getUserById(@PathVariable Long userId) {
         return userService.getUserById(userId);
     }
 
-    @PutMapping("{userId}/admin") // http://localhost:8080/users/:id/admin + PUT + JSON
+    @PutMapping("/{userId}/admin") // http://localhost:8080/users/:userId/admin + PUT + JSON
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<UserResponse> updateUserById(@Valid @RequestBody UserRequestWithoutPassword userRequestWithoutPassword, HttpServletRequest request, @PathVariable Long userId) {
         return userService.updateUserById(userRequestWithoutPassword, request, userId);
     }
 
-    @DeleteMapping("{userId}/admin") // http://localhost:8080/users/:id/admin + DELETE
+    @DeleteMapping("/{userId}/admin") // http://localhost:8080/users/:userId/admin + DELETE
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<UserResponse> deleteUserById(@PathVariable Long userId, HttpServletRequest request) {
         return userService.deleteUserById(userId, request);
