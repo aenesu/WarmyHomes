@@ -8,9 +8,13 @@
 
 .words{
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 0.3fr;
     width: 1355px;
     padding-bottom: 1rem; 
+
+    :last-child{
+        text-align: center;
+    }
 
 }
 
