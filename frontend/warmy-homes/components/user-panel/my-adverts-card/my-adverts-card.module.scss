@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&display=swap');
+
+.card {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+  width: 1355px;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container{
+  display: flex;
+  gap: 10px;
+}
+
+.propertyDetails {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  width: 100px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.city_id, .location, .price {
+  color: #666;
+  margin: 5px 0;
+}
+
+.datePublished {
+  text-align: start;
+}
+
+.status {
+  background-color: #b71082;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 100px; 
+  box-sizing: border-box;
+}
+
+
+.viewIcon {
+  width: 16px; // Adjust size as needed
+  height: 16px; // Adjust size as needed
+  margin-right: 0.5rem; // Space between icon and text
+}
+
+.action {
+  text-align: center;
+}
+
+.editButton {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #b71082;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  color: #951763;
+}
