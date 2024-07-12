@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface AdvertRepository extends JpaRepository<Advert, Long> {
     boolean existsByUserId(Long id);
 
+    void deleteByBuiltInFalse();
+
     //AdvertResponse getAdvertByName(String slugValue);
 }

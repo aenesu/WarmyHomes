@@ -23,6 +23,11 @@ public class AddressService {
     public final CityRepository cityRepository;
     public final DistrictRepository districtRepository;
 
+    /**
+     * Retrieve all countries from the repository and maps them to CountryResponse objects.
+     *
+     * @return a list of all CountryResponse objects
+     */
     public List<CountryResponse> getAllCountries() {
         return countryRepository.findAll()
                 .stream()
@@ -30,6 +35,11 @@ public class AddressService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieve all cities from the repository and maps them to CityResponse objects.
+     *
+     * @return a list of all CityResponse objects
+     */
     public List<CityResponse> getAllCities() {
         return cityRepository.findAll()
                 .stream()
@@ -37,6 +47,11 @@ public class AddressService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Retrieve all districts from the repository and maps them to DistrictResponse objects.
+     *
+     * @return a list of all DistrictResponse objects
+     */
     public List<DistrictResponse> getAllDistricts() {
         return districtRepository.findAll()
                 .stream()

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoryPropertyKeyRepository extends JpaRepository<CategoryPropertyKey, Long> {
+    void deleteByBuiltInFalse();
 }
