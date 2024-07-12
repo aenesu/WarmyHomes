@@ -12,12 +12,15 @@ const MyTourRequest = () => {
     ];
 
     return (
+        <div className={styles.mainContainer}>
         <div className={styles.container}>
             <Banner title="MY TOUR REQUEST" />
             <div className={styles.words}>
                 <h4>Property</h4>
-                <h4>Category</h4>
-                <h4>Type</h4>
+                <h4>Owner</h4>
+                <h4>Status</h4>
+                <h4>Tour Request Date</h4>
+                <h4>Tour Request Time</h4>
                 <h4>Action</h4>
             </div>
             <div className={styles.cards}>
@@ -25,6 +28,7 @@ const MyTourRequest = () => {
                     <MyFavoritesCard key={id} {...{title, country_id, city_id, district_id, category_id, advert_type_id, price }} />
                 ))}
             </div>
+        </div>
         </div>
     );
 };
