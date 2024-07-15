@@ -11,6 +11,9 @@ public class SuccessMessages {
 
     //advert types
     public static final String ADVERT_TYPE_CREATE = "Advert type is created successfully";
+    public static final String ADVERT_TYPE_FOUND = "Advert type is found successfully";
+    public static final String ADVERT_TYPE_UPDATE = "Advert type is updated successfully";
+    public static final String ADVERT_TYPE_DELETE = "Advert type is deleted successfully";
 
     //contact message
     public static final String CONTACT_MESSAGE_FOUND = "Contact Message is found successfully";

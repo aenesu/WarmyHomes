@@ -11,5 +11,7 @@ public interface AdvertRepository extends JpaRepository<Advert, Long> {
 
     void deleteByBuiltInFalse();
 
+    boolean existsByAdvertTypeId(Long advertTypeId);
+
     //AdvertResponse getAdvertByName(String slugValue);
 }

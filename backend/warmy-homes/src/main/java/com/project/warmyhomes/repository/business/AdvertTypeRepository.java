@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdvertTypeRepository extends JpaRepository<AdvertType, Long> {
     void deleteByBuiltInFalse();
+
 }

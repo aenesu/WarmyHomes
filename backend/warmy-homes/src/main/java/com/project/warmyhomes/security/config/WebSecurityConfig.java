@@ -112,7 +112,10 @@ public class WebSecurityConfig {
             "/images/**",
             "/css/**",
             "/js/**",
-            "/adverts",
+            "/address/**",
+
+            /*
+            "/adverts/**",
             "/adverts/cities",
             "/adverts/categories",
             "/adverts/popular/{amount}",
@@ -120,13 +123,15 @@ public class WebSecurityConfig {
             "/images/{imageId}",
             "/categories",
             "/categories/{id}",
-            "/categories/{slug}",
-            "/advert-types",
-            "/address/**",
+            "/categories/{slug}",*/
+
+            "/advert-types/**",
+
             "/users/login",
             "/users/register",
-            "/users/forgot-password/**",
-            "/users/reset-password/**",
+            "/users/forgot-password",
+            "/users/reset-password",
+
             "/contact-messages",
     };
 }
