@@ -54,15 +54,23 @@
   box-sizing: border-box;
 }
 
+.view {
+  display: flex;
+  align-items: center;
+}
 
 .viewIcon {
   width: 16px; // Adjust size as needed
   height: 16px; // Adjust size as needed
   margin-right: 0.5rem; // Space between icon and text
+  display: flex;
+  justify-content: center;
 }
 
 .action {
   text-align: center;
+  display: flex;
+  margin-left: 20px;
 }
 
 .editButton {

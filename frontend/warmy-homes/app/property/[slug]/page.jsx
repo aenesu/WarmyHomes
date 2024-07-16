@@ -7,7 +7,7 @@ export default function RandomProp() {
   const advert = {
     id: '',
     title: 'Bogaz Manzaralı Satılık Yalı',
-    desc: `Göksu ile Küçüksu dereleri arasında kalan çayırlık alan, Osmanlı döneminde padişahların Boğaziçi'ndeki hasbahçelerinden, zamanla da en gözde mesire yerlerinden biri olarak tanınmaktadır.
+    desc: `<b>Göksu ile Küçüksu dereleri arasında</b> kalan çayırlık alan, Osmanlı döneminde padişahların Boğaziçi'ndeki hasbahçelerinden, zamanla da en gözde mesire yerlerinden biri olarak tanınmaktadır. 
             17. yüzyılda ünlü seyyah Evliyâ Çelebi, “bir âb-ı hayât nehirdir” diye bahsettiği Göksu'yu, üzerinde kayıklarla dolaşılan; etrafı gül bahçeleri, küçük köşkler ve hazineye ait değirmenlerle çevrili sakin bir yer olarak tasvir etmiştir. Sultan IV. Murad (1623-1640), Kandilli'ye kadar sık selvi ağaçlarıyla kaplı Küçüksu ve çevresini düzenlettirerek buraya “Gümüş Selvi” adını vermiştir.
             Hasbahçe içindeki ilk yapılaşma Sultan I. Mahmud (1730-1754) döneminde başlamıştır. Göksu'da sık sık avlanan ve atış talimleri yapan Sultan için Sadrazam Divitdâr Mehmed Emin Paşa, 1751-1752 yıllarında ahşap bir köşk yaptırmıştır. Deniz kıyısındaki bu iki katlı yapı, Sultan III. Selim (1789-1807) döneminde geniş çaplı bir onarımdan geçmiş ve Sultan'ın isteği üzerine çok sevdiği annesi Mihrişah Valide Sultan adına 1806'da bir de çeşme eklenmiştir. Sultan II. Mahmud (1808-1839) döneminde de kullanılmaya devam eden eski köşk, Sultan Abdülmecid (1839-1861) tarafından yıktırılmış ve yerine 1856-1857 yıllarında yeni Küçüksu Kasrı yaptırılmıştır. Sultan Abdülaziz (1861-1876) döneminde, kasrın cephe süslemeleri elden geçirilerek zenginleştirilmiştir.`,
     slug: 'bosphorus-mansion',
@@ -50,7 +50,7 @@ export default function RandomProp() {
           </div>
         </div>
         <div className={styles.bannerPrice}>
-          ${advert.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          $ {advert.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         </div>
       </div>
 
@@ -83,7 +83,7 @@ export default function RandomProp() {
           {/* Description */}
           <div className={styles.container}>
             <h3>Description</h3>
-            <p>{advert.desc}</p>
+            <p dangerouslySetInnerHTML={{ __html: advert.desc }} />
           </div>
 
           {/* ___________________________________________________________________________________*/}
