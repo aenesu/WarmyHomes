@@ -1,6 +1,6 @@
 # Stage 1: Build the application
 FROM maven:3.8.5-openjdk-11 AS build
-WORKDIR /app
+WORKDIR /target
 
 # Copy the pom.xml and download dependencies
 COPY pom.xml .
