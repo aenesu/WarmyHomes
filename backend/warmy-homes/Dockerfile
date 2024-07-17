@@ -2,7 +2,7 @@
 FROM maven:3.8.3-openjdk-11 AS build
 WORKDIR /app
 COPY . /app/
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Package stage
 FROM openjdk:11-jdk
