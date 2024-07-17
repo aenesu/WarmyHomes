@@ -15,10 +15,10 @@ FROM openjdk:11-jdk
 VOLUME /tmp
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /target
 
 # Copy the JAR file from the build output to the image
-COPY --from=build /app/target/warmy-homes-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /target/warmy-homes-0.0.1-SNAPSHOT.jar app.jar
 
 # Set the PORT environment variable
 ENV PORT 8080
