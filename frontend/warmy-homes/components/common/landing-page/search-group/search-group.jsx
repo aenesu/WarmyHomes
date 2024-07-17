@@ -12,7 +12,7 @@ export default function SearchGroup() {
 
       <div className={styles.searchBoxGroup}>
 
-        <form action='http://localhost:3000/' method='get'>
+        <form action='/properties' method='get'>
           
           <div className={styles.rentSaleSelector}>
             <input className={styles.radio} type='radio' name='rent-sale' id='Rent' value={'Sale'} />
