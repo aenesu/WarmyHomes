@@ -4,7 +4,7 @@ import PriceTag from "./price-tag/price-tag";
 
 export default function AdvertCard({ id, title, city, district, price }) {
   return (
-    <Link href="/properties/new-york-home">
+    <Link href="/properties/new-york-home" className={styles.mainContainer}>
       <div className={styles.cardContainer}>
         <div className={styles.cardTextBox}>
           <div className={styles.cardText}>
