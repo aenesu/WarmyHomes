@@ -1,0 +1,42 @@
+.mainContainer {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .content {
+        width: 1355px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .filtersContainer {
+            background-color: #F5F5F5;
+            width: 357px;
+            height: 655px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 20px;
+
+            position: -webkit-sticky; /* For Safari */
+            position: sticky;
+            top: 80px;
+            overflow-y: auto;
+        }
+
+        .advertsContainer {
+            width: 900px;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+    }
+}

@@ -2,7 +2,7 @@
 import ContactForm from "@/components/common/contact-form/contact-form"
 import Banner from "@/components/common/banner/banner"
 import styles from "./contact.module.scss"
-import { akshar } from "../layout"
+import { akshar } from "../../layout"
 
 export default function ContactPage() {
 

@@ -1,0 +1,109 @@
+.container {
+    width: 252px;
+    overflow-y: auto;
+
+    form {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        .field {
+            margin-bottom: 20px;
+
+            h5 {
+                font-size: 15px;
+                font-weight: 500;
+                margin-bottom: 5px;
+            }
+        }
+
+        .searchBox {
+            input {
+                width: 252px;
+                height: 48px;
+                border: 1px solid #939393;
+                border-radius: 10px;
+                padding: 10px;
+                padding-left: 40px;
+                font-size: 15px;
+                font-family: "Akshar", sans-serif;
+            }
+
+            .searchIcon {
+                margin-left: 15px;
+                margin-top: -35px;
+                margin-bottom: 15px;
+                font-size: 20px;
+                color: #939393;
+            }
+        }
+
+        .propertyStatus,
+        .propertyType {
+            display: flex;
+            flex-direction: column;
+
+            div {
+                display: flex;
+            }
+
+            label {
+                margin-left: 10px;
+            }
+        }
+
+        .priceRange {
+            div {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            input {
+                width: 48%;
+                height: 48px;
+                border: 1px solid #939393;
+                border-radius: 10px;
+                padding: 10px;
+                font-size: 15px;
+                font-family: "Akshar", sans-serif;
+            }
+        }
+
+        .location {
+            input {
+                width: 252px;
+                height: 48px;
+                border: 1px solid #939393;
+                border-radius: 10px;
+                padding: 10px;
+                font-size: 15px;
+                font-family: "Akshar", sans-serif;
+            }
+        }
+
+        .submitButton {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+
+            width: 245px;
+            height: 54px;
+            font-size: 15px;
+            background-color: #951763;
+            color: white;
+            font-family: "Akshar", sans-serif;
+
+            border: none;
+            border-radius: 10px;
+
+            cursor: pointer;
+            transition: all ease 0.1s;
+
+            &:active {
+                translate: 0 4px;
+            }
+        }
+    }
+}
