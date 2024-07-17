@@ -11,6 +11,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    text-decoration: none;
 
     transition: all ease 0.5s;
 
@@ -18,9 +19,6 @@
         transform: scale(1.03);
     }
 
-    a{
-        text-decoration: none;
-    }
 
     .cardTextBox {
 
