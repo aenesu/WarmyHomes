@@ -1,13 +1,22 @@
 # Use an official OpenJDK image as the base image
 FROM openjdk:11-jdk
 
-# Set the working directory
-WORKDIR /target
+VOLUME /tmp
 
+
+# Set the working directory
 ARG JAR_FILE=target/*.jar
 
 # Copy the JAR file from the build output to the image
-COPY target/warmy-homes-0.0.1-SNAPSHOT.jar app.jar
+COPY ${JAR_FILE} app.jar
+
+ENV PORT 8080
 
 # Start the application
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-Dserver.port=${PORT}", "-jar", "/app.jar"]
+
+
+
+
+
+
