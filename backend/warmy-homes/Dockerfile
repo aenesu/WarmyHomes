@@ -5,7 +5,7 @@ VOLUME /tmp
 
 
 # Set the working directory
-ARG JAR_FILE=target/*.jar
+ARG JAR_FILE=target/warmy-homes-0.0.1-SNAPSHOT.jar
 
 # Copy the JAR file from the build output to the image
 COPY ${JAR_FILE} app.jar
