@@ -15,10 +15,10 @@ export default function SearchGroup() {
         <form action='/properties' method='get'>
           
           <div className={styles.rentSaleSelector}>
-            <input className={styles.radio} type='radio' name='rent-sale' id='Rent' value={'Sale'} />
+            <input className={styles.radio} type='radio' name='advert_type_id' id='Rent' value={2} />
             <label className={styles.radioLabel} htmlFor='Rent'>Rent</label>
             <div style={{ opacity: '40%', fontWeight: 'lighter' }}>|</div>
-            <input className={styles.radio} type='radio' name='rent-sale' id='Sale' value={'Sale'} />
+            <input className={styles.radio} type='radio' name='advert_type_id' id='Sale' value={1} />
             <label className={styles.radioLabel} htmlFor='Sale'>Sale</label>
           </div>
 
