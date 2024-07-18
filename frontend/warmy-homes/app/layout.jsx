@@ -1,4 +1,5 @@
 import { Akshar } from "next/font/google";
+import { Advent_Pro } from "next/font/google";
 import "./globals.css";
 import "@/styles/styles.scss";
 import Header from "@/components/common/header/header";
@@ -6,6 +7,9 @@ import Footer from "@/components/common/footer/footer";
 
 const akshar = Akshar({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
 export { akshar };
+
+const adventPro = Advent_Pro({ subsets: ["latin"], weight: ["400", "700"] });
+export { adventPro };
 
 export const metadata = {
     title: {
