@@ -2,7 +2,7 @@
 
 .card {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 0.3fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 0.3fr; 
   width: 1355px;
   align-items: center;
   padding: 15px;
@@ -36,11 +36,9 @@
   margin: 5px 0;
 }
 
-.category {
-  text-align: start;
-}
-
-.type {
+.category,
+.type,
+.time { 
   text-align: start;
 }
 

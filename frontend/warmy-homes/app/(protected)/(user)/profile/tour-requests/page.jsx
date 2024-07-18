@@ -20,11 +20,16 @@ const MyTourRequest = () => {
                 <h4>Tour Request Time</h4>
                 <h4>Action</h4>
             </div>
+            
             <div className={styles.cards}>
                 {myAdverts.map(({id, title, country_id, city_id, district_id, category_id, advert_type_id, price, time_id}) => (
                     <MyFavoritesCard key={id} {...{title, country_id, city_id, district_id, category_id, advert_type_id, price, time_id }} />
+                    
                 ))}
+                
+                
             </div>
+            
         </div>
         </div>
     );

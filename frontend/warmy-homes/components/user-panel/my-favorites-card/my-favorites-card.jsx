@@ -8,10 +8,8 @@ export default function MyFavoritesCard({
   district_id,
   category_id,
   advert_type_id,
-  price
-  
-  
-  
+  price,
+  time_id 
 }) {
   return (
     <div className={styles.card}>
@@ -29,6 +27,7 @@ export default function MyFavoritesCard({
       </div>
       <div className={styles.category}>{category_id}</div>
       <div className={styles.type}>{advert_type_id}</div>
+      {time_id && <div className={styles.time}>{time_id}</div>}
       <div className={styles.action}>
         <button className={styles.actButton}><img src="/assets/vectors/bin.svg" alt="Rubbish Symbol"></img></button> 
       </div>
