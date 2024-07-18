@@ -1,0 +1,66 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.searchForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .inputField {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 60%; 
+    margin-bottom: 10px; 
+  }
+  
+  .selectGroup {
+    display: flex;
+    gap: 10px;
+    width: 60%;
+    justify-content: center;
+  }
+  
+  .selectField {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 120px; 
+  }
+  
+  .searchButton {
+    padding: 10px 15px;
+    background-color: #a92574;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+.words{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+    width: 1355px;
+    padding-bottom: 1rem; 
+
+}
+
+.cards{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
