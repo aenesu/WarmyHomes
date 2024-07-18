@@ -1,3 +1,4 @@
+import { adventPro } from "@/app/layout";
 import styles from "./text-area.module.scss";
 
 export default function TextArea({ label = 'text-input', height = '200px', width = '866px', resize= 'none'}) {
