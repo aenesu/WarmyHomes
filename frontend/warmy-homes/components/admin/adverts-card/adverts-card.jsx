@@ -27,13 +27,23 @@ export default function AdvertsCard({
       </div>
       <div className={styles.datePublished}>{create_at}</div>
       <div className={styles.status}>{status}</div>
-      <div className={styles.view}> <img src="/assets/vectors/view.svg" alt="View Icon" className={styles.viewIcon} /> {view_count}</div>
+      <div className={styles.iconsContainer}>
+        <div className={styles.iconItem}>
+          <img src="/assets/vectors/view.svg" alt="View Icon" className={styles.icon} /> {view_count}
+        </div>
+        <div className={styles.iconItem}>
+          <img src="/assets/vectors/heart.svg" alt="Heart Icon" className={styles.icon} /> {view_count}
+        </div>
+        <div className={styles.iconItem}>
+          <img src="/assets/vectors/geo.svg" alt="Geo Icon" className={styles.icon} /> {view_count}
+        </div>
+        </div>
       <div className={styles.action}>
         <button className={styles.editButton}>
-          <img src="/assets/vectors/edit.svg" alt="Edit Symbol" />
+          <img src="/assets/vectors/bin.svg" alt="Delete Symbol" />
         </button>
         <button className={styles.editButton}>
-          <img src="/assets/vectors/bin.svg" alt="Delete Symbol" />
+          <img src="/assets/vectors/purpedit.svg" alt="Edit Symbol" />
         </button> 
       </div>
     </div>
