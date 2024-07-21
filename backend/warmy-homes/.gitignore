@@ -1,5 +1,5 @@
 HELP.md
-target/
+##target/
 **/logging-linnbank.log
 **/Test Results - ParalelTestExecutionTest.html
 
