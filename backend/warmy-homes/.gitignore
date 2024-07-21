@@ -1,9 +1,9 @@
 HELP.md
 ##target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/ 
 **/logging-linnbank.log
-**/Test Results - ParalelTestExecutionTest.html
-
-.greenrent.log
 
 ### STS ###
 .apt_generated
