@@ -1,9 +1,9 @@
 # Build stage
 FROM maven:3.8.3-openjdk-11 AS build
 WORKDIR /app
-COPY backend/warmy-homes/pom.xml /app/
+COPY pom.xml /app/
 RUN mvn dependency:go-offline -B
-COPY backend/warmy-homes/src /app/src
+COPY src /app/src
 RUN mvn clean package -DskipTests
 
 # Package stage
