@@ -37,7 +37,7 @@ const Header = () => {
           <Link className={`${styles.loginButton}`} href="/login">
             <AiOutlineUser className={styles.icon} /> Login&nbsp;/&nbsp;Register
           </Link>
-          <AddPropertyButton />
+          <Link href="/new-advert" className={styles.addNewButton} ><AddPropertyButton /></Link>
         </div>
       </div>
 
