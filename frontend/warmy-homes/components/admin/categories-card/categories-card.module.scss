@@ -2,8 +2,7 @@
 
 .card {
   display: grid;
-  grid-template-columns: 2fr 3fr 3fr 1fr 0.5fr;
-  width: 1355px;
+  grid-template-columns: 1fr 3fr 3fr 1fr 1fr;
   align-items: center;
   padding: 1rem;
   margin-bottom: 20px;
@@ -12,44 +11,48 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.container {
+.icon {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
-.icon {
+.icon img {
   width: 40px;
   height: 40px;
 }
 
-.details {
+.name, .sequence, .active {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
 }
 
 .name {
-  font-size: 1rem;
   font-weight: 700;
 }
 
-.sequence, .active {
+.sequence {
   color: #666;
-  margin: 5px 0;
 }
 
 .action {
-  text-align: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.625rem;
 }
 
 .editButton {
   background: none;
   border: none;
-  font-size: 1.2rem;
-  color: #b71082;
   cursor: pointer;
+}
+
+.editButton img {
+  width: 16px;
+  height: 16px;
 }
 
 .editButton:hover {
