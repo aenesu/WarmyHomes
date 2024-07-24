@@ -1,6 +1,6 @@
-import styles from "./my-favorites-card.module.scss";
+import styles from "./my-tour-card.module.scss";
 
-export default function MyFavoritesCard({
+export default function MyTourRequestCard({
   index,
   title,
   country_id,
@@ -8,6 +8,7 @@ export default function MyFavoritesCard({
   district_id,
   category_id,
   advert_type_id,
+  status,
   price,
   time_id 
 }) {
@@ -26,10 +27,15 @@ export default function MyFavoritesCard({
         </div>
       </div>
       <div className={styles.category}>{category_id}</div>
+      <div className={styles.status}>{status}</div>
       <div className={styles.type}>{advert_type_id}</div>
+      
       {time_id && <div className={styles.time}>{time_id}</div>}
       <div className={styles.action}>
         <button className={styles.actButton}><img src="/assets/vectors/bin.svg" alt="Rubbish Symbol"></img></button> 
+      </div>
+      <div className={styles.action}>
+        <button className={styles.editButton}><img src="/assets/vectors/editP.svg" alt="Edit Symbol"></img></button> 
       </div>
     </div>
   );
