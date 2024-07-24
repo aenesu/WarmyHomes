@@ -36,12 +36,12 @@ const types = ["House", "Apartment", "Condo"];
 const statuses = ["Active", "Pending", "Sold"];
   
 return (
-  <div className={styles.container} >
+  <div className={styles.container}>
     <form className={styles.searchForm}>
     <input
           type="text"
           name="search"
-          placeholder="Type something"
+          placeholder="Enter your text here"
           value={formData.search}
           onChange={handleChange}
           className={styles.inputField}
@@ -87,7 +87,7 @@ return (
             ))}
           </select>
           <button type="submit" className={styles.searchButton}>
-            Search
+            SEARCH
           </button>
         </div>
       </form>
