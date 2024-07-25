@@ -33,9 +33,9 @@ export default function Properties() {
 
   const myAdverts = [
     // Example adverts
-    { id: 1, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
-    { id: 2, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
-    { id: 3, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' }
+    { id: 1, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
+    { id: 2, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
+    { id: 3, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' }
   ];
 
   const totalPages = Math.ceil(myAdverts.length / itemsPerPage);
@@ -74,7 +74,7 @@ export default function Properties() {
           <h4>Action</h4>
         </div>
         <div className={styles.cards}>
-          {paginatedAdverts.map(({ id, title, country_id, city_id, district_id, category_id, advert_type_id, price, status, time_id }) => (
+          {paginatedAdverts.map(({ id, title, country_id, city_id, district_id, category_id, guest_id, advert_type_id, price, status, time_id }) => (
             <MyTourRequestCard
               key={id}
               {...{
@@ -83,10 +83,12 @@ export default function Properties() {
                 city_id,
                 district_id,
                 category_id,
+                guest_id,
                 advert_type_id,
                 status,
                 price,
-                time_id
+                time_id,
+               
               }}
             />
           ))}
