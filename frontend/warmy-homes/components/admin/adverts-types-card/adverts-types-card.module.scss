@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&display=swap');
+
+.card {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  gap: 0.625rem;
+  
+}
+
+.editButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.editButton img {
+  width: 16px;
+  height: 16px;
+}
+
+.editButton:hover {
+  color: #951763;
+}
