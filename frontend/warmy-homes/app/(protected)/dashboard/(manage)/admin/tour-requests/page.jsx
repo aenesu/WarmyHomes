@@ -67,9 +67,10 @@ export default function Properties() {
         <div className={styles.words}>
           <h4>Property</h4>
           <h4>Owner</h4>
+          <h4>Guest</h4>
           <h4>Status</h4>
-          <h4>Tour Request Date</h4>
-          <h4>Tour Request Time</h4>
+          <h4>Tour Date</h4>
+          <h4>Tour Time</h4>
           <h4>Action</h4>
         </div>
         <div className={styles.cards}>
