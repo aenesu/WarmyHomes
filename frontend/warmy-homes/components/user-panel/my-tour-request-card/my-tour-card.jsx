@@ -10,7 +10,8 @@ export default function MyTourRequestCard({
   advert_type_id,
   status,
   price,
-  time_id 
+  time_id,
+  guest_id // Add this line
 }) {
   return (
     <div className={styles.card}>
@@ -27,10 +28,11 @@ export default function MyTourRequestCard({
         </div>
       </div>
       <div className={styles.category}>{category_id}</div>
+      {guest_id && <div className={styles.guest}>{guest_id}</div>} 
       <div className={styles.status}>{status}</div>
       <div className={styles.type}>{advert_type_id}</div>
-      
       {time_id && <div className={styles.time}>{time_id}</div>}
+
       <div className={styles.action}>
         <button className={styles.actButton}><img src="/assets/vectors/bin.svg" alt="Rubbish Symbol"></img></button> 
       </div>
