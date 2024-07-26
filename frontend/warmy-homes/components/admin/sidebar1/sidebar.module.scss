@@ -1,0 +1,91 @@
+@use "@/styles/variables" as *;
+
+.container {
+    background-color: $clr-theme;
+    display: flex;
+    flex-direction: column;
+    border-radius: $rounded-xl; 
+    min-height: 100%;
+}
+
+.avatarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3xl;
+}
+
+.avatarInnerContainer {
+    padding: 3xl;
+    border-radius: $rounded-xl;
+    background-color: $clr-theme;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboardIcon {
+    width: 100px;
+    height: 100px;
+}
+
+.linksContainer {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 1px;
+}
+
+.linkItems {
+    display: flex;
+    align-items: center;
+    color: $clr-theme-lighter;
+    text-decoration: none;
+    gap: $gap-sm;
+    padding: $padding-lg $padding-3xl;
+    transition: all 0.3s ease-in-out;
+    font-size: $font-lg;
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    &:hover {
+        background-color: $clr-theme-light;
+        color: black;                       //May need to come back to this 
+        font-weight: bold;
+}
+}
+
+.logout {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-bottom: $margin-md;
+}
+
+.activeLink {
+    font-weight: bold;
+}
+
+@media screen and (max-width: $screen-sm) {
+    .linkItems {
+        padding: $padding-sm;
+        display: flex;
+        justify-content: center;
+        align-items: center    
+    }
+
+    .avatarContainer {
+        padding: calc($padding-xs);
+}
+
+    .avatarInnerContainer {
+        padding: calc($padding-xs);
+
+}
+
+}
