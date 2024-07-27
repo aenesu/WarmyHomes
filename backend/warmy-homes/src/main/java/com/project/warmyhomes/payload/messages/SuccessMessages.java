@@ -17,4 +17,7 @@ public class SuccessMessages {
 
     //contact message
     public static final String CONTACT_MESSAGE_FOUND = "Contact Message is found successfully";
+
+    //categories
+    public static final String CATEGORY_FOUND = "Category is found successfully";
 }

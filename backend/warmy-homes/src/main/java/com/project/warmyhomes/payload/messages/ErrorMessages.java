@@ -21,10 +21,11 @@ public class ErrorMessages {
     //advert types
     public static final String NOT_FOUND_ADVERT_TYPE_MESSAGE = "Error: Advert type not found with id %s";
 
-
     public static final String BAD_REQUEST_ADVERT_TYPE_TO_ADVERT = "Error: Advert type cannot be deleted because they have related adverts";
 
     //contact message
     public static final String NOT_FOUND_CONTACT_MESSAGE = "Error: Contact Message not found with id %d";
 
+    //categories
+    public static final String NOT_FOUND_CATEGORY = "Error: Category not found with id %d";
 }

@@ -121,9 +121,10 @@ public class WebSecurityConfig {
             "/adverts/popular/{amount}",
             "/adverts/{slug}",
             "/images/{imageId}",
+            */
             "/categories",
             "/categories/{id}",
-            "/categories/{slug}",*/
+            "/categories/{slug}",
 
             "/advert-types/**",
 
@@ -131,7 +132,6 @@ public class WebSecurityConfig {
             "/users/register",
             "/users/forgot-password",
             "/users/reset-password",
-
             "/contact-messages",
     };
 }
