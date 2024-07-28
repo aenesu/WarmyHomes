@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,4 +30,7 @@ public class CategoryPropertyKey {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     Category category;
+
+    @OneToMany(mappedBy = "propertyKey", cascade = CascadeType.ALL)
+    private List<CategoryPropertyValue> propertyValues;
 }

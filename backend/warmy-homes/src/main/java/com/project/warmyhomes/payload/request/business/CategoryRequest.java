@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,11 +17,19 @@ public class CategoryRequest {
     @Size(max = 150, message = "Title should be at most 150 chars")
     private String title;
 
+    @NotNull(message = "Please enter slug")
+    @Size(min = 5, max = 200, message = "Slug should be at least 5 and most 200 chars")
+    private String slug;
+
     @NotNull(message = "Please enter icon")
     @Size(max = 50, message = "Icon should be at most 50 chars")
     private String icon;
 
-    @NotNull(message = "Please enter slug")
-    @Size(min = 5, max = 200, message = "Slug should be at least 5 and most 200 chars")
-    private String slug;
+    @NotNull(message = "Please enter seq")
+    private Integer seq;
+
+    @NotNull(message = "Please enter is active")
+    private Boolean isActive;
+
+    private List<CategoryPropertyRequest> properties;
 }

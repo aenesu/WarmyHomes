@@ -1,7 +1,10 @@
 package com.project.warmyhomes.payload.mappers;
 
 import com.project.warmyhomes.entity.concretes.business.Category;
+import com.project.warmyhomes.entity.concretes.business.CategoryPropertyKey;
+import com.project.warmyhomes.entity.concretes.business.CategoryPropertyValue;
 import com.project.warmyhomes.payload.request.business.CategoryRequest;
+import com.project.warmyhomes.payload.response.business.CategoryPropertyResponse;
 import com.project.warmyhomes.payload.response.business.CategoryResponse;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +18,11 @@ public class CategoryMapper {
     public Category categoryRequestToCategory(CategoryRequest categoryRequest) {
         return Category.builder()
                 .title(categoryRequest.getTitle())
-                .icon(categoryRequest.getIcon())
                 .slug(categoryRequest.getSlug())
+                .icon(categoryRequest.getIcon())
+                .seq(categoryRequest.getSeq())
+                .builtIn(false)
+                .isActive(categoryRequest.getIsActive())
                 .build();
     }
 
@@ -32,4 +38,18 @@ public class CategoryMapper {
                 .slug(category.getSlug())
                 .build();
     }
+
+    public CategoryPropertyKey categoryPropertyRequestToCategoryPropertyKey(String keyName) {
+        return CategoryPropertyKey.builder()
+                .name(keyName)
+                .builtIn(false)
+                .build();
+    }
+
+    public CategoryPropertyValue categoryPropertyRequestToCategoryPropertyValue(String value) {
+        return CategoryPropertyValue.builder()
+                .value(value)
+                .build();
+    }
 }
+

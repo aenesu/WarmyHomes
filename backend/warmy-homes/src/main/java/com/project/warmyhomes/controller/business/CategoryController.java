@@ -18,6 +18,12 @@ public class CategoryController {
 
     private final CategoryService categoryService;
 
+    @PostMapping // http://localhost:8080/categories + POST + JSON
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public ResponseMessage<CategoryResponse> createCategory(@Valid @RequestBody CategoryRequest categoryRequest) {
+        return categoryService.createCategory(categoryRequest);
+    }
+
     @GetMapping // http://localhost:8080/categories?q=villa&page=0&size=10&sort=id&type=asc + GET
     public Page<CategoryResponse> getCategoriesByPage(
             @RequestParam(value = "q", required = false) String query,
@@ -44,11 +50,5 @@ public class CategoryController {
     @GetMapping("/{categoryId}") // http://localhost:8080/categories/:id + GET
     public ResponseMessage<CategoryResponse> getCategoryById(@PathVariable Long categoryId) {
         return categoryService.getCategoryById(categoryId);
-    }
-
-    @PostMapping  // http://localhost:8080/categories + JSON + POST
-    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
-    public CategoryResponse createContact(@Valid @RequestBody CategoryRequest categoryRequest) {
-        return categoryService.createContact(categoryRequest);
     }
 }

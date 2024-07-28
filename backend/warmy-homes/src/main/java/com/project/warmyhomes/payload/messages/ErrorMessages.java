@@ -28,4 +28,7 @@ public class ErrorMessages {
 
     //categories
     public static final String NOT_FOUND_CATEGORY = "Error: Category not found with id %d";
+
+    //category property key
+    public static final String NOT_FOUND_CATEGORY_PROPERTY_KEY = "Error: Category property key not found with id %d";
 }

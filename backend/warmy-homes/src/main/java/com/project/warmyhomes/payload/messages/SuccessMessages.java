@@ -20,4 +20,6 @@ public class SuccessMessages {
 
     //categories
     public static final String CATEGORY_FOUND = "Category is found successfully";
+    public static final String CATEGORY_CREATE = "Category is saved successfully";
+
 }

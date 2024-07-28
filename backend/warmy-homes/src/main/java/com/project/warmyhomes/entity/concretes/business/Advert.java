@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -84,6 +85,9 @@ public class Advert {
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "category_id", nullable = false)
     Category category;
+
+    @OneToMany(mappedBy = "advert", cascade = CascadeType.ALL)
+    private List<CategoryPropertyValue> propertyValues;
 
     @PrePersist
     public void prePersistDateTime() {
