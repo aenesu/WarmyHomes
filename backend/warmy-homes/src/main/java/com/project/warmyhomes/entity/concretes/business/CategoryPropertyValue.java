@@ -24,10 +24,10 @@ public class CategoryPropertyValue {
     String value;
 
     @ManyToOne
-    @JoinColumn(name = "advert_id")
+    @JoinColumn(name = "advert_id", nullable = true)
     Advert advert;
 
     @ManyToOne
-    @JoinColumn(name = "category_property_key_id")
+    @JoinColumn(name = "category_property_key_id", nullable = true)
     CategoryPropertyKey propertyKey;
 }

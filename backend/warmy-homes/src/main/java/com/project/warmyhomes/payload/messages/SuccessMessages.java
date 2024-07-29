@@ -19,7 +19,9 @@ public class SuccessMessages {
     public static final String CONTACT_MESSAGE_FOUND = "Contact Message is found successfully";
 
     //categories
-    public static final String CATEGORY_FOUND = "Category is found successfully";
     public static final String CATEGORY_CREATE = "Category is saved successfully";
+    public static final String CATEGORY_FOUND = "Category is found successfully";
+    public static final String CATEGORY_UPDATE = "Category is updated successfully";
+    public static final String CATEGORY_DELETE = "Category is deleted successfully";
 
 }

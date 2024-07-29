@@ -13,5 +13,7 @@ public interface AdvertRepository extends JpaRepository<Advert, Long> {
 
     boolean existsByAdvertTypeId(Long advertTypeId);
 
+    boolean existsByCategoryId(Long categoryId);
+
     //AdvertResponse getAdvertByName(String slugValue);
 }

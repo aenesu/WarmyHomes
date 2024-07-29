@@ -16,5 +16,5 @@ public interface CategoryPropertyKeyRepository extends JpaRepository<CategoryPro
    List<CategoryPropertyKey> getCategoryPropertyKeysByCategoryId(Long categoryId);
 
 
-
+    List<CategoryPropertyKey> findByCategoryId(Long categoryId);
 }

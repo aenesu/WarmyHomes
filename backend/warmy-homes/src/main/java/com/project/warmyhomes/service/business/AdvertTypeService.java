@@ -115,7 +115,7 @@ public class AdvertTypeService {
             throw new BadRequestException(ErrorMessages.BAD_REQUEST_ADVERT_TYPE_TO_ADVERT);
         }
 
-        advertTypeRepository.deleteById(advertType.getId());
+        advertTypeRepository.deleteById(advertTypeId);
 
         return ResponseMessage.<AdvertTypeResponse>builder()
                 .message(SuccessMessages.ADVERT_TYPE_DELETE)

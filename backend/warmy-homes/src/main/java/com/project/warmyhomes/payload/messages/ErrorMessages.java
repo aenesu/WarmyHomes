@@ -31,4 +31,6 @@ public class ErrorMessages {
 
     //category property key
     public static final String NOT_FOUND_CATEGORY_PROPERTY_KEY = "Error: Category property key not found with id %d";
+
+    public static final String BAD_REQUEST_CATEGORY_TO_ADVERT = "Error: Category cannot be deleted because they have related adverts";
 }

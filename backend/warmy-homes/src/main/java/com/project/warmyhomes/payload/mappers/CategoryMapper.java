@@ -3,6 +3,7 @@ package com.project.warmyhomes.payload.mappers;
 import com.project.warmyhomes.entity.concretes.business.Category;
 import com.project.warmyhomes.entity.concretes.business.CategoryPropertyKey;
 import com.project.warmyhomes.entity.concretes.business.CategoryPropertyValue;
+import com.project.warmyhomes.payload.request.business.CategoryPropertyRequest;
 import com.project.warmyhomes.payload.request.business.CategoryRequest;
 import com.project.warmyhomes.payload.response.business.CategoryPropertyResponse;
 import com.project.warmyhomes.payload.response.business.CategoryResponse;
@@ -39,16 +40,16 @@ public class CategoryMapper {
                 .build();
     }
 
-    public CategoryPropertyKey categoryPropertyRequestToCategoryPropertyKey(String keyName) {
+    public CategoryPropertyKey categoryPropertyRequestToCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest) {
         return CategoryPropertyKey.builder()
-                .name(keyName)
+                .name(categoryPropertyRequest.getKeyName())
                 .builtIn(false)
                 .build();
     }
 
-    public CategoryPropertyValue categoryPropertyRequestToCategoryPropertyValue(String value) {
+    public CategoryPropertyValue categoryPropertyRequestToCategoryPropertyValue(CategoryPropertyRequest categoryPropertyRequest) {
         return CategoryPropertyValue.builder()
-                .value(value)
+                .value(categoryPropertyRequest.getValue())
                 .build();
     }
 }

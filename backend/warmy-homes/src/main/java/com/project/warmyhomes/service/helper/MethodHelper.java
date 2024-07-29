@@ -1,5 +1,6 @@
 package com.project.warmyhomes.service.helper;
 
+import com.project.warmyhomes.entity.concretes.business.Category;
 import com.project.warmyhomes.entity.concretes.user.Role;
 import com.project.warmyhomes.entity.concretes.user.User;
 import com.project.warmyhomes.exception.BadRequestException;
@@ -42,6 +43,12 @@ public class MethodHelper {
 
         if (authenticatedUser.getRoles().contains(managerRole) && !user.getRoles().contains(customerRole)) {
             throw new BadRequestException(ErrorMessages.BAD_REQUEST_MANAGERS_CAN_ONLY_UPDATE_CUSTOMERS);
+        }
+    }
+
+    public void isCategoryBuiltIn(Category category) {
+        if (Boolean.TRUE.equals(category.getBuiltIn())) {
+            throw new BadRequestException(ErrorMessages.NOT_PERMITTED_METHOD_MESSAGE);
         }
     }
 }

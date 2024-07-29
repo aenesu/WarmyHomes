@@ -10,5 +10,7 @@ import java.util.List;
 
 @Repository
 public interface CategoryPropertyValueRepository extends JpaRepository<CategoryPropertyValue, Long> {
-    CategoryPropertyValue findByPropertyKey(CategoryPropertyKey propertyKey);
+    CategoryPropertyValue findByPropertyKey(Long propertyKey);
+
+    List<CategoryPropertyValue> findByPropertyKeyId(Long propertyKey);
 }
