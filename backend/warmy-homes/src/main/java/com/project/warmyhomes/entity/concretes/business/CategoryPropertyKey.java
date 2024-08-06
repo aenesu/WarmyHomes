@@ -31,6 +31,6 @@ public class CategoryPropertyKey {
     @JoinColumn(name = "category_id", nullable = false)
     Category category;
 
-    @OneToMany(mappedBy = "propertyKey", cascade = CascadeType.ALL)
-    private List<CategoryPropertyValue> propertyValues;
+    @OneToOne(mappedBy = "propertyKey", cascade = CascadeType.ALL)
+    private CategoryPropertyValue propertyValues;
 }

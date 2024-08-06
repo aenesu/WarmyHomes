@@ -1,5 +1,6 @@
 package com.project.warmyhomes.controller.business;
 
+import com.project.warmyhomes.payload.request.business.CategoryPropertyRequest;
 import com.project.warmyhomes.payload.request.business.CategoryRequest;
 import com.project.warmyhomes.payload.response.abstracts.ResponseMessage;
 import com.project.warmyhomes.payload.response.business.CategoryPropertyResponse;
@@ -43,7 +44,6 @@ public class CategoryController {
     ) {
         return categoryService.getCategoriesByPageByAdmin(query, page, size, sort, type);
     }
-
     @GetMapping("/{categoryId}") // http://localhost:8080/categories/:id + GET
     public ResponseMessage<CategoryResponse> getCategoryById(@PathVariable Long categoryId) {
         return categoryService.getCategoryById(categoryId);
@@ -67,12 +67,33 @@ public class CategoryController {
         return categoryService.deleteCategory(categoryId);
     }
 
-    /*
+
     @GetMapping("/{categoryId}/properties") // http://localhost:8080/categories/:id/properties + GET
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseEntity<List<CategoryPropertyResponse>> getAllPropertyKeyByCategory(@PathVariable Long categoryId){
         return categoryService.getAllPropertyKeyByCategory(categoryId);
     }
-    */
 
+    @PostMapping("/{categoryId}/properties") // http://localhost:8080/categories/:id/properties + POST + JSON
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public ResponseMessage<CategoryPropertyResponse> addCategoryPropertyKey(@Valid @RequestBody CategoryPropertyRequest categoryPropertyRequest, @PathVariable Long categoryId){
+        return categoryService.addCategoryPropertyKey(categoryPropertyRequest, categoryId);
+    }
+
+    @PutMapping("/properties/{propertyKeyId}") // http://localhost:8080/categories/properties/:id + PUT + JSON
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public ResponseMessage<CategoryPropertyResponse> updateCategoryPropertyKey(@Valid @RequestBody CategoryPropertyRequest categoryPropertyRequest, @PathVariable Long propertyKeyId){
+        return categoryService.updateCategoryPropertyKey(categoryPropertyRequest, propertyKeyId);
+    }
+
+    @DeleteMapping("/properties/{propertyKeyId}") // http://localhost:8080/categories/properties/:id + DELETE
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public ResponseMessage<CategoryPropertyResponse> deleteCategoryPropertyKey(@PathVariable Long propertyKeyId){
+        return categoryService.deleteCategoryPropertyKey(propertyKeyId);
+    }
+
+    /*@GetMapping("/{slug}") // http://localhost:8080/categories/:slug + GET
+    public ResponseMessage<CategoryResponse> getCategoryBySlug(@PathVariable String slug){
+        return categoryService.getCategoryBySlug(slug);
+    }*/
 }

@@ -13,8 +13,7 @@ import java.util.List;
 public interface CategoryPropertyKeyRepository extends JpaRepository<CategoryPropertyKey, Long> {
     void deleteByBuiltInFalse();
 
-   List<CategoryPropertyKey> getCategoryPropertyKeysByCategoryId(Long categoryId);
+    @Query("SELECT cpk FROM CategoryPropertyKey cpk WHERE cpk.category.id = :categoryId")
+    List<CategoryPropertyKey> getCategoryPropertyKeysByCategoryId(@Param("categoryId") Long categoryId);
 
-
-    List<CategoryPropertyKey> findByCategoryId(Long categoryId);
 }

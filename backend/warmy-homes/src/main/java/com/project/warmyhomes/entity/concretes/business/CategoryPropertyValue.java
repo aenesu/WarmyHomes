@@ -27,7 +27,7 @@ public class CategoryPropertyValue {
     @JoinColumn(name = "advert_id", nullable = true)
     Advert advert;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "category_property_key_id", nullable = true)
     CategoryPropertyKey propertyKey;
 }

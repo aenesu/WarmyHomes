@@ -25,10 +25,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -91,47 +91,30 @@ public class CategoryService {
 
     /**
      * Retrieve a category by its ID and returns it wrapped in a ResponseMessage.
+     * <p>
+     * This method first finds a Category entity by the given category ID. It then retrieves
+     * the associated category properties and maps the Category entity to a CategoryResponse.
+     * Finally, it wraps the CategoryResponse along with a success message in a ResponseMessage
+     * and returns it.
      *
      * @param categoryId the ID of the category to retrieve
      * @return a ResponseMessage containing the CategoryResponse and a success message
      */
     public ResponseMessage<CategoryResponse> getCategoryById(Long categoryId) {
-        // Fetch the category by ID
+
         Category category = findCategoryById(categoryId);
 
-        // Fetch property keys for the category
-        List<CategoryPropertyKey> propertyKeys = categoryPropertyKeyRepository.getCategoryPropertyKeysByCategoryId(categoryId);
+        List<CategoryPropertyResponse> categoryPropertyResponses = getCategoryPropertyKeyAndPropertyValueByCategoryId(category.getId());
 
-        // Initialize the list to hold CategoryPropertyResponse objects
-        List<CategoryPropertyResponse> categoryPropertyResponses = new ArrayList<>();
-
-        // Iterate over each property key and fetch the corresponding property value
-        for (CategoryPropertyKey propertyKey : propertyKeys) {
-            CategoryPropertyValue propertyValue = categoryPropertyValueRepository.findByPropertyKey(propertyKey.getId());
-
-            // Create a response object for the current property
-            CategoryPropertyResponse propertyResponse = CategoryPropertyResponse.builder()
-                    .keyId(propertyKey.getId())
-                    .keyName(propertyKey.getName())
-                    .value(propertyValue != null ? propertyValue.getValue() : null)
-                    .build();
-
-            // Add the property response to the list
-            categoryPropertyResponses.add(propertyResponse);
-        }
-
-        // Create the response object with properties
         CategoryResponse categoryResponse = categoryMapper.categoryToCategoryResponse(category);
         categoryResponse.setProperties(categoryPropertyResponses);
 
-        // Return the response message
         return ResponseMessage.<CategoryResponse>builder()
                 .message(SuccessMessages.CATEGORY_FOUND)
                 .object(categoryResponse)
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
-
 
     /**
      * Find a category by its ID.
@@ -265,29 +248,139 @@ public class CategoryService {
                 .build();
     }
 
-    /*
+    /**
+     * Retrieve all property keys and values for a given category ID and return them in a ResponseEntity.
+     * <p>
+     * This method first finds a Category entity by the given category ID. It then retrieves
+     * the associated category properties and returns them in a ResponseEntity with HTTP status OK.
+     *
+     * @param categoryId the ID of the category to retrieve property keys and values for
+     * @return a ResponseEntity containing a list of CategoryPropertyResponse objects
+     */
     public ResponseEntity<List<CategoryPropertyResponse>> getAllPropertyKeyByCategory(Long categoryId) {
         Category category = findCategoryById(categoryId);
 
+        List<CategoryPropertyResponse> categoryPropertyResponses = getCategoryPropertyKeyAndPropertyValueByCategoryId(category.getId());
+
+        return ResponseEntity.ok(categoryPropertyResponses);
+    }
+
+    /**
+     * Retrieve the property keys and their corresponding values for a given category ID.
+     * <p>
+     * This method fetches all property keys associated with the given category ID and then
+     * retrieves the corresponding property values for each key. It constructs a list of
+     * CategoryPropertyResponse objects, each containing a key and its corresponding value,
+     * and returns this list.
+     *
+     * @param categoryId the ID of the category to retrieve property keys and values for
+     * @return a list of CategoryPropertyResponse objects containing the property keys and values
+     */
+    private List<CategoryPropertyResponse> getCategoryPropertyKeyAndPropertyValueByCategoryId(Long categoryId) {
+
         // Fetch property keys for the category
-        List<CategoryPropertyKey> propertyKeys = categoryPropertyKeyRepository.findByCategoryId(categoryId);
+        List<CategoryPropertyKey> propertyKeys = categoryPropertyKeyRepository.getCategoryPropertyKeysByCategoryId(categoryId);
 
-        // Fetch property values for each property key
-        List<CategoryPropertyResponse> propertyResponses = propertyKeys.stream().map(propertyKey -> {
-            List<CategoryPropertyValue> propertyValues = categoryPropertyValueRepository.findByPropertyKeyId(propertyKey.getId());
+        // Initialize the list to hold CategoryPropertyResponse objects
+        List<CategoryPropertyResponse> categoryPropertyResponses = new ArrayList<>();
 
+        // Iterate over each property key and fetch the corresponding property value
+        for (CategoryPropertyKey propertyKey : propertyKeys) {
+            CategoryPropertyValue propertyValue = categoryPropertyValueRepository.findByPropertyKeyId(propertyKey.getId());
 
-            return CategoryPropertyResponse.builder()
+            // Create a response object for the current property
+            CategoryPropertyResponse propertyResponse = CategoryPropertyResponse.builder()
                     .keyId(propertyKey.getId())
                     .keyName(propertyKey.getName())
-                    .value(propertyValues.stream()
-                            .map(CategoryPropertyValue::getValue) // Assuming CategoryPropertyValue has a getValue() method
-                            .collect(Collectors.toList())
-                    )
+                    .value(propertyValue != null ? propertyValue.getValue() : null)
                     .build();
-        }).collect(Collectors.toList());
 
-        return ResponseEntity.ok(propertyResponses);
+            // Add the property response to the list
+            categoryPropertyResponses.add(propertyResponse);
+        }
+        return categoryPropertyResponses;
     }
-    */
+
+    public ResponseMessage<CategoryPropertyResponse> addCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest, Long categoryId) {
+        Category category = findCategoryById(categoryId);
+
+        CategoryPropertyKey categoryPropertyKey = categoryMapper.categoryPropertyRequestToCategoryPropertyKey(categoryPropertyRequest);
+        categoryPropertyKey.setCategory(category);
+        CategoryPropertyKey addedPropertyKey = categoryPropertyKeyRepository.save(categoryPropertyKey);
+
+        CategoryPropertyValue categoryPropertyValue = categoryMapper.categoryPropertyRequestToCategoryPropertyValue(categoryPropertyRequest);
+        categoryPropertyValue.setPropertyKey(addedPropertyKey);
+        CategoryPropertyValue addedPropertyValue = categoryPropertyValueRepository.save(categoryPropertyValue);
+
+        return ResponseMessage.<CategoryPropertyResponse>builder()
+                .message(SuccessMessages.CATEGORY_PROPERTY_CREATE)
+                .object(categoryMapper.categoryPropertyKeyAndPropertyValueToCategoryResponse(addedPropertyKey, addedPropertyValue))
+                .httpStatus(HttpStatus.CREATED)
+                .build();
+    }
+
+    public ResponseMessage<CategoryPropertyResponse> updateCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest, Long propertyKeyId) {
+        CategoryPropertyKey propertyKey = findCategoryPropertyKeyById(propertyKeyId);
+
+        methodHelper.isCategoryPropertyKeyBuiltIn(propertyKey);
+
+        CategoryPropertyValue propertyValue = categoryPropertyValueRepository.findByPropertyKeyId(propertyKey.getId());
+
+
+        propertyKey.setName(categoryPropertyRequest.getKeyName());
+
+        propertyValue.setPropertyKey(propertyKey);
+        propertyValue.setValue(categoryPropertyRequest.getValue());
+
+        propertyKey.setPropertyValues(propertyValue);
+
+        CategoryPropertyKey updatedPropertyKey = categoryPropertyKeyRepository.save(propertyKey);
+        CategoryPropertyValue updatedPropertyValue = categoryPropertyValueRepository.save(propertyValue);
+
+        return ResponseMessage.<CategoryPropertyResponse>builder()
+                .message(SuccessMessages.CATEGORY_PROPERTY_UPDATE)
+                .object(categoryMapper.categoryPropertyKeyAndPropertyValueToCategoryResponse(updatedPropertyKey, updatedPropertyValue))
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
+
+    private CategoryPropertyKey findCategoryPropertyKeyById(Long propertyKeyId) {
+        return categoryPropertyKeyRepository.findById(propertyKeyId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY_PROPERTY_KEY, propertyKeyId)));
+    }
+
+
+    public ResponseMessage<CategoryPropertyResponse> deleteCategoryPropertyKey(Long propertyKeyId) {
+
+        CategoryPropertyKey propertyKey = findCategoryPropertyKeyById(propertyKeyId);
+
+        methodHelper.isCategoryPropertyKeyBuiltIn(propertyKey);
+
+        CategoryPropertyValue propertyValue = categoryPropertyValueRepository.findByPropertyKeyId(propertyKey.getId());
+        // Delete related records in favorites and logs
+        categoryPropertyValueRepository.deleteById(propertyValue.getId());
+
+        categoryPropertyKeyRepository.deleteById(propertyKey.getId());
+
+        return ResponseMessage.<CategoryPropertyResponse>builder()
+                .message(SuccessMessages.CATEGORY_PROPERTY_DELETE)
+                .object(categoryMapper.categoryPropertyKeyAndPropertyValueToCategoryResponse(propertyKey, propertyValue))
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
+
+    /*public ResponseMessage<CategoryResponse> getCategoryBySlug(String slug) {
+        Category category = categoryRepository.findBySlug(slug);
+
+        List<CategoryPropertyResponse> categoryPropertyResponses = getCategoryPropertyKeyAndPropertyValueByCategoryId(category.getId());
+
+        CategoryResponse categoryResponse = categoryMapper.categoryToCategoryResponse(category);
+        categoryResponse.setProperties(categoryPropertyResponses);
+
+        return ResponseMessage.<CategoryResponse>builder()
+                .message(SuccessMessages.CATEGORY_FOUND)
+                .object(categoryResponse)
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }*/
 }

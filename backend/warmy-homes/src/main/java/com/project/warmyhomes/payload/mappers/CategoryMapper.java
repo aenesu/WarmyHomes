@@ -40,6 +40,10 @@ public class CategoryMapper {
                 .build();
     }
 
+    /**
+     * @param categoryPropertyRequest DTO
+     * @return categoryPropertyKey from DB
+     */
     public CategoryPropertyKey categoryPropertyRequestToCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest) {
         return CategoryPropertyKey.builder()
                 .name(categoryPropertyRequest.getKeyName())
@@ -47,9 +51,26 @@ public class CategoryMapper {
                 .build();
     }
 
+    /**
+     * @param categoryPropertyRequest DTO
+     * @return categoryPropertyValue from DB
+     */
     public CategoryPropertyValue categoryPropertyRequestToCategoryPropertyValue(CategoryPropertyRequest categoryPropertyRequest) {
         return CategoryPropertyValue.builder()
                 .value(categoryPropertyRequest.getValue())
+                .build();
+    }
+
+    /**
+     * @param addedPropertyKey   object
+     * @param addedPropertyValue object
+     * @return CategoryPropertyResponse DTO object
+     */
+    public CategoryPropertyResponse categoryPropertyKeyAndPropertyValueToCategoryResponse(CategoryPropertyKey addedPropertyKey, CategoryPropertyValue addedPropertyValue) {
+        return CategoryPropertyResponse.builder()
+                .keyId(addedPropertyKey.getId())
+                .keyName(addedPropertyKey.getName())
+                .value(addedPropertyValue.getValue())
                 .build();
     }
 }

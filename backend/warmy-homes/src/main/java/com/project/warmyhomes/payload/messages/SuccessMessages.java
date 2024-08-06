@@ -24,4 +24,9 @@ public class SuccessMessages {
     public static final String CATEGORY_UPDATE = "Category is updated successfully";
     public static final String CATEGORY_DELETE = "Category is deleted successfully";
 
+    //category property key
+    public static final String CATEGORY_PROPERTY_CREATE = "Category property key is saved successfully";
+    public static final String CATEGORY_PROPERTY_FOUND = "Category property key is found successfully";
+    public static final String CATEGORY_PROPERTY_UPDATE = "Category property key is updated successfully";
+    public static final String CATEGORY_PROPERTY_DELETE = "Category property key is deleted successfully";
 }

@@ -18,4 +18,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query("SELECT c FROM Category c WHERE lower(c.title) LIKE lower(concat('%', :query, '%')) AND c.isActive= true")
     Page<Category> findCategoryByQueryActiveInTrue(@Param("query") String query, Pageable pageable);
 
+    /*@Query("SELECT c FROM Category c WHERE c.slug= :slug")
+    Category findBySlug(@Param("slug") String slug);
+    */
 }

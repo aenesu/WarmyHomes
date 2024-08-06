@@ -1,6 +1,7 @@
 package com.project.warmyhomes.service.helper;
 
 import com.project.warmyhomes.entity.concretes.business.Category;
+import com.project.warmyhomes.entity.concretes.business.CategoryPropertyKey;
 import com.project.warmyhomes.entity.concretes.user.Role;
 import com.project.warmyhomes.entity.concretes.user.User;
 import com.project.warmyhomes.exception.BadRequestException;
@@ -48,6 +49,12 @@ public class MethodHelper {
 
     public void isCategoryBuiltIn(Category category) {
         if (Boolean.TRUE.equals(category.getBuiltIn())) {
+            throw new BadRequestException(ErrorMessages.NOT_PERMITTED_METHOD_MESSAGE);
+        }
+    }
+
+    public void isCategoryPropertyKeyBuiltIn(CategoryPropertyKey categoryPropertyKey) {
+        if (Boolean.TRUE.equals(categoryPropertyKey.getBuiltIn())) {
             throw new BadRequestException(ErrorMessages.NOT_PERMITTED_METHOD_MESSAGE);
         }
     }
