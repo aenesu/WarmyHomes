@@ -25,7 +25,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,7 +124,7 @@ public class CategoryService {
      */
     private Category findCategoryById(Long categoryId) {
         return categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY, categoryId)));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY_WITH_ID, categoryId)));
     }
 
     /**
@@ -301,6 +300,14 @@ public class CategoryService {
         return categoryPropertyResponses;
     }
 
+    /**
+     * Add a new category property key and its associated value to the specified category.
+     *
+     * @param categoryPropertyRequest The request containing the property key and value data.
+     * @param categoryId              The ID of the category to which the property key will be added.
+     * @return A ResponseMessage containing the created CategoryPropertyResponse and HTTP status.
+     * @throws ResourceNotFoundException if the category with the specified ID is not found.
+     */
     public ResponseMessage<CategoryPropertyResponse> addCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest, Long categoryId) {
         Category category = findCategoryById(categoryId);
 
@@ -319,6 +326,14 @@ public class CategoryService {
                 .build();
     }
 
+    /**
+     * Update an existing category property key and its associated value.
+     *
+     * @param categoryPropertyRequest The request containing the updated property key and value data.
+     * @param propertyKeyId           The ID of the property key to be updated.
+     * @return A ResponseMessage containing the updated CategoryPropertyResponse and HTTP status.
+     * @throws ResourceNotFoundException if the property key with the specified ID is not found.
+     */
     public ResponseMessage<CategoryPropertyResponse> updateCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest, Long propertyKeyId) {
         CategoryPropertyKey propertyKey = findCategoryPropertyKeyById(propertyKeyId);
 
@@ -344,12 +359,25 @@ public class CategoryService {
                 .build();
     }
 
+    /**
+     * Find and returns a CategoryPropertyKey by its ID.
+     *
+     * @param propertyKeyId The ID of the property key to be retrieved.
+     * @return The CategoryPropertyKey associated with the specified ID.
+     * @throws ResourceNotFoundException if the property key with the specified ID is not found.
+     */
     private CategoryPropertyKey findCategoryPropertyKeyById(Long propertyKeyId) {
         return categoryPropertyKeyRepository.findById(propertyKeyId)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY_PROPERTY_KEY, propertyKeyId)));
     }
 
-
+    /**
+     * Delete a category property key and its associated value from the database.
+     *
+     * @param propertyKeyId The ID of the property key to be deleted.
+     * @return A ResponseMessage containing the deleted CategoryPropertyResponse and HTTP status.
+     * @throws ResourceNotFoundException if the property key with the specified ID is not found.
+     */
     public ResponseMessage<CategoryPropertyResponse> deleteCategoryPropertyKey(Long propertyKeyId) {
 
         CategoryPropertyKey propertyKey = findCategoryPropertyKeyById(propertyKeyId);
@@ -369,8 +397,16 @@ public class CategoryService {
                 .build();
     }
 
-    /*public ResponseMessage<CategoryResponse> getCategoryBySlug(String slug) {
-        Category category = categoryRepository.findBySlug(slug);
+    /**
+     * Retrieve a category and its associated properties using the category's slug.
+     *
+     * @param slug The slug of the category to be retrieved.
+     * @return A ResponseMessage containing the CategoryResponse and HTTP status.
+     * @throws ResourceNotFoundException if the category with the specified slug is not found.
+     */
+    public ResponseMessage<CategoryResponse> getCategoryBySlug(String slug) {
+        Category category = categoryRepository.findBySlug(slug)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY_WITH_SLUG, slug)));
 
         List<CategoryPropertyResponse> categoryPropertyResponses = getCategoryPropertyKeyAndPropertyValueByCategoryId(category.getId());
 
@@ -382,5 +418,5 @@ public class CategoryService {
                 .object(categoryResponse)
                 .httpStatus(HttpStatus.OK)
                 .build();
-    }*/
+    }
 }

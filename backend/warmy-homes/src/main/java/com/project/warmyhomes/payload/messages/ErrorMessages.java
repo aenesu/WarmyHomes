@@ -27,7 +27,8 @@ public class ErrorMessages {
     public static final String NOT_FOUND_CONTACT_MESSAGE = "Error: Contact Message not found with id %d";
 
     //categories
-    public static final String NOT_FOUND_CATEGORY = "Error: Category not found with id %d";
+    public static final String NOT_FOUND_CATEGORY_WITH_ID = "Error: Category not found with id %d";
+    public static final String NOT_FOUND_CATEGORY_WITH_SLUG= "Error: Category not found with slug %s";
 
     //category property key
     public static final String NOT_FOUND_CATEGORY_PROPERTY_KEY = "Error: Category property key not found with id %d";

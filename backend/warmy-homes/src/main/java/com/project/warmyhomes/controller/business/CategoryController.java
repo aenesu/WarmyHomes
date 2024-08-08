@@ -44,7 +44,7 @@ public class CategoryController {
     ) {
         return categoryService.getCategoriesByPageByAdmin(query, page, size, sort, type);
     }
-    @GetMapping("/{categoryId}") // http://localhost:8080/categories/:id + GET
+    @GetMapping("/{categoryId:\\d+}") // http://localhost:8080/categories/:id + GET
     public ResponseMessage<CategoryResponse> getCategoryById(@PathVariable Long categoryId) {
         return categoryService.getCategoryById(categoryId);
     }
@@ -92,8 +92,8 @@ public class CategoryController {
         return categoryService.deleteCategoryPropertyKey(propertyKeyId);
     }
 
-    /*@GetMapping("/{slug}") // http://localhost:8080/categories/:slug + GET
+    @GetMapping("/{slug:[a-zA-Z][a-zA-Z0-9-_]*}") // http://localhost:8080/categories/:slug + GET
     public ResponseMessage<CategoryResponse> getCategoryBySlug(@PathVariable String slug){
         return categoryService.getCategoryBySlug(slug);
-    }*/
+    }
 }
