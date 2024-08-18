@@ -44,7 +44,7 @@ public class CategoryController {
     ) {
         return categoryService.getCategoriesByPageByAdmin(query, page, size, sort, type);
     }
-    @GetMapping("/{categoryId:\\d+}") // http://localhost:8080/categories/:id + GET
+    @GetMapping("/{categoryId:\\d+}") // http://localhost:8080/categories/:categoryId + GET
     public ResponseMessage<CategoryResponse> getCategoryById(@PathVariable Long categoryId) {
         return categoryService.getCategoryById(categoryId);
     }
@@ -55,38 +55,38 @@ public class CategoryController {
         return categoryService.createCategory(categoryRequest);
     }
 
-    @PutMapping("/{categoryId}") // http://localhost:8080/categories/:id + PUT + JSON
+    @PutMapping("/{categoryId}") // http://localhost:8080/categories/:categoryId + PUT + JSON
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<CategoryResponse> updateCategory(@Valid @RequestBody CategoryRequest categoryRequest, @PathVariable Long categoryId) {
         return categoryService.updateCategory(categoryRequest, categoryId);
     }
 
-    @DeleteMapping("/{categoryId}") // http://localhost:8080/categories/:id + DELETE
+    @DeleteMapping("/{categoryId}") // http://localhost:8080/categories/:categoryId + DELETE
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<CategoryResponse> deleteCategory(@PathVariable Long categoryId){
         return categoryService.deleteCategory(categoryId);
     }
 
 
-    @GetMapping("/{categoryId}/properties") // http://localhost:8080/categories/:id/properties + GET
+    @GetMapping("/{categoryId}/properties") // http://localhost:8080/categories/:categoryId/properties + GET
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseEntity<List<CategoryPropertyResponse>> getAllPropertyKeyByCategory(@PathVariable Long categoryId){
         return categoryService.getAllPropertyKeyByCategory(categoryId);
     }
 
-    @PostMapping("/{categoryId}/properties") // http://localhost:8080/categories/:id/properties + POST + JSON
+    @PostMapping("/{categoryId}/properties") // http://localhost:8080/categories/:categoryId/properties + POST + JSON
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<CategoryPropertyResponse> addCategoryPropertyKey(@Valid @RequestBody CategoryPropertyRequest categoryPropertyRequest, @PathVariable Long categoryId){
         return categoryService.addCategoryPropertyKey(categoryPropertyRequest, categoryId);
     }
 
-    @PutMapping("/properties/{propertyKeyId}") // http://localhost:8080/categories/properties/:id + PUT + JSON
+    @PutMapping("/properties/{propertyKeyId}") // http://localhost:8080/categories/properties/:categoryId + PUT + JSON
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<CategoryPropertyResponse> updateCategoryPropertyKey(@Valid @RequestBody CategoryPropertyRequest categoryPropertyRequest, @PathVariable Long propertyKeyId){
         return categoryService.updateCategoryPropertyKey(categoryPropertyRequest, propertyKeyId);
     }
 
-    @DeleteMapping("/properties/{propertyKeyId}") // http://localhost:8080/categories/properties/:id + DELETE
+    @DeleteMapping("/properties/{propertyKeyId}") // http://localhost:8080/categories/properties/:categoryId + DELETE
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<CategoryPropertyResponse> deleteCategoryPropertyKey(@PathVariable Long propertyKeyId){
         return categoryService.deleteCategoryPropertyKey(propertyKeyId);

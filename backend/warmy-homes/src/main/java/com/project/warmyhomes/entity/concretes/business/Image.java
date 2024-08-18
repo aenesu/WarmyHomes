@@ -2,6 +2,7 @@ package com.project.warmyhomes.entity.concretes.business;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -20,7 +21,9 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    Byte[] data;
+    @Lob
+    @Type(type = "org.hibernate.type.ImageType")
+    byte[] data;
 
     @Column(nullable = false)
     String name;

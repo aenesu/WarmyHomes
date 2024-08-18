@@ -1,7 +1,6 @@
 package com.project.warmyhomes.payload.response.business;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.project.warmyhomes.entity.concretes.business.Country;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CityResponse {
-    private Long cityId;
-    private String name;
-    private Country country;
+public class AdvertPropertyResponse {
+    private Long keyId;
+    private String keyName;
+    private String value;
 }

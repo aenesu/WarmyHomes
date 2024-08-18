@@ -13,9 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DistrictResponse {
-
     private Long districtId;
     private String name;
     private City city;
-
 }

@@ -11,6 +11,7 @@ import com.project.warmyhomes.payload.response.abstracts.ResponseMessage;
 import com.project.warmyhomes.payload.response.business.AdvertTypeResponse;
 import com.project.warmyhomes.repository.business.AdvertRepository;
 import com.project.warmyhomes.repository.business.AdvertTypeRepository;
+import com.project.warmyhomes.service.helper.MethodHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,8 @@ public class AdvertTypeService {
     private final AdvertRepository advertRepository;
 
     private final AdvertTypeMapper advertTypeMapper;
+
+    private final MethodHelper methodHelper;
 
     /**
      * Retrieve all AdvertTypes.
@@ -51,7 +54,7 @@ public class AdvertTypeService {
     public ResponseMessage<AdvertTypeResponse> getAdvertTypeById(Long advertTypeId) {
         return ResponseMessage.<AdvertTypeResponse>builder()
                 .message(SuccessMessages.ADVERT_TYPE_FOUND)
-                .object(advertTypeMapper.mapAdvertTypeToAdvertTypeResponse(getAdvertTypeByAdvertTypeId(advertTypeId)))
+                .object(advertTypeMapper.mapAdvertTypeToAdvertTypeResponse(methodHelper.isAdvertTypeExistById(advertTypeId)))
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
@@ -82,7 +85,7 @@ public class AdvertTypeService {
      * @return a ResponseMessage containing the updated AdvertTypeResponse, success message, and HTTP status
      */
     public ResponseMessage<AdvertTypeResponse> updateAdvertType(AdvertTypeRequest advertTypeRequest, Long advertTypeId) {
-        AdvertType advertType = getAdvertTypeByAdvertTypeId(advertTypeId);
+        AdvertType advertType = methodHelper.isAdvertTypeExistById(advertTypeId);
 
         advertType.setTitle(advertTypeRequest.getTitle());
 
@@ -103,7 +106,7 @@ public class AdvertTypeService {
      * @throws BadRequestException if the AdvertType is built-in or has related adverts
      */
     public ResponseMessage<AdvertTypeResponse> deleteAdvertType(Long advertTypeId) {
-        AdvertType advertType = getAdvertTypeByAdvertTypeId(advertTypeId);
+        AdvertType advertType = methodHelper.isAdvertTypeExistById(advertTypeId);
 
         // Check if the advert type can be modified
         if (Boolean.TRUE.equals(advertType.getBuiltIn())) {
@@ -124,18 +127,4 @@ public class AdvertTypeService {
                 .build();
 
     }
-
-    /**
-     * Retrieve an AdvertType by its ID.
-     *
-     * @param advertTypeId the ID of the AdvertType to be retrieved
-     * @return the AdvertType object
-     * @throws ResourceNotFoundException if the AdvertType is not found
-     */
-    private AdvertType getAdvertTypeByAdvertTypeId(Long advertTypeId) {
-        return advertTypeRepository.findById(advertTypeId).
-                orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_ADVERT_TYPE_MESSAGE, advertTypeId)));
-    }
-
-
 }

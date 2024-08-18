@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ContactMessageResponse {
-
     private String firstName;
     private String lastName;
     private String email;

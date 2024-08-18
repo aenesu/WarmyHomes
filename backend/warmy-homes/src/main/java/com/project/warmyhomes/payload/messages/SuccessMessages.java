@@ -1,6 +1,7 @@
 package com.project.warmyhomes.payload.messages;
 
 public class SuccessMessages {
+
     private SuccessMessages() {
     }
 
@@ -29,4 +30,9 @@ public class SuccessMessages {
     public static final String CATEGORY_PROPERTY_FOUND = "Category property key is found successfully";
     public static final String CATEGORY_PROPERTY_UPDATE = "Category property key is updated successfully";
     public static final String CATEGORY_PROPERTY_DELETE = "Category property key is deleted successfully";
+
+    //images
+    public static final String IMAGES_FOUND = "Images is found successfully";
+    public static final String IMAGES_UPLOAD = "Images is upload successfully";
+    public static final String IMAGES_UPDATED = "Images is updated successfully";
 }

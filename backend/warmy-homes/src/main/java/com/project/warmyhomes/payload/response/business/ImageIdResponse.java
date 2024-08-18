@@ -1,6 +1,5 @@
 package com.project.warmyhomes.payload.response.business;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class CountryResponse {
-    private Long countryId;
-    private String name;
+public class ImageIdResponse {
+    private Long imageId;
 }

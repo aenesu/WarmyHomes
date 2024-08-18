@@ -1,6 +1,7 @@
 package com.project.warmyhomes.controller.business;
 
 import com.project.warmyhomes.payload.request.business.AdvertRequest;
+import com.project.warmyhomes.payload.response.abstracts.ResponseMessage;
 import com.project.warmyhomes.payload.response.business.AdvertResponse;
 import com.project.warmyhomes.service.business.AdvertService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/adverts")
@@ -18,23 +20,28 @@ public class AdvertController {
 
     private final AdvertService advertService;
 
-    /*
-    @GetMapping   //localhost:8080/adverts + GET
-    public Page<AdvertResponse> getAdvertsByPage(
-            @RequestParam(value = "q", defaultValue = " ") String q,
-            @RequestParam(value = "category_id", defaultValue = "0") int category_id,
-            @RequestParam(value = "advert_type_id", defaultValue = "") int advert_type_id,
-            @RequestParam(value = "price_start", defaultValue = "0") int price_start,
-            @RequestParam(value = "price_end", defaultValue = "0") int price_end,
+    @PostMapping //http://localhost:8080/adverts + POST + JSON
+    @PreAuthorize("hasAnyAuthority('CUSTOMER')")
+    public ResponseMessage<AdvertResponse> createAdvert(@Valid @RequestBody AdvertRequest advertRequest) {
+        return advertService.createAdvert(advertRequest);
+    }
+
+    @GetMapping // http://localhost:8080/adverts?q=beyoğlu&category_id=12&advert_type_id=3&price_start=500&price_end=1500&status=1;page=1&size=10&sort=date&type=asc + GET
+    public Page<AdvertResponse> getAllAdvertsByPage(
+            @RequestParam(value = "q", defaultValue = " ") String query,
+            @RequestParam(value = "category_id", defaultValue = "0") Long categoryId,
+            @RequestParam(value = "advert_type_id", defaultValue = "") Long advertTypeId,
+            @RequestParam(value = "price_start", defaultValue = "0") int priceStart,
+            @RequestParam(value = "price_end", defaultValue = "0") int priceEnd,
             @RequestParam(value = "status", defaultValue = "0") int status,
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size,
             @RequestParam(value = "sort", defaultValue = "startDate") String sort,
             @RequestParam(value = "type", defaultValue = "desc") String type) {
 
-        return advertService.getAllAdvertsByPage(q, category_id, advert_type_id, price_start, price_end, status, page, size, sort, type);
+        return advertService.getAllAdvertsByPage(query, categoryId, advertTypeId, priceStart, priceEnd, status, page, size, sort, type);
     }
-
+/*
     @GetMapping("/auth")  //localhost:8080/adverts/auth + GET
     @PreAuthorize("hasAnyAuthority('CUSTOMER')")
     public Page<AdvertResponse> getUserAdvertsByPage(

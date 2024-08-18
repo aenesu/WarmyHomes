@@ -24,7 +24,7 @@ public class AdvertTypeController {
         return advertTypeService.getAllAdvertTypes();
     }
 
-    @GetMapping("/{advertTypeId}") // http://localhost:8080/advert-types/1 + GET
+    @GetMapping("/{advertTypeId}") // http://localhost:8080/advert-types/:advertTypeId + GET
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<AdvertTypeResponse> getAdvertTypeById(@PathVariable Long advertTypeId) {
         return advertTypeService.getAdvertTypeById(advertTypeId);
@@ -36,13 +36,13 @@ public class AdvertTypeController {
         return advertTypeService.createAdvertType(advertTypeRequest);
     }
 
-    @PutMapping("/{advertTypeId}") // http://localhost:8080/advert-types/1 + PUT + JSON
+    @PutMapping("/{advertTypeId}") // http://localhost:8080/advert-types/:advertTypeId + PUT + JSON
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<AdvertTypeResponse> updateAdvertType(@Valid @RequestBody AdvertTypeRequest advertTypeRequest, @PathVariable Long advertTypeId) {
         return advertTypeService.updateAdvertType(advertTypeRequest, advertTypeId);
     }
 
-    @DeleteMapping("/{advertTypeId}") // http://localhost:8080/advert-types/1 + DELETE
+    @DeleteMapping("/{advertTypeId}") // http://localhost:8080/advert-types/:advertTypeId + DELETE
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public ResponseMessage<AdvertTypeResponse> deleteAdvertType(@PathVariable Long advertTypeId) {
         return advertTypeService.deleteAdvertType(advertTypeId);

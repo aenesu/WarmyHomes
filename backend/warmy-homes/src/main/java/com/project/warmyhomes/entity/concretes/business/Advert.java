@@ -89,6 +89,9 @@ public class Advert {
     @OneToMany(mappedBy = "advert", cascade = CascadeType.ALL)
     private List<CategoryPropertyValue> propertyValues;
 
+    @OneToMany(mappedBy = "advert", cascade = CascadeType.ALL)
+    private List<Image> images;
+
     @PrePersist
     public void prePersistDateTime() {
         ZoneId zoneId = ZoneId.of("US/Eastern");

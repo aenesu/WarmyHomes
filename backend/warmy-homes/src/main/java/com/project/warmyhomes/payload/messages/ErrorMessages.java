@@ -28,10 +28,16 @@ public class ErrorMessages {
 
     //categories
     public static final String NOT_FOUND_CATEGORY_WITH_ID = "Error: Category not found with id %d";
-    public static final String NOT_FOUND_CATEGORY_WITH_SLUG= "Error: Category not found with slug %s";
+    public static final String NOT_FOUND_CATEGORY_WITH_SLUG = "Error: Category not found with slug %s";
 
     //category property key
     public static final String NOT_FOUND_CATEGORY_PROPERTY_KEY = "Error: Category property key not found with id %d";
 
     public static final String BAD_REQUEST_CATEGORY_TO_ADVERT = "Error: Category cannot be deleted because they have related adverts";
+
+    //images
+    public static final String NOT_FOUND_IMAGE_MESSAGE = "Error: Image not found with id %s";
+
+    //advert
+    public static final String NOT_FOUND_ADVERT_MESSAGE = "Error: Advert not found with id %s";
 }

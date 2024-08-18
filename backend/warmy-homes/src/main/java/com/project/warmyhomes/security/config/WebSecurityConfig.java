@@ -114,14 +114,15 @@ public class WebSecurityConfig {
             "/js/**",
             "/address/**",
 
-            /*
-            "/adverts/**",
+
+            "/adverts",
             "/adverts/cities",
             "/adverts/categories",
             "/adverts/popular/{amount}",
             "/adverts/{slug}",
             "/images/{imageId}",
-            */
+            "/images",
+
             "/categories",
             "/categories/{id}",
             "/categories/{slug}",

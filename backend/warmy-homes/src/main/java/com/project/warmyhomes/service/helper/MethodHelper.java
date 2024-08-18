@@ -1,12 +1,12 @@
 package com.project.warmyhomes.service.helper;
 
-import com.project.warmyhomes.entity.concretes.business.Category;
-import com.project.warmyhomes.entity.concretes.business.CategoryPropertyKey;
+import com.project.warmyhomes.entity.concretes.business.*;
 import com.project.warmyhomes.entity.concretes.user.Role;
 import com.project.warmyhomes.entity.concretes.user.User;
 import com.project.warmyhomes.exception.BadRequestException;
 import com.project.warmyhomes.exception.ResourceNotFoundException;
 import com.project.warmyhomes.payload.messages.ErrorMessages;
+import com.project.warmyhomes.repository.business.*;
 import com.project.warmyhomes.repository.user.UserRepository;
 import com.project.warmyhomes.service.user.RoleService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +20,14 @@ public class MethodHelper {
 
     private final UserRepository userRepository;
     private final RoleService roleService;
+
+    private final CategoryRepository categoryRepository;
+    private final CategoryPropertyKeyRepository categoryPropertyKeyRepository;
+
+    private final AdvertTypeRepository advertTypeRepository;
+    private final AdvertRepository advertRepository;
+
+    private final ImageRepository imageRepository;
 
     public void isUserBuiltIn(User user) {
         if (Boolean.TRUE.equals(user.getBuiltIn())) {
@@ -47,15 +55,42 @@ public class MethodHelper {
         }
     }
 
+    public AdvertType isAdvertTypeExistById(Long advertTypeId) {
+        return advertTypeRepository.findById(advertTypeId).
+                orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_ADVERT_TYPE_MESSAGE, advertTypeId)));
+    }
+
     public void isCategoryBuiltIn(Category category) {
         if (Boolean.TRUE.equals(category.getBuiltIn())) {
             throw new BadRequestException(ErrorMessages.NOT_PERMITTED_METHOD_MESSAGE);
         }
     }
 
+    public Category isCategoryExistById(Long categoryId) {
+        return categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY_WITH_ID, categoryId)));
+
+    }
+
     public void isCategoryPropertyKeyBuiltIn(CategoryPropertyKey categoryPropertyKey) {
         if (Boolean.TRUE.equals(categoryPropertyKey.getBuiltIn())) {
             throw new BadRequestException(ErrorMessages.NOT_PERMITTED_METHOD_MESSAGE);
         }
+    }
+
+    public CategoryPropertyKey isCategoryPropertyKeyExistById(Long propertyKeyId) {
+        return categoryPropertyKeyRepository.findById(propertyKeyId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY_PROPERTY_KEY, propertyKeyId)));
+    }
+
+    public Advert isAdvertById(Long advertId) {
+        return advertRepository.findById(advertId).
+                orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_ADVERT_MESSAGE, advertId)));
+    }
+
+    public Image isImageById(Long imageId){
+        return imageRepository.findById(imageId).orElseThrow(
+                () -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_IMAGE_MESSAGE, imageId))
+        );
     }
 }

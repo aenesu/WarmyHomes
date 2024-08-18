@@ -101,7 +101,7 @@ public class CategoryService {
      */
     public ResponseMessage<CategoryResponse> getCategoryById(Long categoryId) {
 
-        Category category = findCategoryById(categoryId);
+        Category category = methodHelper.isCategoryExistById(categoryId);
 
         List<CategoryPropertyResponse> categoryPropertyResponses = getCategoryPropertyKeyAndPropertyValueByCategoryId(category.getId());
 
@@ -113,18 +113,6 @@ public class CategoryService {
                 .object(categoryResponse)
                 .httpStatus(HttpStatus.OK)
                 .build();
-    }
-
-    /**
-     * Find a category by its ID.
-     *
-     * @param categoryId the ID of the category to retrieve
-     * @return the Category object if found
-     * @throws ResourceNotFoundException if the category is not found
-     */
-    private Category findCategoryById(Long categoryId) {
-        return categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY_WITH_ID, categoryId)));
     }
 
     /**
@@ -194,7 +182,7 @@ public class CategoryService {
      */
     public ResponseMessage<CategoryResponse> updateCategory(CategoryRequest categoryRequest, Long categoryId) {
         // Find the existing category by ID
-        Category category = findCategoryById(categoryId);
+        Category category = methodHelper.isCategoryExistById(categoryId);
 
         // Check if the category is built-in (non-editable)
         methodHelper.isCategoryBuiltIn(category);
@@ -226,7 +214,7 @@ public class CategoryService {
      */
     public ResponseMessage<CategoryResponse> deleteCategory(Long categoryId) {
         // Find the existing category by ID
-        Category category = findCategoryById(categoryId);
+        Category category = methodHelper.isCategoryExistById(categoryId);
 
         // Check if the category is built-in (non-deletable)
         methodHelper.isCategoryBuiltIn(category);
@@ -257,7 +245,7 @@ public class CategoryService {
      * @return a ResponseEntity containing a list of CategoryPropertyResponse objects
      */
     public ResponseEntity<List<CategoryPropertyResponse>> getAllPropertyKeyByCategory(Long categoryId) {
-        Category category = findCategoryById(categoryId);
+        Category category = methodHelper.isCategoryExistById(categoryId);
 
         List<CategoryPropertyResponse> categoryPropertyResponses = getCategoryPropertyKeyAndPropertyValueByCategoryId(category.getId());
 
@@ -309,7 +297,7 @@ public class CategoryService {
      * @throws ResourceNotFoundException if the category with the specified ID is not found.
      */
     public ResponseMessage<CategoryPropertyResponse> addCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest, Long categoryId) {
-        Category category = findCategoryById(categoryId);
+        Category category = methodHelper.isCategoryExistById(categoryId);
 
         CategoryPropertyKey categoryPropertyKey = categoryMapper.categoryPropertyRequestToCategoryPropertyKey(categoryPropertyRequest);
         categoryPropertyKey.setCategory(category);
@@ -335,7 +323,7 @@ public class CategoryService {
      * @throws ResourceNotFoundException if the property key with the specified ID is not found.
      */
     public ResponseMessage<CategoryPropertyResponse> updateCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest, Long propertyKeyId) {
-        CategoryPropertyKey propertyKey = findCategoryPropertyKeyById(propertyKeyId);
+        CategoryPropertyKey propertyKey = methodHelper.isCategoryPropertyKeyExistById(propertyKeyId);
 
         methodHelper.isCategoryPropertyKeyBuiltIn(propertyKey);
 
@@ -360,18 +348,6 @@ public class CategoryService {
     }
 
     /**
-     * Find and returns a CategoryPropertyKey by its ID.
-     *
-     * @param propertyKeyId The ID of the property key to be retrieved.
-     * @return The CategoryPropertyKey associated with the specified ID.
-     * @throws ResourceNotFoundException if the property key with the specified ID is not found.
-     */
-    private CategoryPropertyKey findCategoryPropertyKeyById(Long propertyKeyId) {
-        return categoryPropertyKeyRepository.findById(propertyKeyId)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY_PROPERTY_KEY, propertyKeyId)));
-    }
-
-    /**
      * Delete a category property key and its associated value from the database.
      *
      * @param propertyKeyId The ID of the property key to be deleted.
@@ -380,11 +356,12 @@ public class CategoryService {
      */
     public ResponseMessage<CategoryPropertyResponse> deleteCategoryPropertyKey(Long propertyKeyId) {
 
-        CategoryPropertyKey propertyKey = findCategoryPropertyKeyById(propertyKeyId);
+        CategoryPropertyKey propertyKey = methodHelper.isCategoryPropertyKeyExistById(propertyKeyId);
 
         methodHelper.isCategoryPropertyKeyBuiltIn(propertyKey);
 
         CategoryPropertyValue propertyValue = categoryPropertyValueRepository.findByPropertyKeyId(propertyKey.getId());
+
         // Delete related records in favorites and logs
         categoryPropertyValueRepository.deleteById(propertyValue.getId());
 
