@@ -58,10 +58,10 @@ public class CategoryService {
 
         if (query != null) {
             return categoryRepository.findCategoryByQueryActiveInTrue(query, pageable)
-                    .map(categoryMapper::categoryToCategoryResponse);
+                    .map(categoryMapper::mapCategoryToCategoryResponse);
         } else {
             return categoryRepository.findAll(pageable)
-                    .map(categoryMapper::categoryToCategoryResponse);
+                    .map(categoryMapper::mapCategoryToCategoryResponse);
         }
     }
 
@@ -81,10 +81,10 @@ public class CategoryService {
 
         if (query != null) {
             return categoryRepository.findCategoryByQuery(query, pageable)
-                    .map(categoryMapper::categoryToCategoryResponse);
+                    .map(categoryMapper::mapCategoryToCategoryResponse);
         } else {
             return categoryRepository.findAll(pageable)
-                    .map(categoryMapper::categoryToCategoryResponse);
+                    .map(categoryMapper::mapCategoryToCategoryResponse);
         }
     }
 
@@ -105,7 +105,7 @@ public class CategoryService {
 
         List<CategoryPropertyResponse> categoryPropertyResponses = getCategoryPropertyKeyAndPropertyValueByCategoryId(category.getId());
 
-        CategoryResponse categoryResponse = categoryMapper.categoryToCategoryResponse(category);
+        CategoryResponse categoryResponse = categoryMapper.mapCategoryToCategoryResponse(category);
         categoryResponse.setProperties(categoryPropertyResponses);
 
         return ResponseMessage.<CategoryResponse>builder()
@@ -133,7 +133,7 @@ public class CategoryService {
      */
     public ResponseMessage<CategoryResponse> createCategory(CategoryRequest categoryRequest) {
         // Map the request to the entity and save it
-        Category category = categoryMapper.categoryRequestToCategory(categoryRequest);
+        Category category = categoryMapper.mapCategoryRequestToCategory(categoryRequest);
         Category createdCategory = categoryRepository.save(category);
 
         // Initialize the response list
@@ -142,11 +142,11 @@ public class CategoryService {
         if (categoryRequest.getProperties() != null) {
 
             for (CategoryPropertyRequest propertyRequest : categoryRequest.getProperties()) {
-                CategoryPropertyKey propertyKey = categoryMapper.categoryPropertyRequestToCategoryPropertyKey(propertyRequest);
+                CategoryPropertyKey propertyKey = categoryMapper.mapCategoryPropertyRequestToCategoryPropertyKey(propertyRequest);
                 propertyKey.setCategory(createdCategory);
                 CategoryPropertyKey propertyKeyCreated = categoryPropertyKeyRepository.save(propertyKey);
 
-                CategoryPropertyValue propertyValue = categoryMapper.categoryPropertyRequestToCategoryPropertyValue(propertyRequest);
+                CategoryPropertyValue propertyValue = categoryMapper.mapCategoryPropertyRequestToCategoryPropertyValue(propertyRequest);
                 propertyValue.setPropertyKey(propertyKeyCreated);
                 CategoryPropertyValue propertyValueCreated = categoryPropertyValueRepository.save(propertyValue);
 
@@ -160,7 +160,7 @@ public class CategoryService {
         }
 
         // Create the response object with or without properties
-        CategoryResponse categoryResponse = categoryMapper.categoryToCategoryResponse(createdCategory);
+        CategoryResponse categoryResponse = categoryMapper.mapCategoryToCategoryResponse(createdCategory);
         if (!categoryPropertyResponses.isEmpty()) {
             categoryResponse.setProperties(categoryPropertyResponses);
         }
@@ -200,7 +200,7 @@ public class CategoryService {
         // Return a response message with the updated category details
         return ResponseMessage.<CategoryResponse>builder()
                 .message(SuccessMessages.CATEGORY_UPDATE)
-                .object(categoryMapper.categoryToCategoryResponse(updatedCategory))
+                .object(categoryMapper.mapCategoryToCategoryResponse(updatedCategory))
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
@@ -230,7 +230,7 @@ public class CategoryService {
         // Return a response message confirming the deletion
         return ResponseMessage.<CategoryResponse>builder()
                 .message(SuccessMessages.CATEGORY_DELETE)
-                .object(categoryMapper.categoryToCategoryResponse(category))
+                .object(categoryMapper.mapCategoryToCategoryResponse(category))
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
@@ -299,17 +299,17 @@ public class CategoryService {
     public ResponseMessage<CategoryPropertyResponse> addCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest, Long categoryId) {
         Category category = methodHelper.isCategoryExistById(categoryId);
 
-        CategoryPropertyKey categoryPropertyKey = categoryMapper.categoryPropertyRequestToCategoryPropertyKey(categoryPropertyRequest);
+        CategoryPropertyKey categoryPropertyKey = categoryMapper.mapCategoryPropertyRequestToCategoryPropertyKey(categoryPropertyRequest);
         categoryPropertyKey.setCategory(category);
         CategoryPropertyKey addedPropertyKey = categoryPropertyKeyRepository.save(categoryPropertyKey);
 
-        CategoryPropertyValue categoryPropertyValue = categoryMapper.categoryPropertyRequestToCategoryPropertyValue(categoryPropertyRequest);
+        CategoryPropertyValue categoryPropertyValue = categoryMapper.mapCategoryPropertyRequestToCategoryPropertyValue(categoryPropertyRequest);
         categoryPropertyValue.setPropertyKey(addedPropertyKey);
         CategoryPropertyValue addedPropertyValue = categoryPropertyValueRepository.save(categoryPropertyValue);
 
         return ResponseMessage.<CategoryPropertyResponse>builder()
                 .message(SuccessMessages.CATEGORY_PROPERTY_CREATE)
-                .object(categoryMapper.categoryPropertyKeyAndPropertyValueToCategoryResponse(addedPropertyKey, addedPropertyValue))
+                .object(categoryMapper.mapCategoryPropertyKeyAndPropertyValueToCategoryResponse(addedPropertyKey, addedPropertyValue))
                 .httpStatus(HttpStatus.CREATED)
                 .build();
     }
@@ -342,7 +342,7 @@ public class CategoryService {
 
         return ResponseMessage.<CategoryPropertyResponse>builder()
                 .message(SuccessMessages.CATEGORY_PROPERTY_UPDATE)
-                .object(categoryMapper.categoryPropertyKeyAndPropertyValueToCategoryResponse(updatedPropertyKey, updatedPropertyValue))
+                .object(categoryMapper.mapCategoryPropertyKeyAndPropertyValueToCategoryResponse(updatedPropertyKey, updatedPropertyValue))
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
@@ -369,7 +369,7 @@ public class CategoryService {
 
         return ResponseMessage.<CategoryPropertyResponse>builder()
                 .message(SuccessMessages.CATEGORY_PROPERTY_DELETE)
-                .object(categoryMapper.categoryPropertyKeyAndPropertyValueToCategoryResponse(propertyKey, propertyValue))
+                .object(categoryMapper.mapCategoryPropertyKeyAndPropertyValueToCategoryResponse(propertyKey, propertyValue))
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
@@ -387,7 +387,7 @@ public class CategoryService {
 
         List<CategoryPropertyResponse> categoryPropertyResponses = getCategoryPropertyKeyAndPropertyValueByCategoryId(category.getId());
 
-        CategoryResponse categoryResponse = categoryMapper.categoryToCategoryResponse(category);
+        CategoryResponse categoryResponse = categoryMapper.mapCategoryToCategoryResponse(category);
         categoryResponse.setProperties(categoryPropertyResponses);
 
         return ResponseMessage.<CategoryResponse>builder()

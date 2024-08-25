@@ -83,12 +83,12 @@ public class MethodHelper {
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_CATEGORY_PROPERTY_KEY, propertyKeyId)));
     }
 
-    public Advert isAdvertById(Long advertId) {
+    public Advert isAdvertExistById(Long advertId) {
         return advertRepository.findById(advertId).
                 orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_ADVERT_MESSAGE, advertId)));
     }
 
-    public Image isImageById(Long imageId){
+    public Image isImageExistById(Long imageId){
         return imageRepository.findById(imageId).orElseThrow(
                 () -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_IMAGE_MESSAGE, imageId))
         );

@@ -41,11 +41,11 @@ public class ImageService {
      * @return A ResponseMessage containing the ImageResponse object with the image details, along with a success message and HTTP status.
      */
     public ResponseMessage<ImageResponse> getImageById(Long imageId) {
-        Image image = methodHelper.isImageById(imageId);
+        Image image = methodHelper.isImageExistById(imageId);
 
         return ResponseMessage.<ImageResponse>builder()
                 .message(SuccessMessages.IMAGES_FOUND)
-                .object(imageMapper.imageToImageResponse(image))
+                .object(imageMapper.mapImageToImageResponse(image))
                 .httpStatus(HttpStatus.OK)
                 .build();
     }
@@ -62,7 +62,7 @@ public class ImageService {
      * @throws IllegalStateException    If an error occurs while processing or saving the images.
      */
     public ResponseMessage<List<ImageIdResponse>> uploadImages(ImageRequest imageRequest, Long advertId) {
-        Advert advert = methodHelper.isAdvertById(advertId);
+        Advert advert = methodHelper.isAdvertExistById(advertId);
 
         List<Image> savedImages = Arrays.stream(imageRequest.getImages())
                 .map(imageFile -> {
@@ -88,13 +88,14 @@ public class ImageService {
                             throw new IllegalArgumentException("Image size cannot exceed 5MB");
                         }
 
-                        Image image = Image.builder()
+                        Image savedImage = Image.builder()
                                 .data(imageFile.getBytes())
                                 .name(imageFile.getOriginalFilename())
                                 .type(imageFile.getContentType())
                                 .featured(false)
                                 .advert(advert).build();
-                        return imageRepository.save(image);
+
+                        return imageRepository.save(savedImage);
 
                     } catch (IOException e) {
                         throw new IllegalStateException("Failed to process image: " + imageFile.getOriginalFilename(), e);
@@ -103,7 +104,7 @@ public class ImageService {
                 .collect(Collectors.toList());
 
         List<ImageIdResponse> imageIdResponses = savedImages.stream()
-                .map(imageMapper::imageToImageIdResponse)
+                .map(imageMapper::mapImageToImageIdResponse)
                 .collect(Collectors.toList());
 
         return ResponseMessage.<List<ImageIdResponse>>builder()
@@ -140,7 +141,7 @@ public class ImageService {
      */
     public ResponseMessage<ImageResponse> updateImageById(Long imageId) {
 
-        Image image = methodHelper.isImageById(imageId);
+        Image image = methodHelper.isImageExistById(imageId);
 
         Image featuredImage = imageRepository.findFeaturedImageByAdvertId(image.getAdvert().getId());
 
@@ -154,7 +155,7 @@ public class ImageService {
 
         return ResponseMessage.<ImageResponse>builder()
                 .message(SuccessMessages.IMAGES_UPDATED)
-                .object(imageMapper.imageToImageResponse(savedFeaturedImage))
+                .object(imageMapper.mapImageToImageResponse(savedFeaturedImage))
                 .httpStatus(HttpStatus.OK)
                 .build();
     }

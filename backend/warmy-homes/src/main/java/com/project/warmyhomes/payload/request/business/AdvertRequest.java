@@ -40,8 +40,14 @@ public class AdvertRequest {
     @NotNull(message = "Please enter district id")
     Long districtId;
 
-    List<ImageRequest> requests;
-    List<AdvertPropertyRequest> propertyRequests;
+    @NotNull(message = "Please enter user id")
+    Long userId;
+
+    @NotNull(message = "Please enter category id")
+    Long categoryId;
+
+    List<AdvertImageRequest> images;
+    List<AdvertPropertyRequest> properties;
 
     String location;
 }

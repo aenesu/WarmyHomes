@@ -16,7 +16,7 @@ public class CategoryMapper {
      * @param categoryRequest DTO
      * @return category from DB
      */
-    public Category categoryRequestToCategory(CategoryRequest categoryRequest) {
+    public Category mapCategoryRequestToCategory(CategoryRequest categoryRequest) {
         return Category.builder()
                 .title(categoryRequest.getTitle())
                 .slug(categoryRequest.getSlug())
@@ -31,7 +31,7 @@ public class CategoryMapper {
      * @param category object
      * @return CategoryResponse DTO object
      */
-    public CategoryResponse categoryToCategoryResponse(Category category) {
+    public CategoryResponse mapCategoryToCategoryResponse(Category category) {
         return CategoryResponse.builder()
                 .id(category.getId())
                 .title(category.getTitle())
@@ -44,7 +44,7 @@ public class CategoryMapper {
      * @param categoryPropertyRequest DTO
      * @return categoryPropertyKey from DB
      */
-    public CategoryPropertyKey categoryPropertyRequestToCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest) {
+    public CategoryPropertyKey mapCategoryPropertyRequestToCategoryPropertyKey(CategoryPropertyRequest categoryPropertyRequest) {
         return CategoryPropertyKey.builder()
                 .name(categoryPropertyRequest.getKeyName())
                 .builtIn(false)
@@ -55,7 +55,7 @@ public class CategoryMapper {
      * @param categoryPropertyRequest DTO
      * @return categoryPropertyValue from DB
      */
-    public CategoryPropertyValue categoryPropertyRequestToCategoryPropertyValue(CategoryPropertyRequest categoryPropertyRequest) {
+    public CategoryPropertyValue mapCategoryPropertyRequestToCategoryPropertyValue(CategoryPropertyRequest categoryPropertyRequest) {
         return CategoryPropertyValue.builder()
                 .value(categoryPropertyRequest.getValue())
                 .build();
@@ -66,7 +66,7 @@ public class CategoryMapper {
      * @param addedPropertyValue object
      * @return CategoryPropertyResponse DTO object
      */
-    public CategoryPropertyResponse categoryPropertyKeyAndPropertyValueToCategoryResponse(CategoryPropertyKey addedPropertyKey, CategoryPropertyValue addedPropertyValue) {
+    public CategoryPropertyResponse mapCategoryPropertyKeyAndPropertyValueToCategoryResponse(CategoryPropertyKey addedPropertyKey, CategoryPropertyValue addedPropertyValue) {
         return CategoryPropertyResponse.builder()
                 .keyId(addedPropertyKey.getId())
                 .keyName(addedPropertyKey.getName())

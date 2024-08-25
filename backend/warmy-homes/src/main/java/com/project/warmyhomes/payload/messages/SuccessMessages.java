@@ -35,4 +35,7 @@ public class SuccessMessages {
     public static final String IMAGES_FOUND = "Images is found successfully";
     public static final String IMAGES_UPLOAD = "Images is upload successfully";
     public static final String IMAGES_UPDATED = "Images is updated successfully";
+
+    //advert
+    public static final String ADVERT_CREATE = "Advert is created successfully";
 }

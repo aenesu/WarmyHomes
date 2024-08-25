@@ -26,6 +26,14 @@ public class ErrorMessages {
     //contact message
     public static final String NOT_FOUND_CONTACT_MESSAGE = "Error: Contact Message not found with id %d";
 
+    //country
+    public static final String NOT_FOUND_COUNTRY = "Error: Country not found with id %s";
+
+    //city
+    public static final String NOT_FOUND_CITY = "Error: City not found with id %s";
+
+    //district
+    public static final String NOT_FOUND_DISTRICT = "Error: District not found with id %s";
     //categories
     public static final String NOT_FOUND_CATEGORY_WITH_ID = "Error: Category not found with id %d";
     public static final String NOT_FOUND_CATEGORY_WITH_SLUG = "Error: Category not found with slug %s";

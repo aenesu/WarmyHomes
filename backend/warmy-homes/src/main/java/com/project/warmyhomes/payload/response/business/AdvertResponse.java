@@ -1,7 +1,9 @@
 package com.project.warmyhomes.payload.response.business;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.project.warmyhomes.payload.request.business.ImageRequest;
+import com.project.warmyhomes.entity.concretes.business.*;
+import com.project.warmyhomes.entity.concretes.user.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,13 +23,15 @@ public class AdvertResponse {
     String slug;
     BigDecimal price;
     Integer status;
+    AdvertType advertType;
+    Country country;
+    City city;
+    District district;
+    User user;
+    Category category;
+    List<Image> images;
+    List<CategoryPropertyValue> properties;
     Boolean isActive;
     Integer viewCount;
-    Long advertTypeId;
-    Long countryId;
-    Long cityId;
-    Long districtId;
-    List<ImageRequest> requests;
-    List<AdvertPropertyResponse> propertyRequests;
     String location;
 }

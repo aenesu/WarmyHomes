@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+
 
 @Repository
 public interface AdvertRepository extends JpaRepository<Advert, Long> {
@@ -32,11 +34,10 @@ public interface AdvertRepository extends JpaRepository<Advert, Long> {
     Page<Advert> findAdvertByQuery(@Param("query") String query,
                                    @Param("categoryId") Long categoryId,
                                    @Param("advertTypeId") Long advertTypeId,
-                                   @Param("priceStart") Integer priceStart,
-                                   @Param("priceEnd") Integer priceEnd,
+                                   @Param("priceStart") BigDecimal priceStart,
+                                   @Param("priceEnd") BigDecimal priceEnd,
                                    @Param("status") Integer status,
                                    Pageable pageable);
-
 
 
     //AdvertResponse getAdvertByName(String slugValue);

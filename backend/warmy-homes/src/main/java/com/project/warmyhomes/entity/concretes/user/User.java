@@ -1,6 +1,7 @@
 package com.project.warmyhomes.entity.concretes.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.warmyhomes.entity.concretes.business.Advert;
 import com.project.warmyhomes.entity.concretes.business.Favorite;
@@ -72,6 +73,7 @@ public class User {
     )
     List<Role> roles;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     List<Advert> adverts;
 

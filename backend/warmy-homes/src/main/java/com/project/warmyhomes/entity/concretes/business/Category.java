@@ -1,6 +1,7 @@
 package com.project.warmyhomes.entity.concretes.business;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -51,6 +52,7 @@ public class Category {
     @Column(name = "update_at")
     LocalDateTime updateDate;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     List<CategoryPropertyKey> properties;
 

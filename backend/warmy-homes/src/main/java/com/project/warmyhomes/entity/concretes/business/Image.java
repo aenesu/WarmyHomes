@@ -1,5 +1,6 @@
 package com.project.warmyhomes.entity.concretes.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Type;
@@ -34,6 +35,7 @@ public class Image {
     Boolean featured;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "advert_id", nullable = false)
     Advert advert;
 }

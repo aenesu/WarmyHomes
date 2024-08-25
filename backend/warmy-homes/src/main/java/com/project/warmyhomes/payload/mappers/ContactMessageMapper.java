@@ -12,7 +12,7 @@ public class ContactMessageMapper {
      * @param contactMessageRequest DTO
      * @return contact from DB
      */
-    public Contact contactMessageRequestToContact(ContactMessageRequest contactMessageRequest) {
+    public Contact mapContactMessageRequestToContact(ContactMessageRequest contactMessageRequest) {
         return Contact.builder()
                 .firstName(contactMessageRequest.getFirstName())
                 .lastName(contactMessageRequest.getLastName())
@@ -26,7 +26,7 @@ public class ContactMessageMapper {
      * @param contact object
      * @return ContactMessageResponse DTO object
      */
-    public ContactMessageResponse contactToContactMessageResponse(Contact contact) {
+    public ContactMessageResponse mapContactToContactMessageResponse(Contact contact) {
         return ContactMessageResponse.builder()
                 .firstName(contact.getFirstName())
                 .lastName(contact.getLastName())

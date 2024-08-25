@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/adverts")
@@ -21,18 +23,19 @@ public class AdvertController {
     private final AdvertService advertService;
 
     @PostMapping //http://localhost:8080/adverts + POST + JSON
-    @PreAuthorize("hasAnyAuthority('CUSTOMER')")
+    @PreAuthorize("hasAnyAuthority('Customer')")
     public ResponseMessage<AdvertResponse> createAdvert(@Valid @RequestBody AdvertRequest advertRequest) {
         return advertService.createAdvert(advertRequest);
     }
 
-    @GetMapping // http://localhost:8080/adverts?q=beyoğlu&category_id=12&advert_type_id=3&price_start=500&price_end=1500&status=1;page=1&size=10&sort=date&type=asc + GET
+    @GetMapping
+    // http://localhost:8080/adverts?q=beyoğlu&category_id=12&advert_type_id=3&price_start=500&price_end=1500&status=1;page=1&size=10&sort=date&type=asc + GET
     public Page<AdvertResponse> getAllAdvertsByPage(
             @RequestParam(value = "q", defaultValue = " ") String query,
             @RequestParam(value = "category_id", defaultValue = "0") Long categoryId,
-            @RequestParam(value = "advert_type_id", defaultValue = "") Long advertTypeId,
-            @RequestParam(value = "price_start", defaultValue = "0") int priceStart,
-            @RequestParam(value = "price_end", defaultValue = "0") int priceEnd,
+            @RequestParam(value = "advert_type_id", defaultValue = "0") Long advertTypeId,
+            @RequestParam(value = "price_start", defaultValue = "0.0") BigDecimal priceStart,
+            @RequestParam(value = "price_end", defaultValue = "0.0") BigDecimal priceEnd,
             @RequestParam(value = "status", defaultValue = "0") int status,
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size,

@@ -33,7 +33,7 @@ public class ContactMessageService {
      * @param contactMessageRequest the request object containing contact message details
      */
     public void createContactMessage(ContactMessageRequest contactMessageRequest) {
-        Contact contact = contactMessageMapper.contactMessageRequestToContact(contactMessageRequest);
+        Contact contact = contactMessageMapper.mapContactMessageRequestToContact(contactMessageRequest);
         contactRepository.save(contact);
     }
 
@@ -55,7 +55,7 @@ public class ContactMessageService {
         Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
 
         return contactRepository.findContactMessageByQueryAndStatus(query, status, pageable)
-                .map(contactMessageMapper::contactToContactMessageResponse);
+                .map(contactMessageMapper::mapContactToContactMessageResponse);
     }
 
     /**
@@ -76,7 +76,7 @@ public class ContactMessageService {
 
         return ResponseMessage.<ContactMessageResponse>builder()
                 .message(SuccessMessages.CONTACT_MESSAGE_FOUND)
-                .object(contactMessageMapper.contactToContactMessageResponse(statusUpdatedContactMessage))
+                .object(contactMessageMapper.mapContactToContactMessageResponse(statusUpdatedContactMessage))
                 .httpStatus(HttpStatus.OK)
                 .build();
     }

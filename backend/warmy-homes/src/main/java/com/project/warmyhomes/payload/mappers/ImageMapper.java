@@ -12,7 +12,7 @@ public class ImageMapper {
      * @param image object
      * @return ImageResponse DTO object
      */
-    public ImageResponse imageToImageResponse(Image image) {
+    public ImageResponse mapImageToImageResponse(Image image) {
         return ImageResponse.builder()
                 .imageId(image.getId())
                 .data(image.getData())
@@ -27,7 +27,7 @@ public class ImageMapper {
      * @param image object
      * @return ImageIdResponse object
      */
-    public ImageIdResponse imageToImageIdResponse(Image image) {
+    public ImageIdResponse mapImageToImageIdResponse(Image image) {
         return ImageIdResponse.builder()
                 .imageId(image.getId())
                 .build();
