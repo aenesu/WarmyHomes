@@ -1,4 +1,4 @@
-import React from 'react'
+import style from './admin-tour-detail.module.scss';
 
 export default function TourRequestDetails() {
   return (
