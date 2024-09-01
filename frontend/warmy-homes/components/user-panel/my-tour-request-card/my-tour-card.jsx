@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./my-tour-card.module.scss";
 
 export default function MyTourRequestCard({
