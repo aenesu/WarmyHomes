@@ -48,16 +48,16 @@ export default function Sidebar() {
           />
         </div>
         <nav className={styles.navLinks}>
-          <a href="#dashboard" onClick={() => handleNavClick('Dashboard')}>Dashboard</a>
-          <a href="#adverts" onClick={() => handleNavClick('Adverts')}>Adverts</a>
-          <a href="#categories" onClick={() => handleNavClick('Categories')}>Categories</a>
-          <a href="#advertTypes" onClick={() => handleNavClick('Advert Types')}>Advert Types</a>
-          <a href="#users" onClick={() => handleNavClick('Users')}>Users</a>
-          <a href="#tourRequests" onClick={() => handleNavClick('Tour Requests')}>Tour Requests</a>
-          <a href="#reports" onClick={() => handleNavClick('Reports')}>Reports</a>
-          <a href="#contactMessages" onClick={() => handleNavClick('Contact Messages')}>Contact Messages</a>
-          <a href="#settings" onClick={() => handleNavClick('Settings')}>Settings</a>
-          <a href="#webSite" onClick={() => handleNavClick('Web Site')}>Web Site</a>
+          <a href="dashboard" onClick={() => handleNavClick('Dashboard')}>Dashboard</a>
+          <a href="properties" onClick={() => handleNavClick('Adverts')}>Adverts</a>
+          <a href="categories" onClick={() => handleNavClick('Categories')}>Categories</a>
+          <a href="adverts-types" onClick={() => handleNavClick('Advert Types')}>Advert Types</a>
+          <a href="users" onClick={() => handleNavClick('Users')}>Users</a>
+          <a href="tour-requests" onClick={() => handleNavClick('Tour Requests')}>Tour Requests</a>
+          <a href="reports" onClick={() => handleNavClick('Reports')}>Reports</a>
+          <a href="contact-messages" onClick={() => handleNavClick('Contact Messages')}>Contact Messages</a>
+          <a href="settings" onClick={() => handleNavClick('Settings')}>Settings</a>
+          <a href="../../.." onClick={() => handleNavClick('Web Site')}>Web Site</a>
           <a href="#logout" onClick={() => handleNavClick('Logout')}>Logout</a>
         </nav>
         <button className={styles.closeButton} onClick={toggleSidebar}>
