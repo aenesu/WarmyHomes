@@ -15,18 +15,19 @@ export default function MyTourRequestCard({
   time_id,
   guest_id,
   slug // Add slug as a prop
-}) {
-  const router = useRouter(); // Initialize the router
+}) 
 
-  const handleDelete = () => {
-    // Navigate to the delete page using slug (or add custom logic)
-    router.push(`/dashboard/manage/admin/tour-requests/details/${slug}`);
-  };
+{
+// const router = useRouter(); // Initialize the router
+  // const handleDelete = () => {
+  //   // Navigate to the delete page using slug (or add custom logic)
+  //   router.push(`/dashboard/manage/admin/tour-requests/details/${slug}`);
+  // };
 
-  const handleEdit = () => {
-    // Navigate to the edit page using slug
-    router.push(`/dashboard/manage/admin/tour-requests/details/${slug}`);
-  };
+  // const handleEdit = () => {
+  //   // Navigate to the edit page using slug
+  //   router.push(`/dashboard/manage/admin/tour-requests/details/${slug}`);
+  // };
 
   return (
     <div className={styles.card}>
@@ -53,12 +54,12 @@ export default function MyTourRequestCard({
       {time_id && <div className={styles.time}>{time_id}</div>}
 
       <div className={styles.action}>
-        <button className={styles.actButton} onClick={handleDelete}>
+        <button className={styles.actButton} >
           <img src="/assets/vectors/bin.svg" alt="Rubbish Symbol" />
         </button>
       </div>
       <div className={styles.action}>
-        <button className={styles.editButton} onClick={handleEdit}>
+        <button className={styles.editButton} >
           <img src="/assets/vectors/editP.svg" alt="Edit Symbol" />
         </button>
       </div>
