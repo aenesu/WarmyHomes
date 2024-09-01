@@ -1,4 +1,5 @@
-import { useRouter } from "next/navigation"; // Import the new Next.js router
+"use client";
+
 import styles from "./my-tour-card.module.scss";
 
 export default function MyTourRequestCard({
