@@ -4,6 +4,7 @@ import "@/app/global.css";
 import "@/styles/styles.scss";
 import Header from "@/components/common/header/header";
 import Footer from "@/components/common/footer/footer";
+import UserSidebar from "@/components/user-panel/user-sidebar/user-sidebar";
 
 const akshar = Akshar({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
 export { akshar };
@@ -89,6 +90,7 @@ export default function RootLayout({ children }) {
                 className={`${akshar.className}`}
                 style={{ height: "100% !important" }}
             >
+               < UserSidebar/>
                 <Header />
 
                 <div>
