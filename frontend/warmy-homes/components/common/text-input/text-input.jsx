@@ -1,4 +1,4 @@
-import { adventPro } from "@/app/layout";
+import { adventPro } from "@/app/(public)/layout";
 import styles from "./text-input.module.scss";
 
 export default function TextInput({ label = 'text-input', type = 'text', placeholder, value, height = '55px', width = '866px' }) {

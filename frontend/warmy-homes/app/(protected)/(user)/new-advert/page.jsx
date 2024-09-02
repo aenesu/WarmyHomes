@@ -4,14 +4,13 @@ import TextInput from "@/components/common/text-input/text-input";
 import TextArea from "@/components/common/text-area/text-area";
 
 export default function NewAdvert() {
+
   return (
     <div className={styles.mainContainer}>
       <Banner title="NEW ADVERT" />
 
       <div className={styles.container}>
-
         <form action="" method="POST">
-
           <h2>Common Information</h2>
           <div className={styles.formInputs}>
             <TextInput label="title" />
@@ -25,9 +24,9 @@ export default function NewAdvert() {
           <h2>Address Information</h2>
           <div className={styles.formInputs}>
             <div className={styles.multipleInput}>
-              <TextInput label="country" value={'Chose'} width="257px" />
-              <TextInput label="city" value={'Chose'} width="257px" />
-              <TextInput label="neigbourhood" value={'Chose'} width="257px" />
+              <TextInput label="country" value={"Chose"} width="257px" />
+              <TextInput label="city" value={"Chose"} width="257px" />
+              <TextInput label="neigbourhood" value={"Chose"} width="257px" />
             </div>
             <TextInput label="location" />
           </div>
@@ -35,12 +34,13 @@ export default function NewAdvert() {
           <div className={styles.propertiesBox}>
             <h2>Properties</h2>
             <div className={styles.formInputs}>
-              <TextInput label="category" value={'Chose'} width="548px" />
+              <TextInput label="category" value={"Chose"} width="548px" />
               <div className={styles.multipleInput}>
                 <TextInput label="floor" width="257px" />
                 <TextInput label="bedroom" width="257px" />
                 <TextInput label="bathroom" width="257px" />
-              </div><div className={styles.multipleInput}>
+              </div>
+              <div className={styles.multipleInput}>
                 <TextInput label="garage" width="257px" />
                 <TextInput label="year-of-built" width="257px" />
                 <TextInput label="size" width="257px" />
