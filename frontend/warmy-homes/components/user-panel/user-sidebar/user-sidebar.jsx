@@ -6,17 +6,10 @@ import { PiListDashesFill } from "react-icons/pi";
 
 export default function UserSidebar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentSection, setCurrentSection] = useState('Dashboard');
 
   const toggleSidebar = () => {
     setIsOpen(prev => !prev);
   };
-
-  const handleNavClick = (section) => {
-    setCurrentSection(section);
-    setIsOpen(false); 
-  };
-
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -31,7 +24,10 @@ export default function UserSidebar() {
 
   return (
     <>
-     
+      <div className={styles.toggleButton} onClick={toggleSidebar}>
+        <PiListDashesFill className={styles.icon} />
+      </div>
+
       <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
         <div className={styles.avatarContainer}>
           <Image 
@@ -43,16 +39,13 @@ export default function UserSidebar() {
           />
         </div>
         <nav className={styles.navLinks}>
-          <a href="dashboard" onClick={() => handleNavClick('Dashboard')}>My Profile</a>
-          <a href="properties" onClick={() => handleNavClick('Adverts')}>Change Password</a>
-          <a href="categories" onClick={() => handleNavClick('Categories')}>My Properties</a>
-          <a href="adverts-types" onClick={() => handleNavClick('Advert Types')}>Add Property</a>
-          <a href="users" onClick={() => handleNavClick('Users')}>Tour Requests</a>
-          <a href="tour-requests" onClick={() => handleNavClick('Tour Requests')}>Logout</a>
+          <a href="dashboard">My Profile</a>
+          <a href="properties">Change Password</a>
+          <a href="categories">My Properties</a>
+          <a href="adverts-types">Add Property</a>
+          <a href="users">Tour Requests</a>
+          <a href="tour-requests">Logout</a>
         </nav>
-        <button className={styles.closeButton} onClick={toggleSidebar}>
-          <PiListDashesFill className={styles.icon} />
-        </button>
       </div>
     </>
   );
