@@ -79,8 +79,6 @@ To deploy and utilize the Warmy Homes Real Estate Project backend, follow these 
 - Ayşe => [@Ayseakkurt](https://github.com/Ayseakkurt)
 - Muhammed Eren => [@erendibek576](https://github.com/erendibek576)
 - Adam => [@adamagar](https://github.com/adamagar)
-- Ali Kemal => [@aksahin33](https://github.com/aksahin33)
-
 
 ## Contact:
 
