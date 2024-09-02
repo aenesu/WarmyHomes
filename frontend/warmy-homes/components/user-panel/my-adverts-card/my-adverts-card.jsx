@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./my-adverts-card.module.scss";
 
 export default function MyAdvertsCard({
@@ -29,7 +30,7 @@ export default function MyAdvertsCard({
       <div className={styles.status}>{status}</div>
       <div className={styles.view}> <img src="/assets/vectors/view.svg" alt="View Icon" className={styles.viewIcon} /> {view_count}</div>
       <div className={styles.action}>
-        <button className={styles.editButton}><img src="/assets/vectors/edit.svg" alt="Edit Symbol"></img></button> 
+        <Link href={"/profile/my-adverts/edit/slug"}><button className={styles.editButton}><img src="/assets/vectors/edit.svg" alt="Edit Symbol"></img></button> </Link>
       </div>
     </div>
   );

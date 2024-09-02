@@ -48,6 +48,11 @@ export default function NewAdvert() {
             </div>
           </div>
 
+          <h2>Images</h2>
+          <div className={`${styles.formInputs} ${styles.photoAdd}`}>
+            <div className={styles.plusSign}>+</div>
+          </div>
+
           <button className={styles.submitButton}>Create</button>
         </form>
       </div>
