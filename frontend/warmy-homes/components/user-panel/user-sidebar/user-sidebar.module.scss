@@ -39,7 +39,7 @@
   left: 0;
   height: 100%;
   width: 250px;
-  background-color: #951763;
+  background-color: #444444;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 1000;
@@ -71,7 +71,7 @@
   .navLinks a {
     font-family: 'Advent Pro', sans-serif;
     font-size: 1.2rem;
-    color: #373737;
+    color: white;
     text-decoration: none;
     margin: 10px 0;
     transition: color 0.3s ease;

@@ -31,7 +31,7 @@ export default function UserSidebar() {
       <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
         <div className={styles.avatarContainer}>
           <Image 
-            src="/assets/images/logo-white 2.png"
+            src="/assets/images/logo-white2.png"
             alt="Logo"
             className={styles.logo}
             width={140}
