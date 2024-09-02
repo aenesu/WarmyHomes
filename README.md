@@ -74,9 +74,12 @@ To deploy and utilize the Warmy Homes Real Estate Project backend, follow these 
 
 ## Contributors:
 
+Frontend Team:
 - Enes => [@aenesu](https://github.com/aenesu)
 - Hikmet => [@Securiconet](https://github.com/Securiconet)
 - Ayşe => [@Ayseakkurt](https://github.com/Ayseakkurt)
+
+Backend Team
 - Muhammed Eren => [@erendibek576](https://github.com/erendibek576)
 - Adam => [@adamagar](https://github.com/adamagar)
 
