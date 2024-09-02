@@ -70,6 +70,34 @@
                 }
             }
 
+            .photoAdd {
+                height: 200px;
+                background-color: #F5F5F5;
+                justify-content: flex-start;
+
+                .plusSign {
+                    height: 60px;
+                    width: 60px;
+                    border-radius: 30px;
+                    background-color: #951763;
+                    align-self: center;
+                    margin-top: -30px;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 40px;
+                    color: white;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        scale: 1.1;
+                    }
+                }
+            }
+
+
             .submitButton {
                 width: 282px;
                 height: 60px;
