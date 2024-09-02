@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  margin: 0 auto;
+  margin: 30px auto;
   max-width: 1200px;
 }
 
@@ -21,7 +21,9 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  height: 72px;
+  font-family: "Advent Pro", sans-serif !important;
 }
 
 .searchButton {
@@ -31,6 +33,8 @@
   margin-left: 10px;
   border-radius: 4px;
   cursor: pointer;
+  width: 83px;
+  height: 72px;
 }
 
 .searchButton img {
@@ -46,7 +50,10 @@
   margin-left: 10px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  height: 72px;
+  font-family: "Advent Pro", sans-serif !important;
 }
 
 .header {
