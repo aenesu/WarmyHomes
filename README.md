@@ -85,4 +85,4 @@ Backend Team
 
 ## Contact:
 
-For inquiries or support, please contact us at [contact@warmyhomes.com](mailto:contact@warmyhomes.com).
+For inquiries or support, please contact us using the links in the contributors' profiles!
