@@ -49,8 +49,8 @@ export default function UserSidebar() {
           <a href="properties">Change Password</a>
           <a href="categories">My Properties</a>
           <a href="adverts-types">Add Property</a>
-          <a href="users">Tour Requests</a>
-          <a href="tour-requests">Logout</a>
+          <a href="tour-requests">Tour Requests</a>
+          <a href="#">Logout</a>
         </nav>
       </div>
     </>
