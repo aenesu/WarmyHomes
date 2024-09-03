@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";  // Import Next.js Link component
+import { useRouter } from "next/navigation"; // Import Next.js router
 import styles from './sidebar.module.scss';
 import Image from 'next/image';
 import { PiListDashesFill } from "react-icons/pi";
@@ -7,6 +9,8 @@ import { PiListDashesFill } from "react-icons/pi";
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState('Dashboard');
+  const router = useRouter(); // Initialize router
+  const baseUrl = "/dashboard/admin"; // Define a base URL or dynamic URL (e.g., `/admin`, `/user`, etc.)
 
   const toggleSidebar = () => {
     setIsOpen(prev => !prev);
@@ -16,7 +20,6 @@ export default function Sidebar() {
     setCurrentSection(section);
     setIsOpen(false); 
   };
-
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -48,17 +51,18 @@ export default function Sidebar() {
           />
         </div>
         <nav className={styles.navLinks}>
-          <a href="dashboard" onClick={() => handleNavClick('Dashboard')}>Dashboard</a>
-          <a href="properties" onClick={() => handleNavClick('Adverts')}>Adverts</a>
-          <a href="categories" onClick={() => handleNavClick('Categories')}>Categories</a>
-          <a href="adverts-types" onClick={() => handleNavClick('Advert Types')}>Advert Types</a>
-          <a href="users" onClick={() => handleNavClick('Users')}>Users</a>
-          <a href="tour-requests" onClick={() => handleNavClick('Tour Requests')}>Tour Requests</a>
-          <a href="reports" onClick={() => handleNavClick('Reports')}>Reports</a>
-          <a href="contact-messages" onClick={() => handleNavClick('Contact Messages')}>Contact Messages</a>
-          <a href="settings" onClick={() => handleNavClick('Settings')}>Settings</a>
-          <a href="../../.." onClick={() => handleNavClick('Web Site')}>Web Site</a>
-          <a href="#logout" onClick={() => handleNavClick('Logout')}>Logout</a>
+          {/* Correctly use template literals inside curly braces */}
+          <Link href={`${baseUrl}/dashboard`} onClick={() => handleNavClick('Dashboard')}>Dashboard</Link>
+          <Link href={`${baseUrl}/properties`} onClick={() => handleNavClick('Adverts')}>Adverts</Link>
+          <Link href={`${baseUrl}/categories`} onClick={() => handleNavClick('Categories')}>Categories</Link>
+          <Link href={`${baseUrl}/adverts-types`} onClick={() => handleNavClick('Advert Types')}>Advert Types</Link>
+          <Link href={`${baseUrl}/users`} onClick={() => handleNavClick('Users')}>Users</Link>
+          <Link href={`${baseUrl}/tour-requests`} onClick={() => handleNavClick('Tour Requests')}>Tour Requests</Link>
+          <Link href={`${baseUrl}/reports`} onClick={() => handleNavClick('Reports')}>Reports</Link>
+          <Link href={`${baseUrl}/contact-messages`} onClick={() => handleNavClick('Contact Messages')}>Contact Messages</Link>
+          <Link href={`${baseUrl}/settings`} onClick={() => handleNavClick('Settings')}>Settings</Link>
+          <Link href="/" target="_blank" onClick={() => handleNavClick('Web Site')}>Web Site</Link>
+          <Link href={`${baseUrl}/logout`} onClick={() => handleNavClick('Logout')}>Logout</Link>
         </nav>
         <button className={styles.closeButton} onClick={toggleSidebar}>
           <PiListDashesFill className={styles.icon} />

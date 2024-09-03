@@ -2,7 +2,6 @@
 
 .mainContainer {
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start; 
@@ -59,23 +58,30 @@
 
 .words {
   display: grid;
-  grid-template-columns: 3fr 0.7fr 0.7fr 1fr 1.5fr 1.5fr 0.5fr;
+  grid-template-columns: 3.05fr 0.60fr 1.2fr 1.5fr 1.1fr 1fr 0.5fr; 
   width: 1355px;
   padding-bottom: 1rem;
 }
 
+.cardsContainer {
+  height: 400px;
+  overflow: scroll;
+}
+
 .cards {
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   width: 100%; 
+
 }
 
 .pagination {
     display: flex;
     align-items: center;
-    justify-content: flex-end; // Ensure this is used instead of "end"
+    justify-content: flex-end; 
   }
 
   .pageButton {
