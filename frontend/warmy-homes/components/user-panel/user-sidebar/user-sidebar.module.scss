@@ -19,11 +19,11 @@
 .toggleButton {
   position: fixed;
   top: 20px;
-  left: 20px;  // Position it on the left
+  left: 20px;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1100;  // Higher z-index to keep it visible over the sidebar
+  z-index: 1100;
   display: flex;
   align-items: center;
 
@@ -51,14 +51,27 @@
 
   .avatarContainer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 30px;
+    position: relative;
   }
 
   .logo {
     max-width: 100%;
     height: auto;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;  
+    color: white;
+    cursor: pointer;
+   
   }
 
   .navLinks {
@@ -80,21 +93,6 @@
     padding-left: 55px;
     
     &:hover {
-      color: #fff;
-    }
-  }
-
-  .closeButton {
-    position: absolute;
-    top: 20px;
-    right: -50px;  // Ensures it stays visible outside the sidebar
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-
-    .icon {
-      font-size: 2rem;
       color: #fff;
     }
   }

@@ -24,9 +24,11 @@ export default function UserSidebar() {
 
   return (
     <>
-      <div className={styles.toggleButton} onClick={toggleSidebar}>
-        <PiListDashesFill className={styles.icon} />
-      </div>
+      {!isOpen && (
+        <div className={styles.toggleButton} onClick={toggleSidebar}>
+          <PiListDashesFill className={styles.icon} />
+        </div>
+      )}
 
       <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
         <div className={styles.avatarContainer}>
@@ -37,6 +39,10 @@ export default function UserSidebar() {
             width={140}
             height={110}
           />
+         
+          <button className={styles.closeButton} onClick={toggleSidebar}>
+           x
+          </button>
         </div>
         <nav className={styles.navLinks}>
           <a href="dashboard">My Profile</a>
