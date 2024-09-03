@@ -2,7 +2,6 @@
 
 .mainContainer {
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start; 
@@ -64,18 +63,25 @@
   padding-bottom: 1rem;
 }
 
+.cardsContainer {
+  height: 400px;
+  overflow: scroll;
+}
+
 .cards {
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   width: 100%; 
+
 }
 
 .pagination {
     display: flex;
     align-items: center;
-    justify-content: flex-end; // Ensure this is used instead of "end"
+    justify-content: flex-end; 
   }
 
   .pageButton {

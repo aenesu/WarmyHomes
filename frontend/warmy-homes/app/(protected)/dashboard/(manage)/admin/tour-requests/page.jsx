@@ -12,7 +12,7 @@ export default function Properties() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 3;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,17 +32,16 @@ export default function Properties() {
   };
 
   const myAdverts = [
-    // Example adverts
     { id: 1, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
     { id: 2, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
-    { id: 3, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' }
+    { id: 3, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
+    { id: 4, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
   ];
 
   const totalPages = Math.ceil(myAdverts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedAdverts = myAdverts.slice(startIndex, startIndex + itemsPerPage);
 
-  // Debugging logs
   useEffect(() => {
     console.log('Current Page:', currentPage);
     console.log('Paginated Adverts:', paginatedAdverts);
@@ -73,6 +72,7 @@ export default function Properties() {
           <h4>Tour Time</h4>
           <h4>Action</h4>
         </div>
+        <div className={styles.cardsContainer}>
         <div className={styles.cards}>
           {paginatedAdverts.map(({ id, title, country_id, city_id, district_id, category_id, guest_id, advert_type_id, price, status, time_id }) => (
             <MyTourRequestCard
@@ -92,6 +92,7 @@ export default function Properties() {
               }}
             />
           ))}
+        </div>
         </div>
       </div>
       <div className={styles.pagination}>
