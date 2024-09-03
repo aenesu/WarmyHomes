@@ -1,6 +1,7 @@
 package com.project.warmyhomes.entity.concretes.business;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.warmyhomes.entity.concretes.user.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -47,6 +48,7 @@ public class TourRequest {
     LocalDateTime updateDate;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "advert_id", nullable = false)
     Advert advert;
 

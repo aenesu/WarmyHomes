@@ -18,20 +18,22 @@ import java.util.List;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AdvertResponse {
-    String title;
-    String description;
-    String slug;
-    BigDecimal price;
-    Integer status;
-    AdvertType advertType;
-    Country country;
-    City city;
-    District district;
-    User user;
-    Category category;
-    List<Image> images;
-    List<CategoryPropertyValue> properties;
-    Boolean isActive;
-    Integer viewCount;
-    String location;
+    private Long id;
+    private String title;
+    private String description;
+    private String slug;
+    private BigDecimal price;
+    private Integer status;
+    private AdvertType advertType;
+    private Country country;
+    private City city;
+    private District district;
+    private User user;
+    private Category category;
+    private List<Image> images;
+    private List<CategoryPropertyValue> properties;
+    private Boolean isActive;
+    private Integer viewCount;
+    private String location;
+    private List<TourRequest> requests;
 }

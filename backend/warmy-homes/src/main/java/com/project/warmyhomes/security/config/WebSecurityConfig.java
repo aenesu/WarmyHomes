@@ -118,8 +118,9 @@ public class WebSecurityConfig {
             "/adverts",
             "/adverts/cities",
             "/adverts/categories",
-            "/adverts/popular/{amount}",
+            "/adverts/popular",
             "/adverts/{slug}",
+
             "/images/{imageId}",
             "/images",
 

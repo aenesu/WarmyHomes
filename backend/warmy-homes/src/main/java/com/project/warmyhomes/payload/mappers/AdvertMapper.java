@@ -4,9 +4,7 @@ import com.project.warmyhomes.entity.concretes.business.Advert;
 import com.project.warmyhomes.entity.concretes.business.Image;
 import com.project.warmyhomes.payload.request.business.AdvertImageRequest;
 import com.project.warmyhomes.payload.request.business.AdvertRequest;
-import com.project.warmyhomes.payload.response.business.AdvertPropertyResponse;
-import com.project.warmyhomes.payload.response.business.AdvertResponse;
-import com.project.warmyhomes.payload.response.business.ImageResponse;
+import com.project.warmyhomes.payload.response.business.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -35,6 +33,7 @@ public class AdvertMapper {
      */
     public AdvertResponse mapAdvertToAdvertResponse(Advert advert) {
         return AdvertResponse.builder()
+                .id(advert.getId())
                 .title(advert.getTitle())
                 .description(advert.getDescription())
                 .slug(advert.getSlug())
@@ -51,7 +50,47 @@ public class AdvertMapper {
                 .isActive(advert.getIsActive())
                 .viewCount(advert.getViewCount())
                 .location(advert.getLocation())
+                .advertType(advert.getAdvertType())
+                .country(advert.getCountry())
+                .city(advert.getCity())
+                .district(advert.getDistrict())
+                .user(advert.getUser())
+                .category(advert.getCategory())
+                .properties(advert.getPropertyValues())
+                .images(advert.getImages())
+                .requests(advert.getRequests())
                 .build();
     }
 
+    /**
+     * Map an Object[] containing city name and advertisement count to an AdvertCitiesResponse object.
+     *
+     * @param data an array where data[0] is the city name (String) and data[1] is the advertisement count (Number).
+     * @return an AdvertCitiesResponse object with the city name and advertisement count.
+     */
+    public AdvertCitiesResponse mapAdvertToAdvertCitiesResponse(Object[] data) {
+        String city = (String) data[0];
+        Long amount = ((Number) data[1]).longValue();
+
+        return AdvertCitiesResponse.builder()
+                .city(city)
+                .amount(amount)
+                .build();
+    }
+
+    /**
+     * Map an Object[] containing category name and advertisement count to an AdvertCategoriesResponse object.
+     *
+     * @param data an array where data[0] is the category name (String) and data[1] is the advertisement count (Number).
+     * @return an AdvertCategoriesResponse object with the category name and advertisement count.
+     */
+    public AdvertCategoriesResponse mapAdvertToAdvertCategoriesResponse(Object[] data) {
+        String category = (String) data[0];
+        Long amount = ((Number) data[1]).longValue();
+
+        return AdvertCategoriesResponse.builder()
+                .category(category)
+                .amount(amount)
+                .build();
+    }
 }

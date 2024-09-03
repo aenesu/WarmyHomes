@@ -48,4 +48,5 @@ public class ErrorMessages {
 
     //advert
     public static final String NOT_FOUND_ADVERT_MESSAGE = "Error: Advert not found with id %s";
+    public static final String NOT_FOUND_ADVERT_WITH_SLUG = "Error: Advert not found with slug %s";
 }

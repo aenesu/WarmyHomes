@@ -10,6 +10,8 @@ import com.project.warmyhomes.payload.request.business.AdvertImageRequest;
 import com.project.warmyhomes.payload.request.business.AdvertPropertyRequest;
 import com.project.warmyhomes.payload.request.business.AdvertRequest;
 import com.project.warmyhomes.payload.response.abstracts.ResponseMessage;
+import com.project.warmyhomes.payload.response.business.AdvertCategoriesResponse;
+import com.project.warmyhomes.payload.response.business.AdvertCitiesResponse;
 import com.project.warmyhomes.payload.response.business.AdvertResponse;
 import com.project.warmyhomes.repository.business.*;
 import com.project.warmyhomes.service.helper.MethodHelper;
@@ -18,12 +20,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +46,158 @@ public class AdvertService {
 
     private final ImageRepository imageRepository;
     private final CategoryPropertyValueRepository categoryPropertyValueRepository;
+
+    /**
+     * Retrieve a paginated list of advertisements based on the provided filtering and sorting criteria.
+     * <p>
+     * This method allows for the retrieval of advertisements with optional filtering parameters such as
+     * search query, category ID, advertisement type ID, price range, and status. The results are paginated
+     * and can be sorted based on specified fields.
+     *
+     * @param query        the search query to filter advertisements by title or description (optional).
+     * @param categoryId   the ID of the category to filter advertisements by (optional).
+     * @param advertTypeId the ID of the advertisement type to filter by (optional).
+     * @param priceStart   the minimum price to filter advertisements by (optional).
+     * @param priceEnd     the maximum price to filter advertisements by (optional).
+     * @param status       the status of the advertisements to filter by (optional).
+     * @param page         the page number to retrieve (0-indexed).
+     * @param size         the number of items per page.
+     * @param sort         the field by which to sort the results (e.g., "price", "createdDate").
+     * @param type         the sort direction, either "asc" for ascending or "desc" for descending.
+     */
+    public Page<AdvertResponse> getAllAdvertsByPage(String query, Long categoryId, Long advertTypeId, BigDecimal priceStart, BigDecimal priceEnd, int status, int page, int size, String sort, String type) {
+
+        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
+
+        if (!query.trim().isEmpty()) {
+            return advertRepository.findAdvertByQuery(query, categoryId, advertTypeId, priceStart, priceEnd, status, pageable)
+                    .map(advertMapper::mapAdvertToAdvertResponse);
+        } else {
+            return advertRepository.findAll(pageable)
+                    .map(advertMapper::mapAdvertToAdvertResponse);
+        }
+    }
+
+    /**
+     * Retrieve a list of cities along with the count of advertisements for each city.
+     * The data is fetched from the repository, mapped to response objects, and returned
+     * as a structured response with HTTP status 200 OK.
+     *
+     * @return ResponseEntity containing a list of AdvertCitiesResponse objects with city names
+     * and advertisement counts.
+     */
+    public ResponseEntity<List<AdvertCitiesResponse>> getAllAdvertsByCities() {
+        List<Object[]> result = advertRepository.findAdvertsGroupedByCities();
+
+        List<AdvertCitiesResponse> advertCitiesResponseList = result.stream()
+                .map(advertMapper::mapAdvertToAdvertCitiesResponse)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(advertCitiesResponseList);
+    }
+
+    /**
+     * Retrieve a list of advertisement categories along with the count of advertisements for each category.
+     * The data is fetched from the repository, mapped to response objects, and returned as a structured response
+     * with HTTP status 200 OK.
+     *
+     * @return ResponseEntity containing a list of AdvertCategoriesResponse objects with category names
+     * and advertisement counts.
+     */
+    public ResponseEntity<List<AdvertCategoriesResponse>> getAllAdvertsByCategories() {
+        List<Object[]> result = advertRepository.findAdvertsGroupedByCategories();
+
+        List<AdvertCategoriesResponse> advertCategoriesResponseList = result.stream()
+                .map(advertMapper::mapAdvertToAdvertCategoriesResponse)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(advertCategoriesResponseList);
+    }
+
+    /**
+     * Retrieve a list of popular advertisements, ordered by a custom popularity metric.
+     * The popularity is determined based on a combination of factors such as tour requests and view count.
+     * If no specific amount is provided, the method will return the default number of popular advertisements.
+     *
+     * @param amount the number of top popular advertisements to retrieve. If null, a default value is used.
+     * @return ResponseEntity containing a list of AdvertResponse objects representing the most popular advertisements
+     */
+    public ResponseEntity<List<AdvertResponse>> getPopularAdverts(Integer amount) {
+        List<AdvertResponse> advertResponseList = advertRepository.findTopPopularAdverts(amount)
+                .stream()
+                .map(advertMapper::mapAdvertToAdvertResponse)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(advertResponseList);
+    }
+
+    /**
+     * Retrieve a paginated list of adverts created by the user associated with the provided request.
+     * <p>
+     * This method uses the provided pagination and sorting parameters to fetch adverts from the
+     * repository based on the user's ID, which is determined by their email address from the request.
+     * The adverts are then mapped to a list of {@link AdvertResponse} objects.
+     *
+     * @param request The HTTP request containing the user's email address.
+     * @param page    The page number to retrieve (0-based index).
+     * @param size    The number of adverts to retrieve per page.
+     * @param sort    The field by which to sort the adverts.
+     * @param type    The sort direction, either 'asc' for ascending or 'desc' for descending.
+     * @return A {@link Page} of {@link AdvertResponse} objects representing the user's adverts.
+     */
+    public Page<AdvertResponse> getUserAdvertsByPage(HttpServletRequest request, int page, int size, String sort, String type) {
+        User user = methodHelper.isUserExistByEmail(request);
+
+        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
+
+        return advertRepository.findByUserId(user.getId(), pageable)
+                .map(advertMapper::mapAdvertToAdvertResponse);
+
+    }
+
+    /**
+     * Retrieve a paginated list of advertisements based on the provided filtering and sorting criteria.
+     * <p>
+     * This method allows for the retrieval of advertisements with optional filtering parameters such as
+     * search query, category ID, advertisement type ID, price range, and status. The results are paginated
+     * and can be sorted based on specified fields.
+     *
+     * @param query        the search query to filter advertisements by title or description (optional).
+     * @param categoryId   the ID of the category to filter advertisements by (optional).
+     * @param advertTypeId the ID of the advertisement type to filter by (optional).
+     * @param priceStart   the minimum price to filter advertisements by (optional).
+     * @param priceEnd     the maximum price to filter advertisements by (optional).
+     * @param status       the status of the advertisements to filter by (optional).
+     * @param page         the page number to retrieve (0-indexed).
+     * @param size         the number of items per page.
+     * @param sort         the field by which to sort the results (e.g., "price", "createdDate").
+     * @param type         the sort direction, either "asc" for ascending or "desc" for descending.
+     */
+    public Page<AdvertResponse> getAdvertsByPage(String query, Long categoryId, Long advertTypeId, BigDecimal priceStart, BigDecimal priceEnd, int status, int page, int size, String sort, String type) {
+        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
+
+        if (!query.trim().isEmpty()) {
+            return advertRepository.findAdvertByQuery(query, categoryId, advertTypeId, priceStart, priceEnd, status, pageable)
+                    .map(advertMapper::mapAdvertToAdvertResponse);
+        } else {
+            return advertRepository.findAll(pageable)
+                    .map(advertMapper::mapAdvertToAdvertResponse);
+        }
+    }
+
+
+    public ResponseMessage<AdvertResponse> getAdvertBySlug(String slug) {
+        Advert advert = advertRepository.findBySlug(slug)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_ADVERT_WITH_SLUG, slug)));
+
+        return ResponseMessage.<AdvertResponse>builder()
+                .message(SuccessMessages.ADVERT_FOUND)
+                .object(advertMapper.mapAdvertToAdvertResponse(advert))
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
+
+
 
     /**
      * Create a new Advert based on the provided AdvertRequest.
@@ -158,46 +315,4 @@ public class AdvertService {
                 .trim();
     }
 
-    /**
-     * Retrieve a paginated list of advertisements based on the provided filtering and sorting criteria.
-     * <p>
-     * This method allows for the retrieval of advertisements with optional filtering parameters such as
-     * search query, category ID, advertisement type ID, price range, and status. The results are paginated
-     * and can be sorted based on specified fields.
-     *
-     * @param query        the search query to filter advertisements by title or description (optional).
-     * @param categoryId   the ID of the category to filter advertisements by (optional).
-     * @param advertTypeId the ID of the advertisement type to filter by (optional).
-     * @param priceStart   the minimum price to filter advertisements by (optional).
-     * @param priceEnd     the maximum price to filter advertisements by (optional).
-     * @param status       the status of the advertisements to filter by (optional).
-     * @param page         the page number to retrieve (0-indexed).
-     * @param size         the number of items per page.
-     * @param sort         the field by which to sort the results (e.g., "price", "createdDate").
-     * @param type         the sort direction, either "asc" for ascending or "desc" for descending.
-     */
-    public Page<AdvertResponse> getAllAdvertsByPage(String query, Long categoryId, Long advertTypeId, BigDecimal priceStart, BigDecimal priceEnd, int status, int page, int size, String sort, String type) {
-
-        // Create pageable object with sorting parameters
-        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
-
-        if (query != null) {
-            return advertRepository.findAdvertByQuery(query, categoryId, advertTypeId, priceStart, priceEnd, status, pageable)
-                    .map(advertMapper::mapAdvertToAdvertResponse);
-        } else {
-            return advertRepository.findAll(pageable)
-                    .map(advertMapper::mapAdvertToAdvertResponse);
-        }
-    }
-
-/*
-    public Page<AdvertResponse> getAllUserAdvertsByPage(HttpServletRequest request, int page, int size, String sort, String type) {
-       String email = (String) request.getAttribute("email");
-       return null;
-    }
-
-    public AdvertResponse getAdvertByName(String slugValue) {
-        return advertRepository.getAdvertByName(slugValue);
-    }
-     */
 }

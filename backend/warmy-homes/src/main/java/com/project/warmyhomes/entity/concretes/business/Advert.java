@@ -92,6 +92,9 @@ public class Advert {
     @OneToMany(mappedBy = "advert", cascade = CascadeType.ALL)
     private List<Image> images;
 
+    @OneToMany(mappedBy = "advert", cascade = CascadeType.ALL)
+    private List<TourRequest> requests;
+
     @PrePersist
     public void prePersistDateTime() {
         ZoneId zoneId = ZoneId.of("US/Eastern");

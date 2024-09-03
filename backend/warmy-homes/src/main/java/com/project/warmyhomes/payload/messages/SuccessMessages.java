@@ -38,4 +38,5 @@ public class SuccessMessages {
 
     //advert
     public static final String ADVERT_CREATE = "Advert is created successfully";
+    public static final String ADVERT_FOUND = "Advert is found successfully";
 }
