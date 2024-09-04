@@ -62,7 +62,7 @@ export default function Sidebar() {
           <Link href={`${baseUrl}/contact-messages`} onClick={() => handleNavClick('Contact Messages')}>Contact Messages</Link>
           <Link href={`${baseUrl}/settings`} onClick={() => handleNavClick('Settings')}>Settings</Link>
           <Link href="/" target="_blank" onClick={() => handleNavClick('Web Site')}>Web Site</Link>
-          <Link href={`${baseUrl}/logout`} onClick={() => handleNavClick('Logout')}>Logout</Link>
+          <Link href="/" onClick={() => handleNavClick('Logout')}>Logout</Link>
         </nav>
         <button className={styles.closeButton} onClick={toggleSidebar}>
           <PiListDashesFill className={styles.icon} />

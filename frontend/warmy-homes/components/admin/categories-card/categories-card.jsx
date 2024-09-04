@@ -1,15 +1,14 @@
+import Link from "next/link";
 import styles from "./categories-card.module.scss"
 
 export default function CategoriesCard({
-    index,
-    icon,
-    name,
-    sequence,
-    active
-    
-})
+  index,
+  icon,
+  name,
+  sequence,
+  active
 
-{
+}) {
   return (
     <div className={styles.card}>
       <div className={styles.icon}>
@@ -25,11 +24,11 @@ export default function CategoriesCard({
         )}
       </div>
       <div className={styles.action}>
-        <button className={styles.editButton}>
+        <button className={styles.editButton} style={{ cursor: 'not-allowed' }}>
           <img src="/assets/vectors/bin.svg" alt="Delete Symbol" />
         </button>
         <button className={styles.editButton}>
-          <img src="/assets/vectors/purpedit.svg" alt="Edit Symbol" />
+          <Link href="/dashboard/admin/categories/edit/slug"> <img src="/assets/vectors/purpedit.svg" alt="Edit Symbol" /> </Link>
         </button>
       </div>
     </div>

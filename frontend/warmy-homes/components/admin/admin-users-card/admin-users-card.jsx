@@ -14,10 +14,10 @@ export default function UsersCard({
         <div className={styles.email}>{email}</div>
         <div className={styles.phone}>{phone}</div>
         <div className={styles.action}>
-        <button className={styles.editButton}>
+        <button className={styles.editButton} style={{ cursor: 'not-allowed' }}>
           <img src="/assets/vectors/bin.svg" alt="Delete Symbol" />
         </button>
-        <button className={styles.editButton}>
+        <button className={styles.editButton} style={{ cursor: 'not-allowed' }}>
           <img src="/assets/vectors/purpedit.svg" alt="Edit Symbol" />
         </button>
       </div>

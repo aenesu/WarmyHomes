@@ -2,6 +2,7 @@
 import CategoriesCard from "@/components/admin/categories-card/categories-card";
 import styles from "./categories.module.scss";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function AdminCategories() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,7 +31,9 @@ export default function AdminCategories() {
         <button className={styles.searchButton}>
           <img src="/assets/vectors/magnify.svg" alt="Search" />
         </button>
-        <button className={styles.addButton}>ADD NEW</button>
+        <Link href="/dashboard/admin/categories/new" className={styles.link}>
+          <button className={styles.addButton}>ADD NEW</button>
+        </Link>
       </div>
       <div className={styles.header}>
         <div>Icon</div>

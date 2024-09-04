@@ -2,6 +2,7 @@
 import { useState } from "react";
 import AdvertTypesCard from "@/components/admin/adverts-types-card/adverts-types-card";
 import styles from "./adverts-types.module.scss";
+import Link from "next/link";
 
 export default function AdminAdvertTypes() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,7 +32,9 @@ export default function AdminAdvertTypes() {
         <button className={styles.searchButton}>
           <img src="/assets/vectors/magnify.svg" alt="Search" />
         </button>
-        <button className={styles.addButton}>ADD NEW</button>
+        <Link href="/dashboard/admin/adverts-types/new" className={styles.link}>
+          <button className={styles.addButton}>ADD NEW</button>
+        </Link>
       </div>
       <div className={styles.header}>
         <div className={styles.headerTitle}>Title</div>
