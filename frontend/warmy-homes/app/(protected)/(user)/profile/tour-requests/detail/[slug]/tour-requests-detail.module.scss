@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300..700&display=swap');
+
 .container {
     width: 100vw;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 0 40px;
     margin-top: 40px;
     margin-bottom: 60px; 
@@ -14,29 +17,31 @@
     justify-content: space-between;
     margin-top: 20px;
     width: 100%;
+    max-width: 1355px;
 }
 
 .imageContainer {
     position: relative;
     width: 50%;
-    margin-right: 20px;
-    padding-left: 40px;
+    padding-left: 15px;
+    margin-right: 50px;
 
     img {
-      border-radius: 10px;
-      object-fit: cover;
+        border-radius: 10px;
+        object-fit: cover;
+        width: 100%;
     }
 
     .statusBox {
-      position: absolute;
-      top: 10px;
-      right: 50px;
-      background-color: #951763;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 14px;
-      z-index: 10; 
+        position: absolute;
+        top: 20px;
+        right: 15px; 
+        background-color: #951763;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        z-index: 10; 
     }
 }
 
@@ -45,23 +50,31 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding-right: 30px;
+}
+
+.titlePriceContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-family: "Akshar", "sans-serif";
     color: #393939;
-}
-
-.location {
-    font-size: 0.875rem;
-    color: #585858;
-    margin-bottom: 10px;
 }
 
 .price {
     font-size: 1.25rem;
     color: #393939;
     margin-left: auto;
+}
+
+.location {
+    font-size: 0.875rem;
+    color: #585858;
+    margin-bottom: 10px;
 }
 
 .form {
@@ -76,7 +89,7 @@
 }
 
 .label {
-    font-size: 0.875rem;
+    font-size: 0.895rem;
     color: #585858;
     margin-bottom: 5px;
 }
@@ -85,7 +98,7 @@
     padding: 10px;
     border: 1px solid #d1d1d1;
     border-radius: 5px;
-    width: 150px;
+    width: 180px;
 }
 
 .buttonContainer {
@@ -96,17 +109,21 @@
 
 .cancelButton {
     background-color: #d1d1d1;
-    padding: 10px 20px;
+    padding: 15px 40px;
     border: none;
     border-radius: 5px;
+    font-size: 1.2rem;
+    font-family: "Advent Pro", sans-serif;
     cursor: pointer;
 }
 
 .updateButton {
     background-color: #951763;
     color: white;
-    padding: 10px 20px;
+    padding: 15px 40px;
     border: none;
     border-radius: 5px;
+    font-size: 1.2rem;
+    font-family: "Advent Pro", sans-serif;
     cursor: pointer;
 }

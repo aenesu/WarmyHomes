@@ -9,31 +9,29 @@ export default function TourDetails() {
       <div className={styles.content}>
         <div className={styles.imageContainer}>
           <Image 
-            src="/assets/images/house-isolated-field 6.png" 
+            src="/assets/images/house-placeholder.jpg" 
             width={500} 
-            height={300} 
+            height={350} 
             alt="House in isolated field" 
           />
           <div className={styles.statusBox}>Pending</div>
         </div>
         <div className={styles.detailsContainer}>
-          <div className={styles.header}>
-            <h5 className={styles.title}>Equestrian Family Home</h5>
-            <span className={styles.price}>$1400.00</span>
+          <div className={styles.titlePriceContainer}>
+            <div className={styles.title}>Equestrian Family Home</div>
+            <div className={styles.price}>$1400.00</div>
           </div>
-          <p className={styles.location}>California City, CA, USA</p>
-          
+          <div className={styles.location}>California City, CA, USA</div>
           <div className={styles.form}>
             <div className={styles.formGroup}>
-              <label htmlFor="tourDate">Tour Date</label>
-              <input type="date" id="tourDate" className={styles.inputBox} />
+              <label className={styles.label}>Tour Date</label>
+              <input type="date" className={styles.inputBox} />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="tourTime">Tour Time</label>
-              <input type="time" id="tourTime" className={styles.inputBox} />
+              <label className={styles.label}>Tour Time</label>
+              <input type="time" className={styles.inputBox} />
             </div>
           </div>
-
           <div className={styles.buttonContainer}>
             <button className={styles.cancelButton}>Cancel</button>
             <button className={styles.updateButton}>Update</button>
