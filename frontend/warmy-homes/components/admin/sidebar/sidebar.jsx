@@ -46,13 +46,13 @@ export default function Sidebar() {
             src="/assets/images/logo-white 2.png"
             alt="Logo"
             className={styles.logo}
-            width={140}
-            height={110}
+            width={156}
+            height={36}
           />
         </div>
         <nav className={styles.navLinks}>
           {/* Correctly use template literals inside curly braces */}
-          <Link href={`${baseUrl}/dashboard`} onClick={() => handleNavClick('Dashboard')}>Dashboard</Link>
+          <Link href={`/dashboard`} onClick={() => handleNavClick('Dashboard')}>Dashboard</Link>
           <Link href={`${baseUrl}/properties`} onClick={() => handleNavClick('Adverts')}>Adverts</Link>
           <Link href={`${baseUrl}/categories`} onClick={() => handleNavClick('Categories')}>Categories</Link>
           <Link href={`${baseUrl}/adverts-types`} onClick={() => handleNavClick('Advert Types')}>Advert Types</Link>
