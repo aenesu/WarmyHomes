@@ -2,108 +2,111 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .content {
+    align-items: flex-start;
+    padding: 0 40px;
+    margin-top: 40px;
+    margin-bottom: 60px; 
+}
+
+.content {
     display: flex;
     flex-direction: row; 
     justify-content: space-between;
     margin-top: 20px;
-    width: 80%;
-  }
-  
-  .imageContainer {
+    width: 100%;
+}
+
+.imageContainer {
     position: relative;
-    width: 50%; 
+    width: 50%;
     margin-right: 20px;
-  
+    padding-left: 40px;
+
     img {
       border-radius: 10px;
       object-fit: cover;
     }
-  }
-  
-  .statusBox {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #951763;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  .detailsContainer {
-    width: 50%; 
+
+    .statusBox {
+      position: absolute;
+      top: 10px;
+      right: 50px;
+      background-color: #951763;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      z-index: 10; 
+    }
+}
+
+.detailsContainer {
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-  
-  .title {
+}
+
+.title {
     font-size: 1.25rem;
     color: #393939;
-  }
-  
-  .location {
+}
+
+.location {
     font-size: 0.875rem;
     color: #585858;
     margin-bottom: 10px;
-  }
-  
-  .price {
+}
+
+.price {
     font-size: 1.25rem;
     color: #393939;
-    margin-left: 20px;
-  }
-  
-  .form {
+    margin-left: auto;
+}
+
+.form {
     display: flex;
     gap: 10px;
     margin-top: 20px;
-  }
-  
-  .formGroup {
+}
+
+.formGroup {
     display: flex;
     flex-direction: column;
-  }
-  
-  .label {
+}
+
+.label {
     font-size: 0.875rem;
     color: #585858;
     margin-bottom: 5px;
-  }
-  
-  .inputBox {
+}
+
+.inputBox {
     padding: 10px;
     border: 1px solid #d1d1d1;
     border-radius: 5px;
     width: 150px;
-  }
-  
-  .buttonContainer {
+}
+
+.buttonContainer {
     margin-top: 20px;
     display: flex;
     gap: 10px;
-  }
-  
-  .cancelButton {
+}
+
+.cancelButton {
     background-color: #d1d1d1;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .updateButton {
+}
+
+.updateButton {
     background-color: #951763;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
+}

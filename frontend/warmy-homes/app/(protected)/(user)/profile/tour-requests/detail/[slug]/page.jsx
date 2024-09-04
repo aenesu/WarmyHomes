@@ -17,9 +17,11 @@ export default function TourDetails() {
           <div className={styles.statusBox}>Pending</div>
         </div>
         <div className={styles.detailsContainer}>
-          <h5 className={styles.title}>Equestrian Family Home</h5>
+          <div className={styles.header}>
+            <h5 className={styles.title}>Equestrian Family Home</h5>
+            <span className={styles.price}>$1400.00</span>
+          </div>
           <p className={styles.location}>California City, CA, USA</p>
-          <span className={styles.price}>$1400.00</span>
           
           <div className={styles.form}>
             <div className={styles.formGroup}>
