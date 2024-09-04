@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import styles from "./my-tour-card.module.scss";
 
 export default function MyTourRequestCard({
@@ -15,10 +16,8 @@ export default function MyTourRequestCard({
   time_id,
   guest_id,
   slug // Add slug as a prop
-}) 
-
-{
-// const router = useRouter(); // Initialize the router
+}) {
+  // const router = useRouter(); // Initialize the router
   // const handleDelete = () => {
   //   // Navigate to the delete page using slug (or add custom logic)
   //   router.push(`/dashboard/manage/admin/tour-requests/details/${slug}`);
@@ -32,13 +31,15 @@ export default function MyTourRequestCard({
   return (
     <div className={styles.card}>
       <div className={styles.container}>
-        <img
-          src="/assets/images/house-isolated-field 6.png"
-          alt={title}
-          className={styles.image}
-        />
+        <Link href={"/properties/slug"}>
+          <img
+            src="/assets/images/house-isolated-field 6.png"
+            alt={title}
+            className={styles.image}
+          />
+        </Link>
         <div>
-          <div className={styles.title}>{title}</div>
+          <Link href={"/properties/slug"} className={styles.link}> <div className={styles.title}>{title}</div> </Link>
           <div className={styles.location}>
             {district_id}, {city_id}, {country_id}
           </div>
@@ -54,11 +55,11 @@ export default function MyTourRequestCard({
       {time_id && <div className={styles.time}>{time_id}</div>}
 
       <div className={styles.action}>
-        <button className={styles.actButton} >
+        <button className={styles.actButton} style={{ cursor: 'not-allowed' }} >
           <img src="/assets/vectors/bin.svg" alt="Rubbish Symbol" />
         </button>
         <button className={styles.editButton} >
-          <img src="/assets/vectors/editP.svg" alt="Edit Symbol" />
+          <Link href={"/dashboard/admin/tour-requests/details/slug"}> <img src="/assets/vectors/editP.svg" alt="Edit Symbol" /> </Link>
         </button>
       </div>
     </div>

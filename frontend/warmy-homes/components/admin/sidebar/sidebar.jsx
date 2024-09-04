@@ -46,13 +46,13 @@ export default function Sidebar() {
             src="/assets/images/logo-white 2.png"
             alt="Logo"
             className={styles.logo}
-            width={140}
-            height={110}
+            width={156}
+            height={36}
           />
         </div>
         <nav className={styles.navLinks}>
           {/* Correctly use template literals inside curly braces */}
-          <Link href={`${baseUrl}/dashboard`} onClick={() => handleNavClick('Dashboard')}>Dashboard</Link>
+          <Link href={`/dashboard`} onClick={() => handleNavClick('Dashboard')}>Dashboard</Link>
           <Link href={`${baseUrl}/properties`} onClick={() => handleNavClick('Adverts')}>Adverts</Link>
           <Link href={`${baseUrl}/categories`} onClick={() => handleNavClick('Categories')}>Categories</Link>
           <Link href={`${baseUrl}/adverts-types`} onClick={() => handleNavClick('Advert Types')}>Advert Types</Link>
@@ -62,7 +62,7 @@ export default function Sidebar() {
           <Link href={`${baseUrl}/contact-messages`} onClick={() => handleNavClick('Contact Messages')}>Contact Messages</Link>
           <Link href={`${baseUrl}/settings`} onClick={() => handleNavClick('Settings')}>Settings</Link>
           <Link href="/" target="_blank" onClick={() => handleNavClick('Web Site')}>Web Site</Link>
-          <Link href={`${baseUrl}/logout`} onClick={() => handleNavClick('Logout')}>Logout</Link>
+          <Link href="/" onClick={() => handleNavClick('Logout')}>Logout</Link>
         </nav>
         <button className={styles.closeButton} onClick={toggleSidebar}>
           <PiListDashesFill className={styles.icon} />
