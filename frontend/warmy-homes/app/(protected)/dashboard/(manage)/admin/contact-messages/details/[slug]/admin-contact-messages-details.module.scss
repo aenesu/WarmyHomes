@@ -4,25 +4,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 40px !important;
     padding: 20px;
   }
   
   .detailsSection {
     width: 100%;
     max-width: 800px;
-    background-color: #f4f4f4;
     border-radius: 8px;
-    padding: 20px;
+    padding: 20px 0;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
   
     .detailRow {
       display: flex;
       align-items: center;
       padding: 10px 0;
+      background-color: #f4f4f4;
+      padding: 10px 30px;
+      border-radius: 10px;
+      border-bottom: 1px solid #ccc;
+
   
-      &:not(:last-child) {
-        border-bottom: 1px solid #ccc;
-      }
+
   
       .label {
         font-weight: bold;
@@ -59,6 +66,17 @@
       border: none;
       cursor: pointer;
       font-size: 1rem;
+      width: 120px;
+
+      transition: all 0.3s ease;
+
+      &:last-child:hover{
+        background-color: rgb(180, 52, 52);
+      }
+
+      &:first-child:hover{
+        background-color: #000080;
+      }
     }
   
     .returnButton,
