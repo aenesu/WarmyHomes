@@ -12,7 +12,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.container{
+.container {
   display: flex;
   gap: 10px;
 }
@@ -30,12 +30,19 @@
   margin-right: 15px;
 }
 
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 .title {
   font-size: 1.2rem;
   font-weight: 700;
 }
 
-.city_id, .location, .price {
+.city_id,
+.location,
+.price {
   color: #666;
   margin: 5px 0;
 }
@@ -50,7 +57,7 @@
   padding: 5px;
   border-radius: 5px;
   text-align: center;
-  max-width: 100px; 
+  max-width: 100px;
   box-sizing: border-box;
 }
 

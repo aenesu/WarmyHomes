@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import styles from './admin-tour-request.module.scss';
-import MyTourRequestCard from '@/components/user-panel/my-tour-request-card/my-tour-card';
+import AdminTourRequestCard from '@/components/admin/admin-tour-request-card/admin-tour-card';
 
 export default function Properties() {
   const [formData, setFormData] = useState({
@@ -75,7 +75,7 @@ export default function Properties() {
         <div className={styles.cardsContainer}>
         <div className={styles.cards}>
           {paginatedAdverts.map(({ id, title, country_id, city_id, district_id, category_id, guest_id, advert_type_id, price, status, time_id }) => (
-            <MyTourRequestCard
+            <AdminTourRequestCard
               key={id}
               {...{
                 title,

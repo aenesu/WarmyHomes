@@ -14,13 +14,15 @@ export default function MyAdvertsCard({
   return (
     <div className={styles.card}>
       <div className={styles.container}>
-        <img
-          src="/assets/images/house-isolated-field 6.png"
-          alt={title}
-          className={styles.image}
-        />
+        <Link href={"/properties/slug"} target="_blank">
+          <img
+            src="/assets/images/house-isolated-field 6.png"
+            alt={title}
+            className={styles.image}
+          />
+        </Link>
         <div>
-          <div className={styles.title}>{title}</div>
+          <Link href={"/properties/slug"} target="_blank" className={styles.link}> <div className={styles.title}>{title}</div> </Link>
           <div className={styles.city_id}>{city_id}</div>
           <div className={styles.location}>{location}</div>
           <div className={styles.price}>{price}</div>

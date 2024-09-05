@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./my-tour-card.module.scss";
+import styles from "./admin-tour-card.module.scss";
 
-export default function MyTourRequestCard({
+export default function AdminTourRequestCard({
   index,
   title,
   country_id,
@@ -59,7 +59,7 @@ export default function MyTourRequestCard({
           <img src="/assets/vectors/bin.svg" alt="Rubbish Symbol" />
         </button>
         <button className={styles.editButton} >
-          <Link href={"/profile/tour-requests/detail/slug"}> <img src="/assets/vectors/editP.svg" alt="Edit Symbol" /> </Link>
+          <Link href={"/dashboard/admin/tour-requests/details/slug"}> <img src="/assets/vectors/editP.svg" alt="Edit Symbol" /> </Link>
         </button>
       </div>
     </div>
