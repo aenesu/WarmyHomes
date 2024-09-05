@@ -31,7 +31,7 @@ export default function MyTourRequestCard({
   return (
     <div className={styles.card}>
       <div className={styles.container}>
-        <Link href={"/properties/slug"}>
+        <Link href={"/properties/slug"} target="_blank">
           <img
             src="/assets/images/house-isolated-field 6.png"
             alt={title}
@@ -39,7 +39,7 @@ export default function MyTourRequestCard({
           />
         </Link>
         <div>
-          <Link href={"/properties/slug"} className={styles.link}> <div className={styles.title}>{title}</div> </Link>
+          <Link href={"/properties/slug"} target="_blank" className={styles.link}> <div className={styles.title}>{title}</div> </Link>
           <div className={styles.location}>
             {district_id}, {city_id}, {country_id}
           </div>
