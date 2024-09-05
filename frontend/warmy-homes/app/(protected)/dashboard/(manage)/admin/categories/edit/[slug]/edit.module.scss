@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   padding: 50px 0;
+  font-family: 'Advent Pro', sans-serif;
 }
 
 .form {
@@ -51,6 +52,10 @@
   &.small {
     width: 48%;
   }
+
+  &.leftAligned {
+    width: 90%; /* Align to the left */
+  }
 }
 
 .formRow {
@@ -75,14 +80,15 @@
 .statusButton {
   font-family: 'Advent Pro', sans-serif;
   font-size: 1.625rem;
-  width: 160px;
+  width: 200px; /* Make the button wider */
   background-color: #951763;
-  border-radius: 50px solid #951763;
+  border: none;
+  border-radius: 25px;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 20px;
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -101,4 +107,126 @@
   &.active {
     background-color: green;
   }
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin-top: 20px;
+}
+
+.deleteButton,
+.saveButton {
+  font-family: 'Advent Pro', sans-serif;
+  font-size: 1.625rem;
+  padding: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.deleteButton {
+  background-color: #939393;
+  color: white;
+
+  &:hover {
+    background-color: #7f7f7f;
+  }
+}
+
+.saveButton {
+  background-color: #951763;
+  color: white;
+
+  &:hover {
+    background-color: #b21878;
+  }
+}
+
+/* Property section */
+.formRowWithProperties {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.propertyContainer {
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  padding: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 300px;
+}
+
+.propertyTitle {
+  font-family: 'Advent Pro', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.addPropertyBox {
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.addPropertyBox::before {
+  content: "+";
+  font-size: 2rem;
+  color: #b21878;
+}
+
+.propertyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.propertyName {
+  font-size: 1.25rem;
+  font-family: 'Advent Pro', sans-serif;
+}
+
+.propertyActions {
+  display: flex;
+  gap: 10px;
+}
+
+.propertyActions svg {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.propertyActions .editIcon {
+  fill: #b21878;
+}
+
+.propertyActions .deleteIcon {
+  fill: #939393;
+}
+
+/* Additional Property Items */
+.propertyList {
+  margin-bottom: 10px;
+}
+
+.propertyList .propertyItem + .propertyItem {
+  margin-top: 15px;
 }
