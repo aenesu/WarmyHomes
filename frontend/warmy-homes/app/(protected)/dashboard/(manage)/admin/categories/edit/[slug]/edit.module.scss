@@ -1,0 +1,104 @@
+@use "@/styles/variables" as *;
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&display=swap');
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+.form {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputField {
+  width: 50%;
+  margin: 20px 0;
+
+  label {
+    font-family: 'Advent Pro', sans-serif;
+    font-size: 1.5rem;
+    color: #939393;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  input {
+    font-family: 'Advent Pro', sans-serif;
+    width: 90%;
+    height: 50px;
+    padding: 0 10px;
+    font-size: 1.625rem;
+    color: #333;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    outline: none;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: #951763;
+    }
+  }
+
+  &.small {
+    width: 48%;
+  }
+}
+
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.statusContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-left: 10px;
+
+  label {
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+    color: #939393;
+  }
+}
+
+.statusButton {
+  font-family: 'Advent Pro', sans-serif;
+  font-size: 1.625rem;
+  width: 160px;
+  background-color: #951763;
+  border-radius: 50px solid #951763;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #b21878;
+  }
+}
+
+.statusIndicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: grey;
+  transition: all 0.3s ease;
+
+  &.active {
+    background-color: green;
+  }
+}
