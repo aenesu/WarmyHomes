@@ -54,21 +54,23 @@
   }
 
   &.leftAligned {
-    width: 90%; /* Align to the left */
+    width: 80%; /* Align to the left */
   }
 }
 
 .formRow {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end; /* Aligns the status button with Sequence */
   width: 100%;
 }
 
 .statusContainer {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start; /* Aligns with the input fields */
   margin-left: 10px;
+  margin-top: 5px; /* Adjust the top margin to align with the Sequence */
 
   label {
     margin-bottom: 5px;
@@ -80,7 +82,7 @@
 .statusButton {
   font-family: 'Advent Pro', sans-serif;
   font-size: 1.625rem;
-  width: 200px; /* Make the button wider */
+  width: 150px; /* Make the button wider */
   background-color: #951763;
   border: none;
   border-radius: 25px;
@@ -88,7 +90,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 10px 20px;
+  margin-top: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -111,8 +114,7 @@
 
 .buttonGroup {
   display: flex;
-  justify-content: space-between;
-  width: 50%;
+  gap: 10px; 
   margin-top: 20px;
 }
 
@@ -120,7 +122,7 @@
 .saveButton {
   font-family: 'Advent Pro', sans-serif;
   font-size: 1.625rem;
-  padding: 10px 30px;
+  padding: 15px 40px;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -130,6 +132,7 @@
 .deleteButton {
   background-color: #939393;
   color: white;
+  
 
   &:hover {
     background-color: #7f7f7f;
@@ -139,6 +142,7 @@
 .saveButton {
   background-color: #951763;
   color: white;
+
 
   &:hover {
     background-color: #b21878;
@@ -156,13 +160,13 @@
 .propertyContainer {
   background-color: #f3f3f3;
   border-radius: 5px;
-  padding: 20px;
-  margin-left: 20px;
+  padding: 20px 20px 150px 20px;
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   width: 100%;
-  max-width: 300px;
+  height: 200%;
+  max-width: 400px;
 }
 
 .propertyTitle {
