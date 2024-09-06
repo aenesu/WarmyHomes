@@ -24,7 +24,7 @@ export default function PropertiesPage() {
 
       <div className={styles.content}>
         <div className={styles.filtersContainer}>
-          <Filter />
+          {/* <Filter /> */}
         </div>
 
         <div className={styles.advertsContainer}>

@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useSearchParams } from "next/navigation";
 import styles from "./filter.module.scss";
 import { FaSearch } from "react-icons/fa";
