@@ -13,3 +13,10 @@ body {
   font-family: "Akshar", sans-serif;  
   background-color: rgb(255, 255, 255);
 }
+
+
+.bodyAutoOverflow {
+  overflow: auto !important;
+  padding: 0 auto!important;
+  margin: 0 !important;
+}
