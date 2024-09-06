@@ -5,7 +5,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 40px 0;
+  margin: 40 auto;
+  max-width: 1080px;
 }
 
 .searchForm {
@@ -70,6 +71,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
   width: 1355px;
+  max-width: 1080px;
   padding-bottom: 1rem;
 }
 

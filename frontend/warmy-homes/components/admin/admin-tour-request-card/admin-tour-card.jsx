@@ -48,8 +48,10 @@ export default function AdminTourRequestCard({
           </div>
         </div>
       </div>
+
       <div className={styles.category}>{category_id}</div>
       {guest_id && <div className={styles.category}>{guest_id}</div>}
+      
       <div className={styles.status}>{status}</div>
       <div className={styles.type}>{advert_type_id}</div>
       {time_id && <div className={styles.time}>{time_id}</div>}
