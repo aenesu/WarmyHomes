@@ -6,6 +6,9 @@
   flex-direction: column;
   justify-content: flex-start; 
   align-items: center;
+
+  margin: 40 auto;
+  max-width: 1080px;
 }
 
 .container {
@@ -58,8 +61,9 @@
 
 .words {
   display: grid;
-  grid-template-columns: 3.05fr 0.60fr 1.2fr 1.5fr 1.1fr 1fr 0.5fr; 
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr; 
   width: 1355px;
+  max-width: 1080px;
   padding-bottom: 1rem;
 }
 

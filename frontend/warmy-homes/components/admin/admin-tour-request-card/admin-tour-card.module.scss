@@ -2,8 +2,9 @@
 
 .card {
   display: grid;
-  grid-template-columns: 3.05fr 0.60fr 1.2fr 1.5fr 1.1fr 1fr; 
-  width: 1355px;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr; 
+  width: 1080px;
+  max-width: 1080px;
   align-items: center;
   padding: 15px;
   margin-bottom: 20px;
