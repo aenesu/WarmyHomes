@@ -58,7 +58,7 @@ export default function ProfilePage() {
       </form>
       <div className={styles.deleteSection}>
         <button onClick={handleDelete} className={styles.deleteButton}>
-        If you want to delete your account, click here! if you delete your account, all related records with this account will also be deleted permanently
+          <span>If you want to delete your account, click here! If you delete your account, all related records with this account will also be deleted permanently.</span>
         </button>
       </div>
     </div>

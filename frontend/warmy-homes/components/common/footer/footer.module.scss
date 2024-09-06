@@ -60,6 +60,10 @@
 
 .flex {
     display: flex;
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 }
 
 
@@ -83,6 +87,7 @@
 .button:hover {
   background-color: #005aa6; /* Darker shade on hover */
 }
+
 
 .storeLogo{
     margin-left: 5px;

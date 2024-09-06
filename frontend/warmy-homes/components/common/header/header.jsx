@@ -18,17 +18,17 @@ const Header = () => {
     <div className={styles.mainContainer}>
       <div className={`${styles.headerContainer} ${akshar.className}`}>
         <div className={styles.logo}>
-          <a href="/#">
+          <Link href="/">
             <img src="/assets/images/logo.png" alt="Logo" className={styles.logoImage} />
-          </a>
+          </Link>
         </div>
         <div className={styles.navContainer}>
           <ul className={styles.navbarNav}>
             {navLinks.map((link, index) => (
               <li className={styles.listitem} key={index}>
-                <a href={link.href} className={`${styles.navLink} ${akshar.className}`}>
+                <Link href={link.href} className={`${styles.navLink} ${akshar.className}`}>
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

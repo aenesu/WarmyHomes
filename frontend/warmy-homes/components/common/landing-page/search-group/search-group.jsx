@@ -15,27 +15,27 @@ export default function SearchGroup() {
         <form action='/properties' method='get'>
           
           <div className={styles.rentSaleSelector}>
-            <input className={styles.radio} type='radio' name='advert_type_id' id='Rent' value={2} />
+            <input className={styles.radio} type='radio' name='advert_type_id' id='Rent' value={1} />
             <label className={styles.radioLabel} htmlFor='Rent'>Rent</label>
             <div style={{ opacity: '40%', fontWeight: 'lighter' }}>|</div>
-            <input className={styles.radio} type='radio' name='advert_type_id' id='Sale' value={1} />
+            <input className={styles.radio} type='radio' name='advert_type_id' id='Sale' value={2} />
             <label className={styles.radioLabel} htmlFor='Sale'>Sale</label>
           </div>
 
           <div className={styles.searchBox}>
-            <input type='text' name='search-term' />
+            <input type='text' name='q' />
             <button className={styles.button} type='submit'><FaSearch />
             </button>
           </div>
 
           <div className={styles.advertCategories}>
-            <input type='checkbox' name='house' id='house' />
+            <input type='checkbox' name='category_id' id='house' value={1} />
             <label htmlFor='house' >House</label>
-            <input type='checkbox' name='apartment' id='apartment' />
+            <input type='checkbox' name='category_id' id='apartment' value={2} />
             <label htmlFor='apartment' >Apartment</label>
-            <input type='checkbox' name='villa' id='villa' />
+            <input type='checkbox' name='category_id' id='villa' value={4} />
             <label htmlFor='villa' >Villa</label>
-            <input type='checkbox' name='office' id='office' />
+            <input type='checkbox' name='category_id' id='office' value={3} />
             <label htmlFor='office' >Office</label>
           </div>
         </form>

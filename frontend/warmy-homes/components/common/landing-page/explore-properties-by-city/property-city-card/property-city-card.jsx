@@ -1,14 +1,17 @@
+import Link from "next/link"
 import styles from "./property-city-card.module.scss"
 
-export default function PropertyCityCard({index, city, amount}) {
+export default function PropertyCityCard({ index, city, amount, link }) {
   return (
-    <div className={styles.card}>
-      <div className={styles.circle}></div>
-      <div className={styles.text}>
+    <Link href={link} className={styles.noUnderline}>
+      <div className={styles.card}>
+        <div className={styles.circle}></div>
+        <div className={styles.text}>
 
-      <div className={styles.city}>{city}</div>
-      <div className={styles.amount}>{amount} properties</div>
+          <div className={styles.city}>{city}</div>
+          <div className={styles.amount}>{amount} properties</div>
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }

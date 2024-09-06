@@ -114,8 +114,11 @@
     border: 2px solid #b71082;
     color: #000000;
     text-align: start;
-    cursor: pointer;
     border-radius: 10px;
+    cursor: not-allowed;
+
+    text-align: justify;
+
 
     transition: all 0.3s ease;
 

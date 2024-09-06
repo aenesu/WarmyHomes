@@ -17,17 +17,19 @@
             height: 128px;
 
             border-radius: 20px;
+            box-shadow: 0px 3px 5px gray;
             background: $lineer-gradient;
 
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            padding-left: 40px;
+            padding-left: 60px;
             margin-bottom: 50px;
 
             p {
                 color: #3B3B3B;
                 font-size: 36px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             }
         }
     }

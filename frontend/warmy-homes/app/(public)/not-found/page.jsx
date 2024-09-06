@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './not-found.module.scss';
 import Banner from '@/components/common/banner/banner';
 
@@ -16,7 +17,7 @@ export default function NotFound() {
             <div className={styles.subtitle}>
               The page you&apos;re looking for isn&apos;t available. Try to search again or the use go to:
           </div>
-          <button className={styles.goHomePagebutton}>Go to Home Page</button>
+          <Link href={"/"}><button className={styles.goHomePagebutton}>Go to Home Page</button></Link>
         </div>
       </div>
     </div>
