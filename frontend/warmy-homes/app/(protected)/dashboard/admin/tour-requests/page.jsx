@@ -72,7 +72,6 @@ export default function Properties() {
           <h4>Tour Time</h4>
           <h4>Action</h4>
         </div>
-        <div className={styles.cardsContainer}>
         <div className={styles.cards}>
           {paginatedAdverts.map(({ id, title, country_id, city_id, district_id, category_id, guest_id, advert_type_id, price, status, time_id }) => (
             <AdminTourRequestCard
@@ -88,11 +87,10 @@ export default function Properties() {
                 status,
                 price,
                 time_id,
-               
+
               }}
             />
           ))}
-        </div>
         </div>
       </div>
       <div className={styles.pagination}>

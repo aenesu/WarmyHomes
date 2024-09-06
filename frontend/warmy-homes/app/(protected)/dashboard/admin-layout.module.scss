@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    height: auto;
+    overflow-y: scroll;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .mainContent {
+    flex-grow: 1;
+    margin: 20 0 !important;
+    padding: 0 !important;
+  }
+  
