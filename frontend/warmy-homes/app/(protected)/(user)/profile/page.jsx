@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import styles from "./profile-page.module.scss";
-import Link from "next/link";
 
 export default function ProfilePage() {
   const [formData, setFormData] = useState({
