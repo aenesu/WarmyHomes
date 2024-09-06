@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './unauthorized.module.scss';
 import Banner from '@/components/common/banner/banner';
 
@@ -16,7 +17,7 @@ export default function Unauthorized() {
             <div className={styles.subtitle}>
               Please check your login credentials or contact the administrator.
           </div>
-          <button className={styles.logoutButton}>LOGOUT</button>
+          <Link href={"/"} > <button className={styles.logoutButton}>LOGOUT</button> </Link>
         </div>
       </div>
     </div>

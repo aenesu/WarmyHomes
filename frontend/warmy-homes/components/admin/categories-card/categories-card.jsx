@@ -12,7 +12,7 @@ export default function CategoriesCard({
   return (
     <div className={styles.card}>
       <div className={styles.icon}>
-        <img src={`/assets/vectors/${icon}`} alt="Category Icon" />
+        <img src={icon} alt="Category Icon" />
       </div>
       <div className={styles.name}>{name}</div>
       <div className={styles.sequence}>{sequence}</div>

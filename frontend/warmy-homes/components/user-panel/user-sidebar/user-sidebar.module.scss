@@ -68,10 +68,10 @@
     right: 20px;
     background: none;
     border: none;
-    font-size: 1.5rem;  
+    font-size: 1.5rem;
     color: white;
     cursor: pointer;
-   
+
   }
 
   .navLinks {
@@ -81,7 +81,7 @@
     padding: 20px;
   }
 
-  .divider{
+  .divider {
     width: 200px;
     height: 10px;
     color: #88aaaa;
@@ -98,9 +98,10 @@
     width: 100%;
     text-align: left;
     padding-left: 55px;
-    
+
     &:hover {
       color: #fff;
+      font-weight: 600;
     }
   }
 }

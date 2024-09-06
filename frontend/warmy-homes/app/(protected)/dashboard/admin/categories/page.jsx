@@ -7,10 +7,11 @@ import Link from "next/link";
 export default function AdminCategories() {
   const [searchTerm, setSearchTerm] = useState("");
   const Categories = [
-    { id: 1, icon: "house.svg", name: "Villa", sequence: 15, active: true },
-    { id: 2, icon: "house.svg", name: "Villa", sequence: 15, active: true },
-    { id: 3, icon: "house.svg", name: "Villa", sequence: 15, active: true },
-    { id: 4, icon: "house.svg", name: "Villa", sequence: 15, active: true },
+    { id: 1, name:"Houses", icon: "/assets/images/categories/house.svg", sequence: 1, active: true },
+    { id: 2, name: "Apartments", icon: "/assets/images/categories/apartment.svg", sequence: 2, active: true },
+    { id: 3, name: "Offices", icon: "/assets/images/categories/office.svg",  sequence: 3, active: true },
+    { id: 4, name: "Villas", icon: "/assets/images/categories/villas.svg", sequence: 4, active: true },
+    { id: 5, name: "Bungalows", icon: "/assets/images/categories/bungalow.svg", sequence: 5, active: true },
   ];
 
   const handleSearchChange = (e) => {

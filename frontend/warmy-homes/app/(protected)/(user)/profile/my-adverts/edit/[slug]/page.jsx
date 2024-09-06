@@ -24,9 +24,9 @@ export default function NewAdvert() {
           <h2>Address Information</h2>
           <div className={styles.formInputs}>
             <div className={styles.multipleInput}>
-              <TextInput label="country" value={"Chose"} width="257px" />
-              <TextInput label="city" value={"Chose"} width="257px" />
-              <TextInput label="neigbourhood" value={"Chose"} width="257px" />
+              <TextInput label="country" value={"Choose"} width="257px" />
+              <TextInput label="city" value={"Choose"} width="257px" />
+              <TextInput label="neigbourhood" value={"Choose"} width="257px" />
             </div>
             <TextInput label="location" />
           </div>
@@ -34,7 +34,7 @@ export default function NewAdvert() {
           <div className={styles.propertiesBox}>
             <h2>Properties</h2>
             <div className={styles.formInputs}>
-              <TextInput label="category" value={"Chose"} width="548px" />
+              <TextInput label="category" value={"Choose"} width="548px" />
               <div className={styles.multipleInput}>
                 <TextInput label="floor" width="257px" />
                 <TextInput label="bedroom" width="257px" />

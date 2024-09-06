@@ -1,3 +1,4 @@
+import Link from "next/link"
 import styles from "./need-help.module.scss"
 
 export default function NeedHelp() {
@@ -10,12 +11,12 @@ export default function NeedHelp() {
             </div>
 
             <div className={styles.buttonGroup}>
-                <a href="/contact">
+                <Link href="/contact">
                     <button className={`${styles.contactUsLink} ${styles.button}`}>
                         <span>Contact Us</span>
                         <img src="/assets/vectors/right-upwards-arrow.svg" alt="Contact Us Page" width={21} height={21}></img>
                     </button>
-                </a>
+                </Link>
                 <a href="tel:+1 555 55 55">
                     <button className={`${styles.contactUsCall} ${styles.button}`}>
                         <img src="/assets/vectors/phone.svg" alt="Call Us" width={21} height={21}></img>
