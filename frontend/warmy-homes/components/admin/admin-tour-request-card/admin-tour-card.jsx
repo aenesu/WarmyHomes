@@ -17,17 +17,6 @@ export default function AdminTourRequestCard({
   guest_id,
   slug // Add slug as a prop
 }) {
-  // const router = useRouter(); // Initialize the router
-  // const handleDelete = () => {
-  //   // Navigate to the delete page using slug (or add custom logic)
-  //   router.push(`/dashboard/manage/admin/tour-requests/details/${slug}`);
-  // };
-
-  // const handleEdit = () => {
-  //   // Navigate to the edit page using slug
-  //   router.push(`/dashboard/manage/admin/tour-requests/details/${slug}`);
-  // };
-
   return (
     <div className={styles.card}>
       <div className={styles.container}>

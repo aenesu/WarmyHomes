@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;500;700&display=swap');
 
 .mainContainer {
-  width: 100vw;
+  width: 99vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@
 
 .words {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
   width: 1355px;
   max-width: 1080px;
   padding-bottom: 1rem;

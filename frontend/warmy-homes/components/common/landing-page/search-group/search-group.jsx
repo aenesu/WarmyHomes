@@ -7,7 +7,7 @@ export default function SearchGroup() {
     <div className={styles.searchGroup}>
 
       <div className={styles.motto}>
-        Easy Way to Find a <br /> Perfect Properity
+        Easy Way to Find a <br /> Perfect Property
       </div>
 
       <div className={styles.searchBoxGroup}>
