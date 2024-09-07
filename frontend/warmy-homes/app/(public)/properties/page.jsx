@@ -49,42 +49,42 @@ export default function PropertiesPage() {
   };
 
   return (
-    <Suspense>
-    <div className={styles.mainContainer}>
-      <Banner title="PROPERTIES" />
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className={styles.mainContainer}>
+        <Banner title="PROPERTIES" />
 
-      <div className={styles.content}>
-        <div className={styles.filtersContainer}>
-          <Filter filterParams={filterParams} />
+        <div className={styles.content}>
+          <div className={styles.filtersContainer}>
+            <Filter filterParams={filterParams} />
+          </div>
+
+          <div className={styles.advertsContainer}>
+            {paginatedAdverts.map(({ id, title, city, district, price }) => (
+              <AdvertCard key={id} {...{ title, city, district, price }} />
+            ))}
+          </div>
         </div>
-
-        <div className={styles.advertsContainer}>
-          {paginatedAdverts.map(({ id, title, city, district, price }) => (
-            <AdvertCard key={id} {...{ title, city, district, price }} />
-          ))}
+        {/* Pagination controls */}
+        <div className={styles.pagination}>
+          <button
+            onClick={() => handlePageChange(-1)}
+            disabled={currentPage === 1}
+            className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
+          >
+            <img src="/assets/vectors/arrowL.svg" alt="Previous" />
+          </button>
+          <span className={styles.pageInfo}>
+            {currentPage} / {totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(1)}
+            disabled={currentPage === totalPages}
+            className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
+          >
+            <img src="/assets/vectors/arrow.svg" alt="Next" />
+          </button>
         </div>
       </div>
-      {/* Pagination controls */}
-      <div className={styles.pagination}>
-        <button
-          onClick={() => handlePageChange(-1)}
-          disabled={currentPage === 1}
-          className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
-        >
-          <img src="/assets/vectors/arrowL.svg" alt="Previous" />
-        </button>
-        <span className={styles.pageInfo}>
-          {currentPage} / {totalPages}
-        </span>
-        <button
-          onClick={() => handlePageChange(1)}
-          disabled={currentPage === totalPages}
-          className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
-        >
-          <img src="/assets/vectors/arrow.svg" alt="Next" />
-        </button>
-      </div>
-    </div>
     </Suspense>
   );
 }
