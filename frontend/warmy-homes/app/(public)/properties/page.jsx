@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import styles from './properties.module.scss';
 import Banner from '@/components/common/banner/banner';
@@ -49,6 +49,7 @@ export default function PropertiesPage() {
   };
 
   return (
+    <Suspense>
     <div className={styles.mainContainer}>
       <Banner title="PROPERTIES" />
 
@@ -84,5 +85,6 @@ export default function PropertiesPage() {
         </button>
       </div>
     </div>
+    </Suspense>
   );
 }
