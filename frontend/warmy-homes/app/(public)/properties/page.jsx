@@ -6,8 +6,7 @@ import Banner from '@/components/common/banner/banner';
 import AdvertCard from '@/components/common/advert-card/advert-card';
 import Filter from '@/components/common/filter/filter';
 
-export default function PropertiesPage() {
-
+function PropertiesContent() {
   const searchParams = useSearchParams();
   const filterParams = {
     initialQuery: searchParams.get('q') || '',
@@ -33,7 +32,6 @@ export default function PropertiesPage() {
     { id: 11, title: "Luxury villa in Central Park", city: "Ankara", district: "Balgat", price: "1400,00" },
     { id: 12, title: "Luxury villa in Central Park", city: "Ankara", district: "Balgat", price: "1400,00" },
     { id: 13, title: "Luxury villa in Central Park", city: "Ankara", district: "Balgat", price: "1400,00" },
-
   ];
 
   // Pagination state
@@ -49,42 +47,46 @@ export default function PropertiesPage() {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className={styles.mainContainer}>
-        <Banner title="PROPERTIES" />
-
-        <div className={styles.content}>
-          <div className={styles.filtersContainer}>
-            <Filter filterParams={filterParams} />
-          </div>
-
-          <div className={styles.advertsContainer}>
-            {paginatedAdverts.map(({ id, title, city, district, price }) => (
-              <AdvertCard key={id} {...{ title, city, district, price }} />
-            ))}
-          </div>
+    <div className={styles.mainContainer}>
+      <Banner title="PROPERTIES" />
+      <div className={styles.content}>
+        <div className={styles.filtersContainer}>
+          <Filter filterParams={filterParams} />
         </div>
-        {/* Pagination controls */}
-        <div className={styles.pagination}>
-          <button
-            onClick={() => handlePageChange(-1)}
-            disabled={currentPage === 1}
-            className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
-          >
-            <img src="/assets/vectors/arrowL.svg" alt="Previous" />
-          </button>
-          <span className={styles.pageInfo}>
-            {currentPage} / {totalPages}
-          </span>
-          <button
-            onClick={() => handlePageChange(1)}
-            disabled={currentPage === totalPages}
-            className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
-          >
-            <img src="/assets/vectors/arrow.svg" alt="Next" />
-          </button>
+        <div className={styles.advertsContainer}>
+          {paginatedAdverts.map(({ id, title, city, district, price }) => (
+            <AdvertCard key={id} {...{ title, city, district, price }} />
+          ))}
         </div>
       </div>
+      {/* Pagination controls */}
+      <div className={styles.pagination}>
+        <button
+          onClick={() => handlePageChange(-1)}
+          disabled={currentPage === 1}
+          className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
+        >
+          <img src="/assets/vectors/arrowL.svg" alt="Previous" />
+        </button>
+        <span className={styles.pageInfo}>
+          {currentPage} / {totalPages}
+        </span>
+        <button
+          onClick={() => handlePageChange(1)}
+          disabled={currentPage === totalPages}
+          className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
+        >
+          <img src="/assets/vectors/arrow.svg" alt="Next" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default function PropertiesPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PropertiesContent />
     </Suspense>
   );
 }
