@@ -1,10 +1,23 @@
 "use client";
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import styles from './properties.module.scss';
 import Banner from '@/components/common/banner/banner';
 import AdvertCard from '@/components/common/advert-card/advert-card';
+import Filter from '@/components/common/filter/filter';
 
 export default function PropertiesPage() {
+
+  const searchParams = useSearchParams();
+  const filterParams = {
+    initialQuery: searchParams.get('q') || '',
+    initialAdvertTypeId: searchParams.get('advert_type_id') || '',
+    initialCategoryId: searchParams.getAll('category_id') || [],
+    initialMin: searchParams.get('min') || '',
+    initialMax: searchParams.get('max') || '',
+    initialLocation: searchParams.get('location') || '',
+  };
+
   // Sample adverts data
   const adverts = [
     { id: 1, title: "Luxury villa in Central Park", city: "Ankara", district: "Balgat", price: "1400,00" },
@@ -41,7 +54,7 @@ export default function PropertiesPage() {
 
       <div className={styles.content}>
         <div className={styles.filtersContainer}>
-          {/* <Filter /> */}
+          <Filter filterParams={filterParams} />
         </div>
 
         <div className={styles.advertsContainer}>
@@ -50,26 +63,26 @@ export default function PropertiesPage() {
           ))}
         </div>
       </div>
-         {/* Pagination controls */}
-         <div className={styles.pagination}>
-          <button
-            onClick={() => handlePageChange(-1)}
-            disabled={currentPage === 1}
-            className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
-          >
-            <img src="/assets/vectors/arrowL.svg" alt="Previous" />
-          </button>
-          <span className={styles.pageInfo}>
-            {currentPage} / {totalPages}
-          </span>
-          <button
-            onClick={() => handlePageChange(1)}
-            disabled={currentPage === totalPages}
-            className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
-          >
-            <img src="/assets/vectors/arrow.svg" alt="Next" />
-          </button>
-        </div>
+      {/* Pagination controls */}
+      <div className={styles.pagination}>
+        <button
+          onClick={() => handlePageChange(-1)}
+          disabled={currentPage === 1}
+          className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
+        >
+          <img src="/assets/vectors/arrowL.svg" alt="Previous" />
+        </button>
+        <span className={styles.pageInfo}>
+          {currentPage} / {totalPages}
+        </span>
+        <button
+          onClick={() => handlePageChange(1)}
+          disabled={currentPage === totalPages}
+          className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
+        >
+          <img src="/assets/vectors/arrow.svg" alt="Next" />
+        </button>
+      </div>
     </div>
   );
 }

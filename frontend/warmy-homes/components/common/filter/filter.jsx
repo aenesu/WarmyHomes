@@ -1,23 +1,32 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import styles from "./filter.module.scss";
 import { FaSearch } from "react-icons/fa";
 
-export default function Filter() {
+export default function Filter({ filterParams }) {
 
-    const searchParams = useSearchParams();
+    const {
+        initialQuery,
+        initialAdvertTypeId,
+        initialCategoryId,
+        initialMin,
+        initialMax,
+        initialLocation,
+    } = filterParams;
 
-    const initialQuery = searchParams.get('q') || '';
-    const initialAdvertTypeId = searchParams.get('advert_type_id') || '';
-    const initialCategoryId = searchParams.getAll('category_id') || [];
-    const initialMin = searchParams.get('min') || '';
-    const initialMax = searchParams.get('max') || '';
-    const initialLocation = searchParams.get('location') || '';
+    const category_id = [
+        { title: "House", id: 1 },
+        { title: "Apartment", id: 2 },
+        { title: "Villa", id: 4 },
+        { title: "Office", id: 3 },
+        { title: "Bungalow", id: 5 }
+    ]
 
-
-    const category_id = [{ title: "House", id: 1 }, { title: "Apartment", id: 2 }, { title: "Villa", id: 4 }, { title: "Office", id: 3 }, { title: "Bungalow", id: 5 }]
-    const advert_type_id = [{ title: "All", id: 3 }, { title: "Rent", id: 1 }, { title: "Sale", id: 2 }]
+    const advert_type_id = [
+        { title: "All", id: 3 },
+        { title: "Rent", id: 1 },
+        { title: "Sale", id: 2 }
+    ]
 
     return (
         <div className={styles.container}>
@@ -64,7 +73,7 @@ export default function Filter() {
                     <input type='text' name='location' autoComplete="off" placeholder="City" defaultValue={initialLocation} />
                 </div>
 
-                <button className={styles.submitButton} type='submit'><FaSearch /> Search</button>
+                <button className={styles.submitButton} type='submit'> <FaSearch /> Search </button>
             </form>
         </div>
     )
