@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './admin-tour-request.module.scss';
 import AdminTourRequestCard from '@/components/admin/admin-tour-request-card/admin-tour-card';
+import Pagination from '@/components/common/pagination/pagination';
 
 export default function Properties() {
   const [formData, setFormData] = useState({
@@ -27,8 +28,10 @@ export default function Properties() {
     console.log('Search submitted with data:', formData);
   };
 
-  const handlePageChange = (direction) => {
-    setCurrentPage((prevPage) => prevPage + direction);
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
   };
 
   const myAdverts = [
@@ -36,6 +39,10 @@ export default function Properties() {
     { id: 2, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
     { id: 3, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
     { id: 4, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
+    { id: 5, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
+    { id: 6, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
+    { id: 7, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' },
+    { id: 8, title: 'Equestrian Family Home', country_id: 'USA', city_id: 'CA', district_id: 'California City', price: 1400, category_id: 'John Doe', guest_id: 'Michael Go', status: 'Pending', advert_type_id: '10/10/2023', time_id: '10:30 PM' }
   ];
 
   const totalPages = Math.ceil(myAdverts.length / itemsPerPage);
@@ -93,25 +100,12 @@ export default function Properties() {
           ))}
         </div>
       </div>
-      <div className={styles.pagination}>
-        <button
-          className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
-          onClick={() => handlePageChange(-1)}
-          disabled={currentPage === 1}
-        >
-          <img src="/assets/vectors/arrowL.svg" alt="Previous" />
-        </button>
-        <span className={styles.pageInfo}>
-          {currentPage} / {totalPages}
-        </span>
-        <button
-          className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
-          onClick={() => handlePageChange(1)}
-          disabled={currentPage === totalPages}
-        >
-          <img src="/assets/vectors/arrow.svg" alt="Next" />
-        </button>
-      </div>
+      {/* Pagination Component */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

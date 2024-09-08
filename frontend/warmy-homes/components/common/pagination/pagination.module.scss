@@ -1,0 +1,35 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .pageButton {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pageButton.disabled {
+    background-color: transparent;
+    cursor: not-allowed;
+  }
+  
+  .pageButton img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .pageInfo {
+    font-size: 1rem;
+    margin: 0 20px;  /* Added more space around the page info */
+  }
+  
