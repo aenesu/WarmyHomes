@@ -1,35 +1,29 @@
 .pagination {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  
-  .pageButton {
-    background-color: transparent;
-    color: white;
-    border: none;
-    padding: 5px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin: 0;  
-    display: flex;
-    align-items: center;
     justify-content: center;
-  }
+    align-items: center;
+    gap: 1rem; /* Increased gap between elements for better spacing */
   
-  .pageButton.disabled {
-    background-color: transparent;
-    cursor: not-allowed;
-  }
+    .pageButton {
+      background: none;
+      border: none;
+      font-size: 1.5rem; /* Increased font size for visibility */
+      cursor: pointer;
+      color: #333; /* Color for better contrast */
   
-  .pageButton img {
-    width: 20px;
-    height: 20px;
-  }
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
   
-  .pageInfo {
-    font-size: 1rem;
-    margin: 0 20px;  /* Added more space around the page info */
+      img {
+        width: 24px; /* Increased width for better visibility */
+        height: 20px; /* Increased height for better visibility */
+      }
+    }
+  
+    .pageInfo {
+      font-size: 1.2rem;
+    }
   }
   

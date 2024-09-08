@@ -4,7 +4,7 @@ import styles from './pagination.module.scss';
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <div className={styles.pagination}>
-      {/* Outer arrow - Go to the first page (Double Left Arrow) */}
+      {/* Outer arrow - Go to the first page */}
       <button
         className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
         onClick={() => onPageChange(1)}
@@ -13,13 +13,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         &#xab; {/* Unicode for Double Left Arrow */}
       </button>
 
-      {/* Inner arrow - Go back one page (Left Arrow) */}
+      {/* Inner arrow - Go back one page */}
       <button
         className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
-        &#x2190; {/* Unicode for Left Arrow */}
+        <img src="/assets/vectors/arrow-left.svg" alt="Previous" />
       </button>
 
       {/* Page info */}
@@ -27,16 +27,16 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         {currentPage} / {totalPages}
       </span>
 
-      {/* Inner arrow - Go forward one page (Right Arrow) */}
+      {/* Inner arrow - Go forward one page */}
       <button
         className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
-        &#x2192; {/* Unicode for Right Arrow */}
+        <img src="/assets/vectors/arrow-right.svg" alt="Next" />
       </button>
 
-      {/* Outer arrow - Go to the last page (Double Right Arrow) */}
+      {/* Outer arrow - Go to the last page */}
       <button
         className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
         onClick={() => onPageChange(totalPages)}
