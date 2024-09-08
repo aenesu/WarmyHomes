@@ -1,9 +1,19 @@
+"use client"
+import { useState } from "react";
 import styles from "./new-advert.module.scss";
 import Banner from "@/components/common/banner/banner";
 import TextInput from "@/components/common/text-input/text-input";
 import TextArea from "@/components/common/text-area/text-area";
 
 export default function NewAdvert() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file));
+    }
+  };
 
   return (
     <div className={styles.mainContainer}>
@@ -83,7 +93,27 @@ export default function NewAdvert() {
 
           <h2>Images</h2>
           <div className={`${styles.formInputs} ${styles.photoAdd}`}>
-            <div className={styles.plusSign}>+</div>
+            <div className={styles.plusSign}>
+              {selectedImage ? (
+                <img
+                  src={selectedImage}
+                  alt="Selected"
+                  className={styles.imagePreview}
+                />
+              ) : (
+                <label htmlFor="avatar" className={styles.label}>
+                  +
+                  <input
+                    type="file"
+                    id="avatar"
+                    name="avatar"
+                    accept="image/png, image/jpeg"
+                    className={styles.fileInput}
+                    onChange={handleImageChange}
+                  />
+                </label>
+              )}
+            </div>
           </div>
 
           <button className={styles.submitButton}>Create</button>
