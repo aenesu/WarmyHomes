@@ -315,11 +315,13 @@ public class UserService {
             throw new BadRequestException(ErrorMessages.BAD_REQUEST_USER_TO_ADVERT_AND_TOUR_REQUEST);
         }
 
+        userRepository.deleteById(user.getId());
+
         // Delete related records in favorites and logs
         favoriteRepository.deleteByUserId(user.getId());
         logRepository.deleteByUserId(user.getId());
 
-        userRepository.deleteById(user.getId());
+
     }
 
     /**

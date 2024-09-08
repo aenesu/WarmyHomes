@@ -60,6 +60,12 @@ public class MethodHelper {
                 orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_ADVERT_TYPE_MESSAGE, advertTypeId)));
     }
 
+    public void isAdvertTypeBuiltIn(AdvertType advertType){
+        if (Boolean.TRUE.equals(advertType.getBuiltIn())) {
+            throw new BadRequestException(ErrorMessages.NOT_PERMITTED_METHOD_MESSAGE);
+        }
+    }
+
     public void isCategoryBuiltIn(Category category) {
         if (Boolean.TRUE.equals(category.getBuiltIn())) {
             throw new BadRequestException(ErrorMessages.NOT_PERMITTED_METHOD_MESSAGE);
@@ -88,7 +94,13 @@ public class MethodHelper {
                 orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_ADVERT_MESSAGE, advertId)));
     }
 
-    public Image isImageExistById(Long imageId){
+    public void isAdvertBuiltIn(Advert advert) {
+        if (Boolean.TRUE.equals(advert.getBuiltIn())) {
+            throw new BadRequestException(ErrorMessages.NOT_PERMITTED_METHOD_MESSAGE);
+        }
+    }
+
+    public Image isImageExistById(Long imageId) {
         return imageRepository.findById(imageId).orElseThrow(
                 () -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_IMAGE_MESSAGE, imageId))
         );

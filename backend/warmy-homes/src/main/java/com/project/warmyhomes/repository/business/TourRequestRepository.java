@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface TourRequestRepository extends JpaRepository<TourRequest, Long> {
 
     boolean existsByOwnerId(Long id);
+
+    void deleteByAdvertId(Long advertId);
 }

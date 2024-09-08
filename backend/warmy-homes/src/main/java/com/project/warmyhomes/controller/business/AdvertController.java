@@ -24,7 +24,8 @@ public class AdvertController {
 
     private final AdvertService advertService;
 
-    @GetMapping //http://localhost:8080/adverts?q=modern&category_id=1&advert_type_id=3&price_start=500000&price_end=1500000&status=0&page=0&size=10&sort=createDate&type=desc + GET
+    @GetMapping
+    //http://localhost:8080/adverts?q=modern&category_id=1&advert_type_id=3&price_start=500000&price_end=1500000&status=0&page=0&size=10&sort=createDate&type=desc + GET
     public Page<AdvertResponse> getAllAdvertsByPage(
             @RequestParam(value = "q", defaultValue = "") String query,
             @RequestParam(value = "category_id", defaultValue = "0") Long categoryId,
@@ -41,17 +42,17 @@ public class AdvertController {
     }
 
     @GetMapping("/cities") //http://localhost:8080/adverts/cities + GET
-    public ResponseEntity<List<AdvertCitiesResponse>> getAllAdvertsByCities(){
+    public ResponseEntity<List<AdvertCitiesResponse>> getAllAdvertsByCities() {
         return advertService.getAllAdvertsByCities();
     }
 
     @GetMapping("/categories") //http://localhost:8080/adverts/categories + GET
-    public ResponseEntity<List<AdvertCategoriesResponse>> getAllAdvertsByCategories(){
+    public ResponseEntity<List<AdvertCategoriesResponse>> getAllAdvertsByCategories() {
         return advertService.getAllAdvertsByCategories();
     }
 
     @GetMapping("/popular") //http://localhost:8080/adverts/popular?amount=:amount + GET
-    public ResponseEntity<List<AdvertResponse>> getPopularAdverts(@RequestParam(name = "amount", required = false, defaultValue = "10") Integer amount){
+    public ResponseEntity<List<AdvertResponse>> getPopularAdverts(@RequestParam(name = "amount", required = false, defaultValue = "10") Integer amount) {
         return advertService.getPopularAdverts(amount);
     }
 
@@ -68,7 +69,8 @@ public class AdvertController {
         return advertService.getUserAdvertsByPage(request, page, size, sort, type);
     }
 
-    @GetMapping("/admin") //http://localhost:8080/adverts/admin?q=modern&category_id=1&advert_type_id=3&price_start=500000&price_end=1500000&status=0&page=0&size=10&sort=createDate&type=desc + GET
+    @GetMapping("/admin")
+    //http://localhost:8080/adverts/admin?q=modern&category_id=1&advert_type_id=3&price_start=500000&price_end=1500000&status=0&page=0&size=10&sort=createDate&type=desc + GET
     @PreAuthorize("hasAnyAuthority('Admin','Manager')")
     public Page<AdvertResponse> getAdvertsByPage(
             @RequestParam(value = "q", defaultValue = "") String query,
@@ -85,15 +87,22 @@ public class AdvertController {
         return advertService.getAdvertsByPage(query, categoryId, advertTypeId, priceStart, priceEnd, status, page, size, sort, type);
     }
 
-    @GetMapping("{/slug}") //http://localhost:8080/adverts/:slug + GET
+    @GetMapping("/{slug:[a-zA-Z][a-zA-Z0-9-_]*}") //http://localhost:8080/adverts/:slug + GET
     public ResponseMessage<AdvertResponse> getAdvertBySlug(@PathVariable String slug) {
         return advertService.getAdvertBySlug(slug);
     }
 
+    @GetMapping("/{advertId}/auth") //http://localhost:8080/adverts/:id/auth + GET
+    @PreAuthorize("hasAnyAuthority('Customer')")
+    public ResponseMessage<AdvertResponse> getUsersAdvertById(@PathVariable Long advertId) {
+        return advertService.getUsersAdvertById(advertId);
+    }
 
-
-   // /adverts/:id/auth + GET
-   // /adverts/:id/admin/adverts/:id/admin + GET
+    @GetMapping("/{advertId}/admin") //http://localhost:8080/adverts/:id/admin + GET
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public ResponseMessage<AdvertResponse> getAdvertById(@PathVariable Long advertId) {
+        return advertService.getAdvertById(advertId);
+    }
 
     @PostMapping //http://localhost:8080/adverts + POST + JSON
     @PreAuthorize("hasAnyAuthority('Customer')")
@@ -103,5 +112,12 @@ public class AdvertController {
 
     // /adverts/auth/:id + PUT
     // /adverts/admin/:id + PUT
-    // /adverts/admin/:id + DELETE
+
+    /* /adverts/admin/:id + DELETE
+    @DeleteMapping("/admin/{advertId}") //http://localhost:8080/adverts/admin/:id + DELETE
+    @PreAuthorize("hasAnyAuthority('Admin','Manager')")
+    public void deleteAdvertById(@PathVariable Long advertId) {
+        advertService.deleteAdvertById(advertId);
+    }
+     */
 }

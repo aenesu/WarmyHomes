@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LogRepository extends JpaRepository<Log, Long> {
     void deleteByUserId(Long id);
+
+    void deleteByAdvertId(Long advertId);
 }

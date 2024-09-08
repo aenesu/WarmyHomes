@@ -21,7 +21,7 @@ public class ImageController {
     private final ImageService imageService;
 
     @GetMapping("/{imageId}") //http://localhost:8080/images/:imageId + GET
-    public ResponseMessage<ImageResponse> getImageById(@PathVariable Long imageId){
+    public ResponseMessage<ImageResponse> getImageById(@PathVariable Long imageId) {
         return imageService.getImageById(imageId);
     }
 
@@ -33,13 +33,13 @@ public class ImageController {
 
     @DeleteMapping("/{imageIds}") //http://localhost:8080/images/:imageIds+ DELETE
     @PreAuthorize("hasAnyAuthority('Admin','Manager', 'Customer')")
-    public void deleteImageByIds(@PathVariable List<Long> imageIds){
+    public void deleteImageByIds(@PathVariable List<Long> imageIds) {
         imageService.deleteImageByIds(imageIds);
     }
 
     @PutMapping("/{imageId}") //http://localhost:8080/images/:imageId + DELETE
     @PreAuthorize("hasAnyAuthority('Admin','Manager', 'Customer')")
-    public ResponseMessage<ImageResponse> updateImageById(@PathVariable Long imageId){
+    public ResponseMessage<ImageResponse> updateImageById(@PathVariable Long imageId) {
         return imageService.updateImageById(imageId);
     }
 }
