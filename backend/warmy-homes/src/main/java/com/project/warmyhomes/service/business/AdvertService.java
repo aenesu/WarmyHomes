@@ -22,6 +22,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
@@ -46,6 +47,11 @@ public class AdvertService {
 
     private final ImageRepository imageRepository;
     private final CategoryPropertyValueRepository categoryPropertyValueRepository;
+
+    private final TourRequestRepository tourRequestRepository;
+    private final FavoriteRepository favoriteRepository;
+    private final LogRepository logRepository;
+    private final CategoryRepository categoryRepository;
 
     /**
      * Retrieve a paginated list of advertisements based on the provided filtering and sorting criteria.
@@ -197,7 +203,25 @@ public class AdvertService {
                 .build();
     }
 
+    public ResponseMessage<AdvertResponse> getUsersAdvertById(Long advertId) {
+        Advert advert = methodHelper.isAdvertExistById(advertId);
 
+        return ResponseMessage.<AdvertResponse>builder()
+                .message(SuccessMessages.ADVERT_FOUND)
+                .object(advertMapper.mapAdvertToAdvertResponse(advert))
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
+
+    public ResponseMessage<AdvertResponse> getAdvertById(Long advertId) {
+        Advert advert = methodHelper.isAdvertExistById(advertId);
+
+        return ResponseMessage.<AdvertResponse>builder()
+                .message(SuccessMessages.ADVERT_FOUND)
+                .object(advertMapper.mapAdvertToAdvertResponse(advert))
+                .httpStatus(HttpStatus.OK)
+                .build();
+    }
 
     /**
      * Create a new Advert based on the provided AdvertRequest.
@@ -315,4 +339,23 @@ public class AdvertService {
                 .trim();
     }
 
+   /* @Transactional
+    public void deleteAdvertById(Long advertId) {
+        Advert advert = methodHelper.isAdvertExistById(advertId);
+
+        methodHelper.isAdvertBuiltIn(advert);
+
+
+
+        // Delete related records in tour requests, favorites, logs, images, category and category property value
+        tourRequestRepository.deleteByAdvertId(advertId);
+        favoriteRepository.deleteByAdvertId(advertId);
+        logRepository.deleteByAdvertId(advertId);
+        imageRepository.deleteByAdvertId(advertId);
+        categoryRepository.deleteByAdvertId(advertId);
+        categoryPropertyValueRepository.deleteByAdvertId(advertId);
+
+        advertRepository.deleteById(advert.getId());
+    }
+    */
 }

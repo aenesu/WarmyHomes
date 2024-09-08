@@ -53,10 +53,12 @@ public class TourRequest {
     Advert advert;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "owner_user_id", nullable = false)
     User owner;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "guest_user_id", nullable = false)
     User guest;
 

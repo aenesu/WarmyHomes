@@ -109,9 +109,7 @@ public class AdvertTypeService {
         AdvertType advertType = methodHelper.isAdvertTypeExistById(advertTypeId);
 
         // Check if the advert type can be modified
-        if (Boolean.TRUE.equals(advertType.getBuiltIn())) {
-            throw new BadRequestException(ErrorMessages.NOT_PERMITTED_METHOD_MESSAGE);
-        }
+        methodHelper.isAdvertTypeBuiltIn(advertType);
 
         // Check if there are related adverts
         if (advertRepository.existsByAdvertTypeId(advertTypeId)) {
