@@ -2,28 +2,37 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem; /* Increased gap between elements for better spacing */
+    gap: 1rem; 
   
     .pageButton {
       background: none;
       border: none;
-      font-size: 1.5rem; /* Increased font size for visibility */
       cursor: pointer;
-      color: #333; /* Color for better contrast */
-  
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      
+      
       &:disabled {
         cursor: not-allowed;
         opacity: 0.5;
       }
-  
+      
+      font-size: 1rem; 
+      
       img {
-        width: 24px; /* Increased width for better visibility */
-        height: 20px; /* Increased height for better visibility */
+        width: 10px; 
+        height: 24px; 
       }
     }
   
+    .arrow {
+      font-size: 1.5rem; 
+    }
+  
     .pageInfo {
-      font-size: 1.2rem;
+      font-size: 1.2rem; 
     }
   }
   

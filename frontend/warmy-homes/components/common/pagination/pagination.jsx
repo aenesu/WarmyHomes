@@ -6,11 +6,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     <div className={styles.pagination}>
       {/* Outer arrow - Go to the first page */}
       <button
-        className={`${styles.pageButton} ${currentPage === 1 ? styles.disabled : ''}`}
+        className={`${styles.pageButton} ${styles.arrow} ${currentPage === 1 ? styles.disabled : ''}`}
         onClick={() => onPageChange(1)}
         disabled={currentPage === 1}
       >
-        &#xab; {/* Unicode for Double Left Arrow */}
+        &#xab; 
       </button>
 
       {/* Inner arrow - Go back one page */}
@@ -38,11 +38,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
       {/* Outer arrow - Go to the last page */}
       <button
-        className={`${styles.pageButton} ${currentPage === totalPages ? styles.disabled : ''}`}
+        className={`${styles.pageButton} ${styles.arrow} ${currentPage === totalPages ? styles.disabled : ''}`}
         onClick={() => onPageChange(totalPages)}
         disabled={currentPage === totalPages}
       >
-        &#xbb; {/* Unicode for Double Right Arrow */}
+        &#xbb; 
       </button>
     </div>
   );
