@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";  // Import Next.js Link component
-import { useRouter } from "next/navigation"; // Import Next.js router
+import Link from "next/link"; 
+import { usePathname } from "next/navigation";
 import styles from './sidebar.module.scss';
 import Image from 'next/image';
 import { PiListDashesFill } from "react-icons/pi";
@@ -9,8 +9,8 @@ import { PiListDashesFill } from "react-icons/pi";
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState('Dashboard');
-  const router = useRouter(); // Initialize router
-  const baseUrl = "/dashboard/admin"; // Define a base URL or dynamic URL (e.g., `/admin`, `/user`, etc.)
+  const pathname = usePathname(); // Get the current path
+  const baseUrl = "/dashboard/admin"; // Define a base URL
 
   const toggleSidebar = () => {
     setIsOpen(prev => !prev);
@@ -20,6 +20,31 @@ export default function Sidebar() {
     setCurrentSection(section);
     setIsOpen(false); 
   };
+
+  // Mapping paths to section names using regex
+  const pathToSection = [
+    { regex: /^\/dashboard$/, section: 'Dashboard' },
+    { regex: new RegExp(`^${baseUrl}/properties`), section: 'Adverts' },
+    { regex: new RegExp(`^${baseUrl}/categories`), section: 'Categories' },
+    { regex: new RegExp(`^${baseUrl}/adverts-types`), section: 'Advert Types' },
+    { regex: new RegExp(`^${baseUrl}/users`), section: 'Users' },
+    { regex: new RegExp(`^${baseUrl}/tour-requests`), section: 'Tour Requests' },
+    { regex: new RegExp(`^${baseUrl}/reports`), section: 'Reports' },
+    { regex: new RegExp(`^${baseUrl}/contact-messages`), section: 'Contact Messages' },
+    { regex: new RegExp(`^${baseUrl}/settings`), section: 'Settings' },
+    { regex: /^\/$/, section: 'Home' },
+  ];
+
+  // Update the current section based on the pathname
+  useEffect(() => {
+    // Find the first matching regex for the current pathname
+    const matchedSection = pathToSection.find(({ regex }) => regex.test(pathname));
+    if (matchedSection) {
+      setCurrentSection(matchedSection.section);
+    } else {
+      setCurrentSection('Dashboard'); // Default fallback
+    }
+  }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -51,7 +76,6 @@ export default function Sidebar() {
           />
         </div>
         <nav className={styles.navLinks}>
-          {/* Correctly use template literals inside curly braces */}
           <Link href={`/dashboard`} onClick={() => handleNavClick('Dashboard')}>Dashboard</Link>
           <Link href={`${baseUrl}/properties`} onClick={() => handleNavClick('Adverts')}>Adverts</Link>
           <Link href={`${baseUrl}/categories`} onClick={() => handleNavClick('Categories')}>Categories</Link>
