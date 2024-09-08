@@ -28,56 +28,128 @@
         width: 100%;
         height: 100%;
         background: rgba(100, 100, 100, 0.75);
-    
+
         display: flex;
         justify-content: center;
         align-items: center;
-    
+
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease;
-    
+
         &.visible {
             opacity: 1;
             visibility: visible;
         }
-    
-        .popupContent img {    
+
+
+        .popupContent img {
             height: 80vh;
             width: auto;
             transform: scale(0.8);
             transition: transform 0.3s ease;
         }
-    
+
         &.visible .popupContent img {
             transform: scale(1);
         }
+
+        .popupContent {
+            position: relative;
+        }
+
+        .popNavButton {
+            position: absolute;
+            height: 80vh;
+            z-index: 2;
+            border: none;
+            transition: all 0.4s ease;
+
+            color: white;
+            font-size: 60px !important;
+            font-weight: 400;
+            padding: 20px;
+
+            &:first-of-type {
+                width: 300px;
+                left: 0;
+                background: linear-gradient(to right, rgba(150, 150, 150, 0.4), rgba(150, 150, 150, 0));
+                opacity: 0;
+                text-align: start;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            &:last-of-type {
+                width: 600px;
+                right: 0;
+                background: linear-gradient(to left, rgba(150, 150, 150, 0.4), rgba(150, 150, 150, 0));
+                opacity: 0;
+                text-align: end;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
     }
-    
+
 
 
 
     .thumbnailImages {
         display: flex;
+        justify-content: space-between;
 
-        .thumbnail {
-            width: 106px;
-            height: 71px;
-            border-radius: 20px;
+        .navButton {
             margin-top: 18px;
-            margin-right: 20px;
+            height: 68px;
+            width: 50px;
 
-            cursor: pointer;
+            border: 1px solid #951763;
+            border-radius: 10px;
+            color: #951763;
 
-            position: relative;
-            overflow: hidden;
-            object-fit: cover;
+            transition: all 0.3s ease;
 
-            transition: all 0.5s;
+            &:hover {
+                background-color: #951763;
+                color: white;
+            }
+        }
 
-            &.thumbnail:hover {
-                border-color: #777;
-                transform: scale(1.05);
+        .thumbnailImagesContainer {
+            height: 102px;
+            max-width: 760px;
+            display: flex;
+            overflow-x: scroll;
+
+            .thumbnail {
+                width: 106px;
+                min-width: 106px;
+                height: 71px;
+                border-radius: 20px;
+                margin-top: 18px;
+                margin-right: 20px;
+
+                cursor: pointer;
+
+                position: relative;
+                overflow: hidden;
+                object-fit: cover;
+
+                transition: all 0.5s;
+
+                &.thumbnail:hover {
+                    border-color: #777;
+                    transform: scale(1.05);
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
             }
         }
     }
