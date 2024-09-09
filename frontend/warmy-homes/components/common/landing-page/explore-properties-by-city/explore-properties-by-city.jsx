@@ -15,10 +15,12 @@ export default function ExplorePropertiesByCity() {
     <div className={styles.exploreByCityContainer}>
       <div className={styles.exploreTitle}>Explore Properties</div>
       <div className={styles.exploreText}>By City</div>
-      <div className={styles.cards}>
-        {properties.map(({ id, city, amount, link }) => (
-          <PropertyCityCard key={id} {...{ city, amount, link }} />
-        ))}
+      <div className={styles.scrollableContainer}>
+        <div className={styles.cards}>
+          {properties.map(({ id, city, amount, link }) => (
+            <PropertyCityCard key={id} {...{ city, amount, link }} />
+          ))}
+        </div>
       </div>
     </div>
   );

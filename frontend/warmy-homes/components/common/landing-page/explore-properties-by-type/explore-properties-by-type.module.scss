@@ -21,10 +21,17 @@
         margin-bottom: 20px;
     }
 
+    .scrollableContainer {
+        height: 320px;
+        overflow-x: scroll;
+        overflow-y: visible;
+        padding: 5px 5px;
+    }
+
     .categoryCards {
         display: flex;
+        margin: 20px 0;
         justify-content: space-between;
         gap: 20px;
     }
-
 }
