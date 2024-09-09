@@ -76,6 +76,20 @@
             }
         }
     }
+}
 
+@media (max-width: 900px) {
 
+    .needHelpContainer {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .text {
+        margin-top: 10px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+    }
 }
