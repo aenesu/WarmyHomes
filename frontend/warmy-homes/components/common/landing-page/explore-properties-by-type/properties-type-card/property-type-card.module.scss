@@ -56,6 +56,12 @@
             font-weight: 300;
         }
     }
+}
 
+@media (max-width: 1200px) {}
 
+@media (max-width: 800px) {
+    .typeCard:hover {
+        transform: scale(1);
+    }
 }
