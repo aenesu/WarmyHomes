@@ -7,7 +7,7 @@
     height: 339px;
     border-radius: 20px;
     box-shadow: 0px 2px 2px gray;
-    
+
     position: relative;
 
     background: url("/assets/images/ProperityFallbackImg.png");
@@ -62,5 +62,26 @@
         //     justify-content: center;
         //     align-items: center;
         // }
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .cardContainer {
+        width: 350px;
+    }
+
+    .cardTextBox {
+        border-radius: 0px;
+    }
+
+    @media (max-width: 800px) {
+        .cardContainer {
+            width: 350px;
+        }
+    
+        .cardTextBox {
+            border-radius: 0px;
+        }
     }
 }

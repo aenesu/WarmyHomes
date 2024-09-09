@@ -154,3 +154,33 @@
         }
     }
 }
+
+
+@media (max-width: 1200px) {
+    .searchGroup {
+        height: 700px;
+        background:
+            url("/assets/images/banner.png") no-repeat bottom 0% right -40% / 550px,
+            $lineer-gradient;
+
+        .motto {
+            margin-top: -200px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .searchGroup {
+        margin: 20px auto;
+        padding-top: 100px;
+        height: 550px;
+        background:
+            url("/assets/images/banner.png") no-repeat bottom 0% right -40% / 300px,
+            $lineer-gradient;
+
+        .motto {
+            margin-top: -200px;
+            font-size: 32px;
+        }
+    }
+}

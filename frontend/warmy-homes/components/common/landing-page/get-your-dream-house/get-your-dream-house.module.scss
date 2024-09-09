@@ -22,3 +22,23 @@
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 }
+
+@media (max-width: 1200px) {
+    .subBanner{
+        height: 700px;
+        background: url("/assets/images/subBanner.png") no-repeat bottom 0% right 0% / 600px;
+        background-color: #fdecff;
+    }
+}
+
+@media (max-width: 800px) {
+    .subBanner{
+        height: 700px;
+        background: url("/assets/images/subBanner.png") no-repeat bottom 0% right 90% / 500px;
+        justify-content: start;
+        background-color: #fdecff;
+    }
+    .motto{
+        font-size: 32px;
+    }
+}
